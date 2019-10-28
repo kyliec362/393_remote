@@ -7,9 +7,9 @@
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/streamy.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/run" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +20,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="n_player.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="n_player.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-187">
-              <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+            <state relative-caret-position="357">
+              <caret line="45" column="56" lean-forward="true" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rule_checker.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="157" column="12" selection-start-line="157" selection-start-column="12" selection-end-line="157" selection-end-column="12" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -36,6 +48,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="618" />
@@ -72,6 +91,14 @@
               <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
               <item name="5" type="462c0819:PsiDirectoryNode" />
               <item name="5.1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="393_remote" type="b2602c69:ProjectViewProjectNode" />
+              <item name="393_remote" type="462c0819:PsiDirectoryNode" />
+              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
+              <item name="5" type="462c0819:PsiDirectoryNode" />
+              <item name="5.1" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="393_remote" type="b2602c69:ProjectViewProjectNode" />
@@ -157,10 +184,30 @@
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/run">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="195" column="11" lean-forward="true" selection-start-line="195" selection-start-column="11" selection-end-line="195" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="357">
+          <caret line="45" column="56" lean-forward="true" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="157" column="12" selection-start-line="157" selection-start-column="12" selection-end-line="157" selection-end-column="12" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
