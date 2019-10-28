@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 rule_checker/rule_checker.py
