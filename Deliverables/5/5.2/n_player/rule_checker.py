@@ -154,8 +154,12 @@ class rule_checker:
         updated_board = board(updated_board).capture(stone)
         return updated_board == current_board.game_board
 
-    def make_capture_n_moves(self, n, board, point):
-        pass
+    def make_capture_n_moves(self, n, curr_board, stone):
+        curr_board = board(curr_board)
+        stone_to_remove = curr_board.get_no_liberties(stone)
+        if len(stone_to_remove) > 0:
+            return True
+        return False
 
     def removed_stones(self, current_board, previous_board):
         removed = []

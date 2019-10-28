@@ -35,18 +35,21 @@ class n_player:
     def make_a_move(self, boards):
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
-            if rule_checker().check_history_mam(boards, self.stone):
+            if rule_checker().check_history(boards, self.stone):
                 curr_board = boards[0]
-                capture_moves = []
+                non_capture_move = None
                 # go through rows and columns to find all points that capture
                 for i in range(maxIntersection):  # row
                     for j in range(maxIntersection):  # col
+                        point = make_point(i, j)
                         if rule_checker().make_capture_n_moves(n, curr_board, curr_board[i][j]):
-                            capture_moves.append(make_point(i, j))
-                # go through the list of points and check validity
-                for point in capture_moves:
-                    if rule_checker().check_validity(self.stone, [point, boards]):
-                        return point
+                            if rule_checker().check_validity(self.stone, [point, boards]):
+                                return point
+                        elif non_capture_move is None and curr_board[i][j] == empty and \
+                                rule_checker().check_validity(self.stone, [point, boards]):
+                            non_capture_move = point
+                if non_capture_move:
+                    return non_capture_move
                 return "pass"
         return "This history makes no sense!"
 
