@@ -52,7 +52,7 @@ def last_played_point(boards, stone):
     older_board = boards[1]
     for i in range(maxIntersection):  # row
         for j in range(maxIntersection):  # col
-            if old_board[i][j] == stone and old_board[i][j] != older_board[i][j]:
+            if old_board[i][j] == stone and older_board[i][j] == empty:
                 return [j, i]
     if older_board == old_board:
         return "pass"
@@ -139,14 +139,27 @@ class rule_checker:
             return False
         if get_opponent_stone(stone) == last_turn_player(boards):
             return False
-        if len(current_board.get_points(stone)) != len(previous_board.get_points(stone)) + 1 \
-                or len(current_board.get_points(get_opponent_stone(stone))) > len(previous_board.get_points(get_opponent_stone(stone))):
+        # both players can't have an increase in stones on the board
+        num_stones_current = len(current_board.get_points(stone))
+        num_stones_previous = len(previous_board.get_points(stone))
+        num_opp_stones_current = len(current_board.get_points(get_opponent_stone(stone)))
+        num_opp_stones_previous = len(previous_board.get_points(get_opponent_stone(stone)))
+        if (num_stones_current != (num_stones_previous + 1)) or (num_opp_stones_current > num_opp_stones_previous):
             return False
         return True
 
     def check_valid_capture(self, current_board, previous_board, stone):
+
         point = last_played_point([current_board.game_board, previous_board.game_board], get_opponent_stone(stone))
-        if point == "pass" or not point:
+        if point == "pass":
+            return True
+        if not point:
+            removed = self.removed_stones(current_board, previous_board)
+            no_liberties = previous_board.get_no_liberties(stone)
+            for point in removed:
+                # can't remove a stone with liberties
+                if point not in no_liberties:
+                    return False
             return True
         point = make_point(point[0], point[1])
         updated_board = previous_board.place(get_opponent_stone(stone), point)
