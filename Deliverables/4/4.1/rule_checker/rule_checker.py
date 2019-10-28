@@ -107,15 +107,14 @@ class rule_checker:
             # player played twice in a row
             if last_turn_player(boards) == last_turn_player(boards[1:]):
                 return False
-            first_boards = boards[:2]
             last_boards = boards[1:]
             # can't go twice in a row
-            # if stone == last_turn_player(first_boards):
-            #     return False
+            if stone == last_turn_player(boards):
+                return False
             # check valid move between oldest and middle boards and middle and current board
-            valid_1_2 = self.valid_between_two_boards(last_turn_player(first_boards),
-                                                      [last_played_point(first_boards, last_turn_player(first_boards)),
-                                                  first_boards], stone)
+            valid_1_2 = self.valid_between_two_boards(last_turn_player(boards),
+                                                      [last_played_point(boards, last_turn_player(boards)),
+                                                      boards], stone)
             valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
                                                       [last_played_point(last_boards, last_turn_player(last_boards)),
                                                       last_boards], stone)
