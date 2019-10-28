@@ -149,14 +149,17 @@ class rule_checker:
         return True
 
     def check_valid_capture(self, current_board, previous_board, stone):
-        removed = self.removed_stones(current_board, previous_board)
-        no_liberties = previous_board.get_no_liberties(stone)
-        for point in removed:
-            # can't remove a stone with liberties
-            if point not in no_liberties:
-                return False
+
         point = last_played_point([current_board.game_board, previous_board.game_board], get_opponent_stone(stone))
-        if point == "pass" or not point:
+        if point == "pass":
+            return True
+        if not point:
+            removed = self.removed_stones(current_board, previous_board)
+            no_liberties = previous_board.get_no_liberties(stone)
+            for point in removed:
+                # can't remove a stone with liberties
+                if point not in no_liberties:
+                    return False
             return True
         point = make_point(point[0], point[1])
         updated_board = previous_board.place(get_opponent_stone(stone), point)
