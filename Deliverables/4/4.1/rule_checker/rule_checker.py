@@ -110,8 +110,8 @@ class rule_checker:
             first_boards = boards[:2]
             last_boards = boards[1:]
             # can't go twice in a row
-            if stone == last_turn_player(first_boards):
-                return False
+            # if stone == last_turn_player(first_boards):
+            #     return False
             # check valid move between oldest and middle boards and middle and current board
             valid_1_2 = self.valid_between_two_boards(last_turn_player(first_boards),
                                                       [last_played_point(first_boards, last_turn_player(first_boards)),
