@@ -2,7 +2,7 @@ env:
  - ASSIGN_MAJOR=4 ASSIGN_MINOR=1 TEAM_NAME=team1
 
 script:
- - pushd team1-dev/Deliverables/$ASSIGN_MAJOR/$ASSIGN_MAJOR.$ASSIGN_MINOR
+ - pushd Deliverables/$ASSIGN_MAJOR/$ASSIGN_MAJOR.$ASSIGN_MINOR
  - make
  - chmod u+x ./run
  - popd
