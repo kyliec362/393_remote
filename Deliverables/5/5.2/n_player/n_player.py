@@ -35,6 +35,22 @@ class n_player:
         self.receive_flag = True
         self.stone = stone
 
+    def make_a_move_dumb(self, boards):
+        # don't make a move until a player has been registered with a given stone
+        if self.receive_flag and self.register_flag:
+            if rule_checker().check_history(boards, self.stone):
+                curr_board = boards[0]
+                # go through rows and columns to find a point
+                # check_validity of that move
+                for i in range(maxIntersection):  # row
+                    for j in range(maxIntersection):  # col
+                        if curr_board[j][i] == empty:
+                            point = make_point(i, j)
+                            if rule_checker().check_validity(self.stone, [point, boards]):
+                                return point
+                return "pass"
+        return "This history makes no sense!"
+
     def make_a_move(self, boards):
         stone = copy.deepcopy(self.stone)
         # don't make a move until a player has been registered with a given stone
@@ -64,8 +80,10 @@ class n_player:
         curr_board = board(curr_board)
         updated_board = curr_board.place(stone, point)
         new_boards = [updated_board] + boards[:min(2, len(boards))]
-        opponent_random_move = n_player(get_opponent_stone(stone)).make_a_move(new_boards)
-        print(opponent_random_move)
+        next_player = n_player(get_opponent_stone(stone))
+        next_player.register_flag = True
+        next_player.receive_flag = True
+        opponent_random_move = next_player.make_a_move_dumb(new_boards)
         if opponent_random_move == "pass":
             new_boards = [new_boards[0]] + [new_boards[0]] + [new_boards[1]]
         else:
