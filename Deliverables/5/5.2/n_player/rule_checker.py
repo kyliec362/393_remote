@@ -166,7 +166,24 @@ class rule_checker:
         updated_board = board(updated_board).capture(get_opponent_stone(stone))
         return updated_board == current_board.game_board
 
-    def make_capture_n_moves(self, n, curr_board, stone, point):
+    def make_capture_n_moves(self, n, curr_board, stone, point, boards):
+        if n == 1:
+            return self.make_capture_1_move(curr_board, stone, point)
+        curr_board = board(curr_board)
+        updated_board = curr_board.place(stone, point)
+        boards[0] = updated_board
+        potential_captures = 0
+        for i in range(maxIntersection):
+            for j in range(maxIntersection):
+                new_point = make_point(i, j)
+                if updated_board[j][i] == empty and self.check_validity(stone, [new_point, boards]):
+                    if self.make_capture_1_move(updated_board, stone, new_point):
+                        potential_captures += 1
+                        if potential_captures == n:
+                            return True
+        return False
+
+    def make_capture_1_move(self, curr_board, stone, point):
         curr_board = board(curr_board)
         updated_board = curr_board.place(stone, point)
         stones_to_remove = board(updated_board).get_no_liberties(get_opponent_stone(stone))

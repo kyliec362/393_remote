@@ -7,7 +7,7 @@ import copy
 
 maxIntersection = 19
 empty = " "
-n = 1
+n = 2
 
 
 class player:
@@ -46,7 +46,7 @@ class player:
                     for j in range(maxIntersection):  # col
                         point = make_point(i, j)
                         if curr_board[j][i] == empty:
-                            if rule_checker().make_capture_n_moves(n, curr_board, self.stone, point):
+                            if rule_checker().make_capture_n_moves(n, curr_board, self.stone, point, boards):
                                 if rule_checker().check_validity(stone, [point, boards]):
                                     return point
                             elif non_capture_move is None and rule_checker().check_validity(stone, [point, boards]):
