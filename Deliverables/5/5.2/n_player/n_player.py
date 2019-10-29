@@ -9,7 +9,7 @@ import copy
 
 maxIntersection = 19
 empty = " "
-n = 2
+n = 3
 
 
 class n_player:
@@ -77,6 +77,19 @@ class n_player:
     def make_capture_n_moves(self, n, curr_board, stone, point, boards):
         if n == 1:
             return self.make_capture_1_move(curr_board, stone, point)
+        new_boards = self.randomize_next_move(n, curr_board, stone, point, boards, stone)
+        updated_board = new_boards[0]
+        for i in range(maxIntersection):
+            for j in range(maxIntersection):
+                new_point = make_point(i, j)
+                if updated_board[j][i] == empty and rule_checker().check_validity(stone, [new_point, new_boards]):
+                    if self.make_capture_1_move(updated_board, stone, new_point):
+                        return True
+        return False
+
+    def randomize_next_move(self, n, curr_board, stone, point, boards, init_stone):
+        if n == 1:
+            return boards
         curr_board = board(curr_board)
         updated_board = curr_board.place(stone, point)
         new_boards = [updated_board] + boards[:min(2, len(boards))]
@@ -89,13 +102,10 @@ class n_player:
         else:
             new_boards = [board(new_boards[0]).place(get_opponent_stone(stone), opponent_random_move)] + \
                          [new_boards[0]] + [new_boards[1]]
-        for i in range(maxIntersection):
-            for j in range(maxIntersection):
-                new_point = make_point(i, j)
-                if updated_board[j][i] == empty and rule_checker().check_validity(stone, [new_point, new_boards]):
-                    if self.make_capture_1_move(updated_board, stone, new_point):
-                        return True
-        return False
+            point = opponent_random_move
+        if stone == init_stone:
+            n -= 1
+        return self.randomize_next_move(n, new_boards[0], get_opponent_stone(stone), point, new_boards, init_stone)
 
     def make_capture_1_move(self, curr_board, stone, point):
         curr_board = board(curr_board)
