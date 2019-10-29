@@ -3,7 +3,7 @@ import json
 from streamy import stream
 from board import board
 from board import make_point
-
+import copy
 
 empty = " "
 black = "B"
@@ -149,21 +149,17 @@ class rule_checker:
         return True
 
     def check_valid_capture(self, current_board, previous_board, stone):
-
-        point = last_played_point([current_board.game_board, previous_board.game_board], get_opponent_stone(stone))
-        if point == "pass":
-            return True
-        if not point:
-            removed = self.removed_stones(current_board, previous_board)
-            no_liberties = previous_board.get_no_liberties(stone)
-            for point in removed:
-                # can't remove a stone with liberties
-                if point not in no_liberties:
-                    return False
+        point = last_played_point([current_board.game_board, previous_board.game_board], stone)
+        if point == "pass" or not point:
             return True
         point = make_point(point[0], point[1])
-        updated_board = previous_board.place(get_opponent_stone(stone), point)
-        updated_board = board(updated_board).capture(stone)
+        # TODO do we need deep copy?
+        updated_board = copy.deepcopy(previous_board).place(stone, point)
+        #no_liberties = board(updated_board).get_no_liberties(get_opponent_stone(stone))
+        #removed = self.removed_stones(current_board, previous_board)
+        #print(no_liberties)
+        #print(removed)
+        updated_board = board(updated_board).capture(get_opponent_stone(stone))
         return updated_board == current_board.game_board
 
     def removed_stones(self, current_board, previous_board):
