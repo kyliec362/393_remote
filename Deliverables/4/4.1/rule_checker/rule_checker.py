@@ -105,7 +105,7 @@ class rule_checker:
             if boards[0] == boards[2]:
                 return False
             # player played twice in a row
-            if last_turn_player(boards) == last_turn_player(boards[1:]):
+            if last_turn_player(boards) == last_turn_player(boards[1:]) and boards[1] != boards[2]:
                 return False
             last_boards = boards[1:]
             # can't go twice in a row
