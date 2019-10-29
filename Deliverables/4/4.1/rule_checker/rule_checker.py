@@ -91,6 +91,8 @@ class rule_checker:
             if len(curr_board.get_no_liberties(black)) > 0 or len(curr_board.get_no_liberties(white)) > 0:
                 return False
         if len(boards) == 2:
+            if not empty_board(boards[1]):
+                return False
             last_player = last_turn_player(boards)
             # white can't go first
             if empty_board(boards[1]):
@@ -108,7 +110,8 @@ class rule_checker:
             last_player = last_turn_player(boards)
             if stone == last_player:
                 return False
-            if last_player == last_turn_player(boards[1:]):
+            last_boards = boards[1:]
+            if last_player == last_turn_player(last_boards):
                 if empty_board(boards[2]) and last_player == black:
                     return False
                 if boards[1] == boards[2]:
@@ -116,7 +119,7 @@ class rule_checker:
                                                       [last_played_point(boards, last_player),
                                                       boards], stone)
                 return False
-            last_boards = boards[1:]
+
             # check valid move between oldest and middle boards and middle and current board
             valid_1_2 = self.valid_between_two_boards(last_player,
                                                       [last_played_point(boards, last_player),
@@ -124,7 +127,7 @@ class rule_checker:
             valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
                                                       [last_played_point(last_boards, last_turn_player(last_boards)),
                                                       last_boards], stone)
-            if (last_turn_player(boards) == last_turn_player(boards[1:])) and (not valid_1_2 or not valid_2_3):
+            if (last_player == last_turn_player(last_boards)) or (not valid_1_2 or not valid_2_3):
                 return False
         return True
 
@@ -152,7 +155,20 @@ class rule_checker:
         num_opp_stones_previous = len(previous_board.get_points(get_opponent_stone(stone)))
         if (num_stones_current != (num_stones_previous + 1)) or (num_opp_stones_current > num_opp_stones_previous):
             return False
+        if self.invalid_swaps(current_board.game_board, previous_board.game_board):
+            return False
         return True
+
+    def invalid_swaps(self, current_board, previous_board):
+        for i in range(maxIntersection):  # row
+            for j in range(maxIntersection):  # col
+                # if a black was switched to a white or vice versa
+                if current_board[i][j] == empty:
+                    continue
+                if get_opponent_stone(current_board[i][j]) == previous_board[i][j]:
+                    return True
+        return False
+
 
     def check_valid_capture(self, current_board, previous_board, stone):
         point = last_played_point([current_board.game_board, previous_board.game_board], stone)
