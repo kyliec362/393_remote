@@ -3,11 +3,9 @@ import json
 from streamy import stream
 from rule_checker import rule_checker
 from board import make_point
-from rule_checker import get_opponent_stone
 
 maxIntersection = 19
 empty = " "
-
 
 
 class player:
@@ -23,7 +21,7 @@ class player:
         method = getattr(self, method)
         if method:
             return method(*args)
-        raise Exception("Not one of the board queries.")
+        raise Exception("Not one of the player queries.")
 
     def register(self):
         self.register_flag = True

@@ -9,7 +9,7 @@ empty = " "
 n = 1
 
 
-class n_player:
+class player:
     def __init__(self, stone):
         self.stone = stone
         self.register_flag = False
@@ -38,14 +38,15 @@ class n_player:
             if rule_checker().check_history(boards, self.stone):
                 curr_board = boards[0]
                 non_capture_move = None
-                # go through rows and columns to find all points that capture
+                # go through rows and columns to find a point
+                # check_validity of that move
                 for i in range(maxIntersection):  # row
                     for j in range(maxIntersection):  # col
                         point = make_point(i, j)
                         if rule_checker().make_capture_n_moves(n, curr_board, curr_board[i][j]):
                             if rule_checker().check_validity(self.stone, [point, boards]):
                                 return point
-                        elif non_capture_move is None and curr_board[i][j] == empty and \
+                        elif non_capture_move is None and curr_board[j][i] == empty and \
                                 rule_checker().check_validity(self.stone, [point, boards]):
                             non_capture_move = point
                 if non_capture_move:
@@ -71,7 +72,7 @@ def main():
     # assuming input is correctly formatting,
     # the second item in the second input obj should contain the stone
     stone = lst[1][1]
-    curr_player = n_player(stone)
+    curr_player = player(stone)
     for query in lst:
         result = curr_player.query(query)
         if result:

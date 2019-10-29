@@ -10,7 +10,7 @@
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/run" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/5/5.1/player/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.1/player/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" afterDir="false" />
     </list>
@@ -26,8 +26,20 @@
       <file leaf-file-name="n_player.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+            <state relative-caret-position="145">
+              <caret line="49" column="91" lean-forward="true" selection-start-line="49" selection-start-column="91" selection-end-line="49" selection-end-column="91" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/player.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -38,8 +50,8 @@
       <file leaf-file-name="rule_checker.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="263" column="26" lean-forward="true" selection-start-line="263" selection-start-column="26" selection-end-line="263" selection-end-column="26" />
+            <state relative-caret-position="189">
+              <caret line="220" column="40" lean-forward="true" selection-start-line="220" selection-start-column="40" selection-end-line="220" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -71,10 +83,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py" />
-        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" />
         <option value="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" />
+        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py" />
+        <option value="$PROJECT_DIR$/Deliverables/5/5.1/player/player.py" />
+        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py" />
         <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
@@ -275,28 +288,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="258" lean-forward="true" selection-start-line="258" selection-end-line="258" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="263" column="26" lean-forward="true" selection-start-line="263" selection-start-column="26" selection-end-line="263" selection-end-column="26" />
+        <state relative-caret-position="221">
+          <caret line="172" column="53" selection-start-line="172" selection-start-column="53" selection-end-line="172" selection-end-column="53" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -305,8 +298,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="74" column="29" lean-forward="true" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+        <state relative-caret-position="272">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="49" column="91" lean-forward="true" selection-start-line="49" selection-start-column="91" selection-end-line="49" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="220" column="40" lean-forward="true" selection-start-line="220" selection-start-column="40" selection-end-line="220" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
