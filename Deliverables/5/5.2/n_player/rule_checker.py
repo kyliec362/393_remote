@@ -166,10 +166,11 @@ class rule_checker:
         updated_board = board(updated_board).capture(get_opponent_stone(stone))
         return updated_board == current_board.game_board
 
-    def make_capture_n_moves(self, n, curr_board, stone):
+    def make_capture_n_moves(self, n, curr_board, stone, point):
         curr_board = board(curr_board)
-        stone_to_remove = curr_board.get_no_liberties(stone)
-        if len(stone_to_remove) > 0:
+        updated_board = curr_board.place(stone, point)
+        stones_to_remove = board(updated_board).get_no_liberties(get_opponent_stone(stone))
+        if len(stones_to_remove) > 0:
             return True
         return False
 

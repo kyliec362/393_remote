@@ -3,6 +3,7 @@ import json
 from streamy import stream
 from rule_checker import rule_checker
 from board import make_point
+import copy
 
 maxIntersection = 19
 empty = " "
@@ -33,9 +34,10 @@ class player:
         self.stone = stone
 
     def make_a_move(self, boards):
+        stone = copy.deepcopy(self.stone)
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
-            if rule_checker().check_history(boards, self.stone):
+            if rule_checker().check_history(boards, stone):
                 curr_board = boards[0]
                 non_capture_move = None
                 # go through rows and columns to find a point
@@ -43,12 +45,12 @@ class player:
                 for i in range(maxIntersection):  # row
                     for j in range(maxIntersection):  # col
                         point = make_point(i, j)
-                        if rule_checker().make_capture_n_moves(n, curr_board, curr_board[i][j]):
-                            if rule_checker().check_validity(self.stone, [point, boards]):
-                                return point
-                        elif non_capture_move is None and curr_board[j][i] == empty and \
-                                rule_checker().check_validity(self.stone, [point, boards]):
-                            non_capture_move = point
+                        if curr_board[j][i] == empty:
+                            if rule_checker().make_capture_n_moves(n, curr_board, self.stone, point):
+                                if rule_checker().check_validity(stone, [point, boards]):
+                                    return point
+                            elif non_capture_move is None and rule_checker().check_validity(stone, [point, boards]):
+                                non_capture_move = point
                 if non_capture_move:
                     return non_capture_move
                 return "pass"
