@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd37ac8b-3492-4572-ade8-1c3122d10ec2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../5.1/player/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.1/player/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/n_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/n_player.py" afterDir="false" />
     </list>
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/n_player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="272">
+              <caret line="103" column="52" lean-forward="true" selection-start-line="103" selection-start-column="52" selection-end-line="103" selection-end-column="52" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -29,7 +28,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rule_checker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-759">
+            <state relative-caret-position="-1884">
               <caret line="125" column="69" lean-forward="true" selection-start-line="125" selection-start-column="69" selection-end-line="125" selection-end-column="69" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -52,6 +51,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>make_cap</find>
+      <find>print</find>
+      <find>init_stone</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,7 +185,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/n_player.py</url>
-          <line>85</line>
+          <line>95</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -205,7 +206,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-759">
+        <state relative-caret-position="-1884">
           <caret line="125" column="69" lean-forward="true" selection-start-line="125" selection-start-column="69" selection-end-line="125" selection-end-column="69" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -215,8 +216,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/n_player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="272">
+          <caret line="103" column="52" lean-forward="true" selection-start-line="103" selection-start-column="52" selection-end-line="103" selection-end-column="52" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

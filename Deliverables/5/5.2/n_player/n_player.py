@@ -77,7 +77,7 @@ class n_player:
     def make_capture_n_moves(self, n, curr_board, stone, point, boards):
         if n == 1:
             return self.make_capture_1_move(curr_board, stone, point)
-        new_boards = self.randomize_next_move(n, curr_board, stone, point, boards, stone)
+        new_boards = self.randomize_next_move(n, curr_board, stone, point, boards)
         updated_board = new_boards[0]
         for i in range(maxIntersection):
             for j in range(maxIntersection):
@@ -87,7 +87,7 @@ class n_player:
                         return True
         return False
 
-    def randomize_next_move(self, n, curr_board, stone, point, boards, init_stone):
+    def randomize_next_move(self, n, curr_board, stone, point, boards):
         if n == 1:
             return boards
         curr_board = board(curr_board)
@@ -102,10 +102,8 @@ class n_player:
         else:
             new_boards = [board(new_boards[0]).place(get_opponent_stone(stone), opponent_random_move)] + \
                          [new_boards[0]] + [new_boards[1]]
-            point = opponent_random_move
-        if stone == init_stone:
-            n -= 1
-        return self.randomize_next_move(n, new_boards[0], get_opponent_stone(stone), point, new_boards, init_stone)
+        point = self.make_a_move_dumb(new_boards)
+        return self.randomize_next_move(n - 1, new_boards[0], stone, point, new_boards)
 
     def make_capture_1_move(self, curr_board, stone, point):
         curr_board = board(curr_board)
