@@ -9,7 +9,7 @@ import copy
 
 maxIntersection = 19
 empty = " "
-n = 3
+n = 1
 
 
 class n_player:
