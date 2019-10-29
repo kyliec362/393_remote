@@ -78,6 +78,14 @@ class rule_checker:
         # check for valid intended move
         return self.check_valid_move(stone, move)
 
+    def make_capture_n_moves(self, n, curr_board, stone, point):
+        curr_board = board(curr_board)
+        updated_board = curr_board.place(stone, point)
+        stones_to_remove = board(updated_board).get_no_liberties(get_opponent_stone(stone))
+        if len(stones_to_remove) > 0:
+            return True
+        return False
+
     def check_history(self, boards, stone):
         """
         Verifies that board history is valid
