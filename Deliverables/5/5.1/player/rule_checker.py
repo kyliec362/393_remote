@@ -104,22 +104,27 @@ class rule_checker:
             # ko rule violation
             if boards[0] == boards[2]:
                 return False
-            # player played twice in a row
-            print(last_turn_player(boards))
-            if last_turn_player(boards) == last_turn_player(boards[1:]) and boards[1] != boards[2]:
+            # can't go twice in a row
+            last_player = last_turn_player(boards)
+            if stone == last_player:
+                return False
+            if last_player == last_turn_player(boards[1:]):
+                if empty_board(boards[2]) and last_player == black:
+                    return False
+                if boards[1] == boards[2]:
+                    return self.valid_between_two_boards(last_player,
+                                                      [last_played_point(boards, last_player),
+                                                      boards], stone)
                 return False
             last_boards = boards[1:]
-            # can't go twice in a row
-            if stone == last_turn_player(boards):
-                return False
             # check valid move between oldest and middle boards and middle and current board
-            valid_1_2 = self.valid_between_two_boards(last_turn_player(boards),
-                                                      [last_played_point(boards, last_turn_player(boards)),
+            valid_1_2 = self.valid_between_two_boards(last_player,
+                                                      [last_played_point(boards, last_player),
                                                       boards], stone)
             valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
                                                       [last_played_point(last_boards, last_turn_player(last_boards)),
                                                       last_boards], stone)
-            if not valid_1_2 or not valid_2_3:
+            if (last_turn_player(boards) == last_turn_player(boards[1:])) and (not valid_1_2 or not valid_2_3):
                 return False
         return True
 
