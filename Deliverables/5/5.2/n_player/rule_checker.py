@@ -78,6 +78,14 @@ class rule_checker:
         # check for valid intended move
         return self.check_valid_move(stone, move)
 
+    def make_capture_n_moves(self, n, curr_board, stone, point):
+        curr_board = board(curr_board)
+        updated_board = curr_board.place(stone, point)
+        stones_to_remove = board(updated_board).get_no_liberties(get_opponent_stone(stone))
+        if len(stones_to_remove) > 0:
+            return True
+        return False
+
     def check_history(self, boards, stone):
         """
         Verifies that board history is valid
@@ -155,7 +163,20 @@ class rule_checker:
         num_opp_stones_previous = len(previous_board.get_points(get_opponent_stone(stone)))
         if (num_stones_current != (num_stones_previous + 1)) or (num_opp_stones_current > num_opp_stones_previous):
             return False
+        if self.invalid_swaps(current_board.game_board, previous_board.game_board):
+            return False
         return True
+
+    def invalid_swaps(self, current_board, previous_board):
+        for i in range(maxIntersection):  # row
+            for j in range(maxIntersection):  # col
+                # if a black was switched to a white or vice versa
+                if current_board[i][j] == empty:
+                    continue
+                if get_opponent_stone(current_board[i][j]) == previous_board[i][j]:
+                    return True
+        return False
+
 
     def check_valid_capture(self, current_board, previous_board, stone):
         point = last_played_point([current_board.game_board, previous_board.game_board], stone)

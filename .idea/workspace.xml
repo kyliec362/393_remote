@@ -4,6 +4,11 @@
     <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/.idea/n_player.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/streamy.py" afterDir="false" />
@@ -50,8 +55,8 @@
       <file leaf-file-name="rule_checker.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="186" column="38" lean-forward="true" selection-start-line="186" selection-start-column="38" selection-end-line="186" selection-end-column="38" />
+            <state relative-caret-position="136">
+              <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -259,7 +264,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py</url>
-          <line>236</line>
+          <line>257</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
@@ -336,8 +341,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="186" column="38" lean-forward="true" selection-start-line="186" selection-start-column="38" selection-end-line="186" selection-end-column="38" />
+        <state relative-caret-position="136">
+          <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

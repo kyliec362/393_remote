@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d42b1d0e-6cc0-4e39-93e2-3521d78e76fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/rule_checker.py" afterDir="false" />
-    </list>
+    <list default="true" id="d42b1d0e-6cc0-4e39-93e2-3521d78e76fd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +14,7 @@
         <entry file="file://$PROJECT_DIR$/player.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="107">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -36,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rule_checker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="129" selection-start-line="129" selection-end-line="129" />
+            <state relative-caret-position="62">
+              <caret line="160" lean-forward="true" selection-end-line="280" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -123,7 +121,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.rule_checker">
+  <component name="RunManager" selected="Python.player">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="player" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,8 +192,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.rule_checker" />
         <item itemvalue="Python.player" />
+        <item itemvalue="Python.rule_checker" />
       </list>
     </recent_temporary>
   </component>
@@ -214,13 +212,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.01981506" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24042273" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39321074" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5572843" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.47807637" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -239,7 +238,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/player.py</url>
-          <line>38</line>
+          <line>36</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -251,6 +250,21 @@
           <url>file://$PROJECT_DIR$/rule_checker.py</url>
           <line>113</line>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rule_checker.py</url>
+          <line>162</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rule_checker.py</url>
+          <line>168</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rule_checker.py</url>
+          <line>169</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -287,7 +301,7 @@
     <entry file="file://$PROJECT_DIR$/player.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -296,8 +310,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
+        <state relative-caret-position="62">
+          <caret line="160" lean-forward="true" selection-end-line="280" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
