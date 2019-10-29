@@ -110,7 +110,8 @@ class rule_checker:
             last_player = last_turn_player(boards)
             if stone == last_player:
                 return False
-            if last_player == last_turn_player(boards[1:]):
+            last_boards = boards[1:]
+            if last_player == last_turn_player(last_boards):
                 if empty_board(boards[2]) and last_player == black:
                     return False
                 if boards[1] == boards[2]:
@@ -118,7 +119,7 @@ class rule_checker:
                                                       [last_played_point(boards, last_player),
                                                       boards], stone)
                 return False
-            last_boards = boards[1:]
+
             # check valid move between oldest and middle boards and middle and current board
             valid_1_2 = self.valid_between_two_boards(last_player,
                                                       [last_played_point(boards, last_player),
@@ -126,7 +127,7 @@ class rule_checker:
             valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
                                                       [last_played_point(last_boards, last_turn_player(last_boards)),
                                                       last_boards], stone)
-            if (last_player == last_turn_player(last_boards.game_board)) and (not valid_1_2 or not valid_2_3):
+            if (last_player == last_turn_player(last_boards)) or (not valid_1_2 or not valid_2_3):
                 return False
         return True
 
