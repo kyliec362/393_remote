@@ -91,6 +91,8 @@ class rule_checker:
             if len(curr_board.get_no_liberties(black)) > 0 or len(curr_board.get_no_liberties(white)) > 0:
                 return False
         if len(boards) == 2:
+            if not empty_board(boards[1]):
+                return False
             last_player = last_turn_player(boards)
             # white can't go first
             if empty_board(boards[1]):

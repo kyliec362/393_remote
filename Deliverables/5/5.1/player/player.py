@@ -42,7 +42,7 @@ class player:
                 # check_validity of that move
                 for i in range(maxIntersection):  # row
                     for j in range(maxIntersection):  # col
-                        if curr_board[i][j] == empty:
+                        if curr_board[j][i] == empty:
                             point = make_point(i, j)
                             if rule_checker().check_validity(self.stone, [point, boards]):
                                 return point
