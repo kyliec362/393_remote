@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42b1d0e-6cc0-4e39-93e2-3521d78e76fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/rule_checker.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rule_checker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="129" selection-start-line="129" selection-end-line="129" />
+            <state relative-caret-position="181">
+              <caret line="167" selection-start-line="167" selection-end-line="167" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -123,7 +124,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.rule_checker">
+  <component name="RunManager" selected="Python.player">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="player" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,8 +195,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.rule_checker" />
         <item itemvalue="Python.player" />
+        <item itemvalue="Python.rule_checker" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +221,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39321074" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5572843" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.47807637" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -251,6 +252,21 @@
           <url>file://$PROJECT_DIR$/rule_checker.py</url>
           <line>113</line>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rule_checker.py</url>
+          <line>162</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rule_checker.py</url>
+          <line>168</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rule_checker.py</url>
+          <line>169</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -296,8 +312,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
+        <state relative-caret-position="181">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
