@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d141ff77-f181-429c-a35d-a1ddeb641be8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/rule_checker.py" afterDir="false" />
-    </list>
+    <list default="true" id="d141ff77-f181-429c-a35d-a1ddeb641be8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,14 +142,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16248348" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16248348" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33521923" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33521923" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3550212" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
