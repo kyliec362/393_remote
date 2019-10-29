@@ -126,7 +126,7 @@ class rule_checker:
             valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
                                                       [last_played_point(last_boards, last_turn_player(last_boards)),
                                                       last_boards], stone)
-            if (last_turn_player(boards) == last_turn_player(boards[1:])) and (not valid_1_2 or not valid_2_3):
+            if (last_player == last_turn_player(last_boards.game_board)) and (not valid_1_2 or not valid_2_3):
                 return False
         return True
 
