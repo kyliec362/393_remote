@@ -3,7 +3,7 @@ import json
 from streamy import stream
 from board import board
 from board import make_point
-
+import copy
 
 empty = " "
 black = "B"
@@ -52,7 +52,7 @@ def last_played_point(boards, stone):
     older_board = boards[1]
     for i in range(maxIntersection):  # row
         for j in range(maxIntersection):  # col
-            if old_board[i][j] == stone and old_board[i][j] != older_board[i][j]:
+            if old_board[i][j] == stone and older_board[i][j] == empty:
                 return [j, i]
     if older_board == old_board:
         return "pass"
@@ -107,18 +107,17 @@ class rule_checker:
             # player played twice in a row
             if last_turn_player(boards) == last_turn_player(boards[1:]):
                 return False
-            first_boards = boards[:2]
             last_boards = boards[1:]
-            if stone == last_turn_player(first_boards):
-                print("Can't go twice in a row\n" + "current = " + stone + "\nlast = " + last_turn_player(first_boards))
+            # can't go twice in a row
+            if stone == last_turn_player(boards):
                 return False
             # check valid move between oldest and middle boards and middle and current board
-            valid_1_2 = self.valid_between_two_boards(last_turn_player(first_boards),
-                                                      [last_played_point(first_boards, last_turn_player(first_boards)),
-                                                  first_boards], stone)
+            valid_1_2 = self.valid_between_two_boards(last_turn_player(boards),
+                                                      [last_played_point(boards, last_turn_player(boards)),
+                                                       boards], stone)
             valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
                                                       [last_played_point(last_boards, last_turn_player(last_boards)),
-                                                      last_boards], stone)
+                                                       last_boards], stone)
             if not valid_1_2 or not valid_2_3:
                 return False
         return True
@@ -140,18 +139,22 @@ class rule_checker:
             return False
         if get_opponent_stone(stone) == last_turn_player(boards):
             return False
-        if len(current_board.get_points(stone)) != len(previous_board.get_points(stone)) + 1 \
-                or len(current_board.get_points(get_opponent_stone(stone))) > len(previous_board.get_points(get_opponent_stone(stone))):
+        # both players can't have an increase in stones on the board
+        num_stones_current = len(current_board.get_points(stone))
+        num_stones_previous = len(previous_board.get_points(stone))
+        num_opp_stones_current = len(current_board.get_points(get_opponent_stone(stone)))
+        num_opp_stones_previous = len(previous_board.get_points(get_opponent_stone(stone)))
+        if (num_stones_current != (num_stones_previous + 1)) or (num_opp_stones_current > num_opp_stones_previous):
             return False
         return True
 
     def check_valid_capture(self, current_board, previous_board, stone):
-        point = last_played_point([current_board.game_board, previous_board.game_board], get_opponent_stone(stone))
+        point = last_played_point([current_board.game_board, previous_board.game_board], stone)
         if point == "pass" or not point:
             return True
         point = make_point(point[0], point[1])
-        updated_board = previous_board.place(get_opponent_stone(stone), point)
-        updated_board = board(updated_board).capture(stone)
+        updated_board = copy.deepcopy(previous_board).place(stone, point)
+        updated_board = board(updated_board).capture(get_opponent_stone(stone))
         return updated_board == current_board.game_board
 
     def make_capture_n_moves(self, n, curr_board, stone):
@@ -215,8 +218,8 @@ class rule_checker:
         if len(boards) == 2:
             old_board = boards[1]
             return empty_board(old_board) and \
-                (empty_board(current_board.game_board) or len(current_board.get_points(black)) == 1) and \
-                stone == white
+                   (empty_board(current_board.game_board) or len(current_board.get_points(black)) == 1) and \
+                   stone == white
         # we have the previous 2 moves
         previous_board = board(boards[1])
         if not self.check_valid_capture(current_board, previous_board, stone):
