@@ -3,6 +3,8 @@ import json
 from streamy import stream
 from rule_checker import rule_checker
 from board import make_point
+from board import board
+from rule_checker import get_opponent_stone
 import copy
 
 maxIntersection = 19
@@ -10,7 +12,7 @@ empty = " "
 n = 2
 
 
-class player:
+class n_player:
     def __init__(self, stone):
         self.stone = stone
         self.register_flag = False
@@ -46,15 +48,44 @@ class player:
                     for j in range(maxIntersection):  # col
                         point = make_point(i, j)
                         if curr_board[j][i] == empty:
-                            if rule_checker().make_capture_n_moves(n, curr_board, self.stone, point, boards):
-                                if rule_checker().check_validity(stone, [point, boards]):
+                            if rule_checker().check_validity(stone, [point, boards]):
+                                if self.make_capture_n_moves(n, curr_board, self.stone, point, boards):
                                     return point
-                            elif non_capture_move is None and rule_checker().check_validity(stone, [point, boards]):
-                                non_capture_move = point
+                                elif non_capture_move is None:
+                                    non_capture_move = point
                 if non_capture_move:
                     return non_capture_move
                 return "pass"
         return "This history makes no sense!"
+
+    def make_capture_n_moves(self, n, curr_board, stone, point, boards):
+        if n == 1:
+            return self.make_capture_1_move(curr_board, stone, point)
+        curr_board = board(curr_board)
+        updated_board = curr_board.place(stone, point)
+        new_boards = [updated_board] + boards[:min(2, len(boards))]
+        opponent_random_move = n_player(get_opponent_stone(stone)).make_a_move(new_boards)
+        print(opponent_random_move)
+        if opponent_random_move == "pass":
+            new_boards = [new_boards[0]] + [new_boards[0]] + [new_boards[1]]
+        else:
+            new_boards = [board(new_boards[0]).place(get_opponent_stone(stone), opponent_random_move)] + \
+                         [new_boards[0]] + [new_boards[1]]
+        for i in range(maxIntersection):
+            for j in range(maxIntersection):
+                new_point = make_point(i, j)
+                if updated_board[j][i] == empty and rule_checker().check_validity(stone, [new_point, new_boards]):
+                    if self.make_capture_1_move(updated_board, stone, new_point):
+                        return True
+        return False
+
+    def make_capture_1_move(self, curr_board, stone, point):
+        curr_board = board(curr_board)
+        updated_board = curr_board.place(stone, point)
+        stones_to_remove = board(updated_board).get_no_liberties(get_opponent_stone(stone))
+        if len(stones_to_remove) > 0:
+            return True
+        return False
 
 
 def main():
@@ -74,7 +105,7 @@ def main():
     # assuming input is correctly formatting,
     # the second item in the second input obj should contain the stone
     stone = lst[1][1]
-    curr_player = player(stone)
+    curr_player = n_player(stone)
     for query in lst:
         result = curr_player.query(query)
         if result:
