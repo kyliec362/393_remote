@@ -1,7 +1,5 @@
 import unittest
 from board import set_board_length
-from board import get_board_length
-from board import board
 from n_player import n_player
 
 
