@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42b1d0e-6cc0-4e39-93e2-3521d78e76fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../5.2/n_player/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../5.2/n_player/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../5.2/n_player/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/rule_checker.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
