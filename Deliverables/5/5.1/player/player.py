@@ -2,9 +2,9 @@ import sys
 import json
 from streamy import stream
 from rule_checker import rule_checker
-from board import make_point
+from board import make_point, get_board_length
 
-maxIntersection = 19
+maxIntersection = get_board_length()
 empty = " "
 
 
