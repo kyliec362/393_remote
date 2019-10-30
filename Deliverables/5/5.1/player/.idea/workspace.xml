@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/../../5.2/n_player/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../5.2/n_player/n_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/n_player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../5.2/n_player/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/rule_checker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../5.2/n_player/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

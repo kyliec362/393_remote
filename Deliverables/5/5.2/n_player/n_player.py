@@ -1,11 +1,8 @@
 import sys
 import json
 from streamy import stream
-from rule_checker import rule_checker
-from board import make_point
-from board import board
-from rule_checker import get_opponent_stone
-from board import get_board_length
+from rule_checker import rule_checker, get_opponent_stone
+from board import make_point, board, get_board_length
 
 maxIntersection = get_board_length()
 empty = " "
