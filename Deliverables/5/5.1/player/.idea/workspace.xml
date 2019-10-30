@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42b1d0e-6cc0-4e39-93e2-3521d78e76fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../5.2/n_player/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../5.2/n_player/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/board.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../5.2/n_player/n_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/n_player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../5.2/n_player/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/rule_checker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../5.2/n_player/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.2/n_player/tests.py" afterDir="false" />
     </list>
@@ -19,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="33" selection-start-line="33" selection-end-line="47" selection-end-column="45" />
+            <state relative-caret-position="345">
+              <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -78,9 +77,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="392" />
-    <option name="width" value="1538" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="417" />
+    <option name="width" value="1512" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -208,8 +207,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24042273" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -307,8 +305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="33" selection-start-line="33" selection-end-line="47" selection-end-column="45" />
+        <state relative-caret-position="345">
+          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
