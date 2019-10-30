@@ -11,8 +11,54 @@ white = "W"
 maxIntersection = 19
 
 
+def check_liberties_removed(boards):
+    for b in boards:
+        curr_board = board(b)
+        if len(curr_board.get_no_liberties(black)) > 0 or len(curr_board.get_no_liberties(white)) > 0:
+            return False
+    return True
+
+
+def check_first_player(boards, stone):
+    if not empty_board(boards[1]):
+        return False
+    else:
+        if stone == black:
+            return False
+        if len(board(boards[0]).get_points(white)) >= 1:
+            return False
+        return True
+
+
+def check_ko_rule(boards):
+    if boards[0] == boards[2]:
+        return False
+    return True
+
+
 def get_opponent_stone(stone):
     return white if stone == black else black
+
+
+def check_stone_counts(current_board, previous_board, stone):
+    num_stones_current = len(current_board.get_points(stone))
+    num_stones_previous = len(previous_board.get_points(stone))
+    num_opp_stones_current = len(current_board.get_points(get_opponent_stone(stone)))
+    num_opp_stones_previous = len(previous_board.get_points(get_opponent_stone(stone)))
+    if (num_stones_current != (num_stones_previous + 1)) or (num_opp_stones_current > num_opp_stones_previous):
+        return False
+    return True
+
+
+def invalid_swaps(current_board, previous_board):
+    for i in range(maxIntersection):  # row
+        for j in range(maxIntersection):  # col
+            # if a black was switched to a white or vice versa
+            if current_board[i][j] == empty:
+                continue
+            if get_opponent_stone(current_board[i][j]) == previous_board[i][j]:
+                return True
+    return False
 
 
 def empty_board(board):
@@ -21,6 +67,16 @@ def empty_board(board):
             if board[i][j] != empty:
                 return False
     return True
+
+
+def check_valid_capture(current_board, previous_board, stone):
+    point = last_played_point([current_board.game_board, previous_board.game_board], stone)
+    if point == "pass" or not point:
+        return True
+    point = make_point(point[0], point[1])
+    updated_board = copy.deepcopy(previous_board).place(stone, point)
+    updated_board = board(updated_board).capture(get_opponent_stone(stone))
+    return updated_board == current_board.game_board
 
 
 def last_turn_player(boards):
@@ -78,28 +134,6 @@ class rule_checker:
         # check for valid intended move
         return self.check_valid_move(stone, move)
 
-    def check_liberties_removed(self, boards):
-        for b in boards:
-            curr_board = board(b)
-            if len(curr_board.get_no_liberties(black)) > 0 or len(curr_board.get_no_liberties(white)) > 0:
-                return False
-        return True
-
-    def check_first_player(self, boards, stone):
-        if not empty_board(boards[1]):
-            return False
-        else:
-            if stone == black:
-                return False
-            if len(board(boards[0]).get_points(white)) >= 1:
-                return False
-            return True
-
-    def check_ko_rule(self, boards):
-        if boards[0] == boards[2]:
-            return False
-        return True
-
     def check_alternating_turns(self, boards, stone, last_player, last_boards):
         if stone == last_player:
             return False
@@ -121,18 +155,18 @@ class rule_checker:
         if len(boards) == 1:
             return empty_board(boards[0]) and stone == black
         # check to see if liberties removed from previous boards
-        if not self.check_liberties_removed(boards):
+        if not check_liberties_removed(boards):
             return False
         if len(boards) == 2:
             # white can't go first
-            if not self.check_first_player(boards, stone):
+            if not check_first_player(boards, stone):
                 return False
             last_player = last_turn_player(boards)
             return self.valid_between_two_boards(last_player,
                                                  [last_played_point(boards, last_player), boards], stone)
         if len(boards) == 3:
             # ko rule violation
-            if not self.check_ko_rule(boards):
+            if not check_ko_rule(boards):
                 return False
             # can't go twice in a row
             last_player = last_turn_player(boards)
@@ -141,6 +175,7 @@ class rule_checker:
                 return False
             # check valid move between oldest and middle boards and middle and current board
             return self.valid_between_three_boards(stone, last_player, last_boards, boards)
+        # invalid number of boards
         return False
 
     def valid_between_three_boards(self, stone, last_player, last_boards, boards):
@@ -165,50 +200,18 @@ class rule_checker:
         boards = move[1]
         current_board = board(boards[0])
         previous_board = board(boards[1])
-        if not self.check_valid_capture(current_board, previous_board, stone):
+        if not check_valid_capture(current_board, previous_board, stone):
             return False
         if current_board.game_board == previous_board.game_board and stone == initial_stone:
             return False
         if get_opponent_stone(stone) == last_turn_player(boards):
             return False
         # both players can't have an increase in stones on the board
-        num_stones_current = len(current_board.get_points(stone))
-        num_stones_previous = len(previous_board.get_points(stone))
-        num_opp_stones_current = len(current_board.get_points(get_opponent_stone(stone)))
-        num_opp_stones_previous = len(previous_board.get_points(get_opponent_stone(stone)))
-        if (num_stones_current != (num_stones_previous + 1)) or (num_opp_stones_current > num_opp_stones_previous):
+        if not check_stone_counts(current_board, previous_board, stone):
             return False
-        if self.invalid_swaps(current_board.game_board, previous_board.game_board):
+        if invalid_swaps(current_board.game_board, previous_board.game_board):
             return False
         return True
-
-    def invalid_swaps(self, current_board, previous_board):
-        for i in range(maxIntersection):  # row
-            for j in range(maxIntersection):  # col
-                # if a black was switched to a white or vice versa
-                if current_board[i][j] == empty:
-                    continue
-                if get_opponent_stone(current_board[i][j]) == previous_board[i][j]:
-                    return True
-        return False
-
-    def check_valid_capture(self, current_board, previous_board, stone):
-        point = last_played_point([current_board.game_board, previous_board.game_board], stone)
-        if point == "pass" or not point:
-            return True
-        point = make_point(point[0], point[1])
-        updated_board = copy.deepcopy(previous_board).place(stone, point)
-        updated_board = board(updated_board).capture(get_opponent_stone(stone))
-        return updated_board == current_board.game_board
-
-    def removed_stones(self, current_board, previous_board):
-        removed = []
-        for i in range(maxIntersection):  # row
-            for j in range(maxIntersection):  # col
-                if current_board.game_board[i][j] == empty and current_board.game_board[i][j] != \
-                        previous_board.game_board[i][j]:
-                    removed.append(make_point(j, i))
-        return sorted(removed)
 
     def calculate_score(self, input_board):
         """
@@ -259,7 +262,7 @@ class rule_checker:
                 stone == white
         # we have the previous 2 moves
         previous_board = board(boards[1])
-        if not self.check_valid_capture(current_board, previous_board, stone):
+        if not check_valid_capture(current_board, previous_board, stone):
             return False
         # 2 consecutive passes ends game
         if boards[0] == boards[1] and boards[1] == boards[2]:

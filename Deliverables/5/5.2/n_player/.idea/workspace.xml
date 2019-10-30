@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd37ac8b-3492-4572-ade8-1c3122d10ec2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../5.1/player/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../5.1/player/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/rule_checker.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,10 +27,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rule_checker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="146" column="62" lean-forward="true" selection-start-line="146" selection-start-column="62" selection-end-line="146" selection-end-column="62" />
+            <state relative-caret-position="233">
+              <caret line="266" column="40" lean-forward="true" selection-start-line="266" selection-start-column="40" selection-end-line="266" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#221#411#0" />
+                <element signature="e#462#677#0" />
+                <element signature="e#716#779#0" />
+                <element signature="e#802#843#0" />
+                <element signature="e#912#1356#0" />
+                <element signature="e#1413#1758#0" />
+                <element signature="e#282#444#0" />
+                <element signature="e#2029#2439#0" />
+                <element signature="e#481#1106#0" />
+                <element signature="e#1151#1543#0" />
+                <element signature="e#1657#1812#0" />
+                <element signature="e#1865#2137#0" />
+                <element signature="e#2884#3477#0" />
+                <element signature="e#3477#4751#0" />
+                <element signature="e#4752#5371#0" />
               </folding>
             </state>
           </provider>
@@ -53,6 +67,7 @@
       <find>make_cap</find>
       <find>print</find>
       <find>init_stone</find>
+      <find>check_valid</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -216,10 +231,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="146" column="62" lean-forward="true" selection-start-line="146" selection-start-column="62" selection-end-line="146" selection-end-column="62" />
+        <state relative-caret-position="233">
+          <caret line="266" column="40" lean-forward="true" selection-start-line="266" selection-start-column="40" selection-end-line="266" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#221#411#0" />
+            <element signature="e#462#677#0" />
+            <element signature="e#716#779#0" />
+            <element signature="e#802#843#0" />
+            <element signature="e#912#1356#0" />
+            <element signature="e#1413#1758#0" />
+            <element signature="e#282#444#0" />
+            <element signature="e#2029#2439#0" />
+            <element signature="e#481#1106#0" />
+            <element signature="e#1151#1543#0" />
+            <element signature="e#1657#1812#0" />
+            <element signature="e#1865#2137#0" />
+            <element signature="e#2884#3477#0" />
+            <element signature="e#3477#4751#0" />
+            <element signature="e#4752#5371#0" />
           </folding>
         </state>
       </provider>
