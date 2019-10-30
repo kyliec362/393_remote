@@ -3,12 +3,13 @@ import json
 from streamy import stream
 from board import board
 from board import make_point
+from board import get_board_length
 import copy
 
 empty = " "
 black = "B"
 white = "W"
-maxIntersection = 19
+maxIntersection = get_board_length()
 
 
 def check_liberties_removed(boards):

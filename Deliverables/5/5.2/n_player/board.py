@@ -9,6 +9,9 @@ maxIntersection = 19
 empty = " "
 
 
+def get_board_length():
+    return maxIntersection
+
 """
 :param point string representation of a point
 :returns list of two representating the row and column of the board intersection

@@ -5,9 +5,9 @@ from rule_checker import rule_checker
 from board import make_point
 from board import board
 from rule_checker import get_opponent_stone
-import copy
+from board import get_board_length
 
-maxIntersection = 19
+maxIntersection = get_board_length()
 empty = " "
 n = 1
 
@@ -52,10 +52,9 @@ class n_player:
         return "This history makes no sense!"
 
     def make_a_move(self, boards):
-        stone = copy.deepcopy(self.stone)
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
-            if rule_checker().check_history(boards, stone):
+            if rule_checker().check_history(boards, self.stone):
                 curr_board = boards[0]
                 non_capture_move = None
                 # go through rows and columns to find a point
@@ -64,7 +63,7 @@ class n_player:
                     for j in range(maxIntersection):  # col
                         point = make_point(i, j)
                         if curr_board[j][i] == empty:
-                            if rule_checker().check_validity(stone, [point, boards]):
+                            if rule_checker().check_validity(self.stone, [point, boards]):
                                 if self.make_capture_n_moves(n, curr_board, self.stone, point, boards):
                                     return point
                                 elif non_capture_move is None:
@@ -93,10 +92,7 @@ class n_player:
         curr_board = board(curr_board)
         updated_board = curr_board.place(stone, point)
         new_boards = [updated_board] + boards[:min(2, len(boards))]
-        next_player = n_player(get_opponent_stone(stone))
-        next_player.register_flag = True
-        next_player.receive_flag = True
-        opponent_random_move = next_player.make_a_move_dumb(new_boards)
+        opponent_random_move = self.next_player_move(stone, new_boards)
         if opponent_random_move == "pass":
             new_boards = [new_boards[0]] + [new_boards[0]] + [new_boards[1]]
         else:
@@ -104,6 +100,12 @@ class n_player:
                          [new_boards[0]] + [new_boards[1]]
         point = self.make_a_move_dumb(new_boards)
         return self.randomize_next_move(n - 1, new_boards[0], stone, point, new_boards)
+
+    def next_player_move(self, stone, new_boards):
+        next_player = n_player(get_opponent_stone(stone))
+        next_player.register_flag = True
+        next_player.receive_flag = True
+        return next_player.make_a_move_dumb(new_boards)
 
     def make_capture_1_move(self, curr_board, stone, point):
         curr_board = board(curr_board)
