@@ -78,6 +78,41 @@ class rule_checker:
         # check for valid intended move
         return self.check_valid_move(stone, move)
 
+    def check_liberties_removed(self, boards):
+        for b in boards:
+            curr_board = board(b)
+            if len(curr_board.get_no_liberties(black)) > 0 or len(curr_board.get_no_liberties(white)) > 0:
+                return False
+        return True
+
+    def check_first_player(self, boards, stone):
+        if not empty_board(boards[1]):
+            return False
+        else:
+            if stone == black:
+                return False
+            if len(board(boards[0]).get_points(white)) >= 1:
+                return False
+            return True
+
+    def check_ko_rule(self, boards):
+        if boards[0] == boards[2]:
+            return False
+        return True
+
+    def check_alternating_turns(self, boards, stone, last_player, last_boards):
+        if stone == last_player:
+            return False
+        if last_player == last_turn_player(last_boards):
+            if empty_board(boards[2]) and last_player == black:
+                return False
+            if boards[1] == boards[2]:
+                return self.valid_between_two_boards(last_player,
+                                                     [last_played_point(boards, last_player),
+                                                      boards], stone)
+            return False
+        return True
+
     def check_history(self, boards, stone):
         """
         Verifies that board history is valid
@@ -86,49 +121,37 @@ class rule_checker:
         if len(boards) == 1:
             return empty_board(boards[0]) and stone == black
         # check to see if liberties removed from previous boards
-        for b in boards:
-            curr_board = board(b)
-            if len(curr_board.get_no_liberties(black)) > 0 or len(curr_board.get_no_liberties(white)) > 0:
-                return False
+        if not self.check_liberties_removed(boards):
+            return False
         if len(boards) == 2:
-            if not empty_board(boards[1]):
+            # white can't go first
+            if not self.check_first_player(boards, stone):
                 return False
             last_player = last_turn_player(boards)
-            # white can't go first
-            if empty_board(boards[1]):
-                if stone == black:
-                    return False
-                if len(board(boards[0]).get_points(white)) >= 1:
-                    return False
             return self.valid_between_two_boards(last_player,
                                                  [last_played_point(boards, last_player), boards], stone)
-        else:  # 3 boards received
+        if len(boards) == 3:
             # ko rule violation
-            if boards[0] == boards[2]:
+            if not self.check_ko_rule(boards):
                 return False
             # can't go twice in a row
             last_player = last_turn_player(boards)
-            if stone == last_player:
-                return False
             last_boards = boards[1:]
-            if last_player == last_turn_player(last_boards):
-                if empty_board(boards[2]) and last_player == black:
-                    return False
-                if boards[1] == boards[2]:
-                    return self.valid_between_two_boards(last_player,
-                                                      [last_played_point(boards, last_player),
-                                                      boards], stone)
+            if not self.check_alternating_turns(boards, stone, last_player, last_boards):
                 return False
-
             # check valid move between oldest and middle boards and middle and current board
-            valid_1_2 = self.valid_between_two_boards(last_player,
-                                                      [last_played_point(boards, last_player),
-                                                      boards], stone)
-            valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
-                                                      [last_played_point(last_boards, last_turn_player(last_boards)),
-                                                      last_boards], stone)
-            if (last_player == last_turn_player(last_boards)) or (not valid_1_2 or not valid_2_3):
-                return False
+            return self.valid_between_three_boards(stone, last_player, last_boards, boards)
+        return False
+
+    def valid_between_three_boards(self, stone, last_player, last_boards, boards):
+        valid_1_2 = self.valid_between_two_boards(last_player,
+                                                  [last_played_point(boards, last_player),
+                                                   boards], stone)
+        valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
+                                                  [last_played_point(last_boards, last_turn_player(last_boards)),
+                                                   last_boards], stone)
+        if (last_player == last_turn_player(last_boards)) or (not valid_1_2 or not valid_2_3):
+            return False
         return True
 
     def valid_between_two_boards(self, stone, move, initial_stone):
