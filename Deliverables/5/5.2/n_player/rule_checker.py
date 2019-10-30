@@ -154,7 +154,7 @@ class rule_checker:
         :return: Bool
         """
         if len(boards) == 1:
-            return empty_board(boards[0]) and stone == black
+            return self.valid_for_one_board(boards[0], stone)
         # check to see if liberties removed from previous boards
         if not check_liberties_removed(boards):
             return False
@@ -214,6 +214,9 @@ class rule_checker:
             return False
         return True
 
+    def valid_for_one_board(self, board, stone):
+        return empty_board(board) and stone == black
+
     def calculate_score(self, input_board):
         """
         Calculates the score of each player for a given board
@@ -255,7 +258,7 @@ class rule_checker:
         if current_board.occupied(point):
             return False
         if len(boards) == 1:
-            return empty_board(current_board.game_board) and stone == black
+            return self.valid_for_one_board(current_board.game_board, stone)
         if len(boards) == 2:
             old_board = boards[1]
             return empty_board(old_board) and \
