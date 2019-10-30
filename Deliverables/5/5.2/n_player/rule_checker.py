@@ -94,7 +94,7 @@ def last_turn_player(boards):
         # look for player's turn from previous board
         if len(boards) > 2:
             return get_opponent_stone(last_turn_player(boards[1:]))
-        elif old_board.get_points(black) > old_board.get_points(white):
+        elif len(old_board.get_points(black)) > len(old_board.get_points(white)):
             return white
     return black
 
