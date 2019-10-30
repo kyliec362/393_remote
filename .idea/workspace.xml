@@ -12,9 +12,7 @@
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/streamy.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/5/5.1/player/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.1/player/board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/5/5.1/player/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.1/player/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,25 +24,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/tests.py">
+      <file leaf-file-name="n_player.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="78" column="63" selection-start-line="78" selection-start-column="63" selection-end-line="78" selection-end-column="63" />
+            <state relative-caret-position="901">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="board.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/board.py">
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+            <state relative-caret-position="308">
+              <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -296,9 +294,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 18m 04s.xml">
-      <configuration name="Unittests in tests.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 18m 37s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
@@ -324,6 +319,9 @@
       <configuration name="Unittests in tests.py (1)" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_tests_py_(1) - 2019.10.30 at 00h 13m 36s.xml">
+      <configuration name="Unittests in tests.py (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_tests_py_(1) - 2019.10.30 at 00h 17m 04s.xml">
       <configuration name="Unittests in tests.py (1)" configurationId="tests" />
     </history-entry>
   </component>
@@ -379,13 +377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/streamy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
@@ -430,16 +421,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -447,6 +428,13 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -460,12 +448,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/tests.py">
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="78" column="63" selection-start-line="78" selection-start-column="63" selection-end-line="78" selection-end-column="63" />
+        <state relative-caret-position="901">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -476,6 +464,16 @@
           <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

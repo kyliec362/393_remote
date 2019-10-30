@@ -77,6 +77,19 @@ class PlayerTests(unittest.TestCase):
                          [" ", " ", " ", " "],
                          [" ", " ", " ", " "]]]
         self.assertEqual(self.player.make_a_move(test_boards5), "1-4")
+        test_boards6 = [[["B", "B", "B", " "],
+                         ["B", "W", "B", "B"],
+                         [" ", " ", "B", " "],
+                         [" ", " ", "B", "B"]],
+                        [["B", "B", "B", " "],
+                         ["B", " ", "B", "B"],
+                         [" ", " ", "B", " "],
+                         [" ", " ", "B", "B"]],
+                        [["B", "B", "B", " "],
+                         [" ", "W", "B", "B"],
+                         ["W", "W", "B", " "],
+                         ["W", "W", "B", "B"]]]
+        self.assertEqual(self.player.make_a_move(test_boards6), "1-3")
 
 
 if __name__ == "__main__":
