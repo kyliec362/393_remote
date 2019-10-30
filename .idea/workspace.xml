@@ -10,12 +10,12 @@
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/streamy.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Deliverables/5/5.2/run" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/5/5.1/player/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.1/player/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py" afterDir="false" />
     </list>
@@ -31,8 +31,8 @@
       <file leaf-file-name="n_player.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+            <state relative-caret-position="102">
+              <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+            <state relative-caret-position="206">
+              <caret line="86" column="94" lean-forward="true" selection-start-line="86" selection-start-column="94" selection-end-line="86" selection-end-column="94" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rule_checker.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
+      <file leaf-file-name="board.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="281" lean-forward="true" selection-start-line="281" selection-end-line="281" />
+            <state relative-caret-position="119">
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -75,6 +75,7 @@
       <find>player(</find>
       <find>make_capture</find>
       <find>copy</find>
+      <find>randomize</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,8 +89,9 @@
         <option value="$PROJECT_DIR$/Deliverables/5/5.1/player/player.py" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py" />
-        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" />
+        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py" />
+        <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py" />
       </list>
     </option>
   </component>
@@ -220,7 +222,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.n_player">
+  <component name="RunManager" selected="Python tests.Unittests in tests.py">
     <configuration name="n_player" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="393_remote" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -258,8 +260,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.n_player" />
         <item itemvalue="Python tests.Unittests in tests.py" />
+        <item itemvalue="Python.n_player" />
       </list>
     </recent_temporary>
   </component>
@@ -277,34 +279,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 30m 06s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 12m 16s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 30m 21s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 16m 00s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 30m 25s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 16m 54s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 32m 39s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 17m 45s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 33m 30s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 18m 04s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 33m 51s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 18m 37s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 34m 21s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 30m 55s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 34m 30s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 31m 09s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 37m 17s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 32m 57s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 21h 37m 47s.xml">
+    <history-entry file="Unittests_in_tests_py - 2019.10.29 at 22h 34m 02s.xml">
       <configuration name="Unittests in tests.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -367,16 +369,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="119" column="27" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -407,32 +399,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py">
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        <state relative-caret-position="54">
+          <caret line="278" column="35" lean-forward="true" selection-start-line="278" selection-start-column="35" selection-end-line="278" selection-end-column="35" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+        <state relative-caret-position="102">
+          <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py">
+    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="281" lean-forward="true" selection-start-line="281" selection-end-line="281" />
+        <state relative-caret-position="206">
+          <caret line="86" column="94" lean-forward="true" selection-start-line="86" selection-start-column="94" selection-end-line="86" selection-end-column="94" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
