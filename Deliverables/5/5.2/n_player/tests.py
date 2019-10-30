@@ -86,12 +86,76 @@ class PlayerTests(unittest.TestCase):
         self.assertEqual(final_boards, self.n_player.randomize_next_move(2, start_boards[0], self.n_player.stone,
                                                                          "1-1", start_boards))
 
-    # def test_make_capture_n_moves(self):
-    #     self.assertEqual(...)
-    #
-    # def test_make_a_move(self):
-    #     self.assertEqual(...)
+    def test_make_capture_n_moves(self):
+        set_board_length(4)
+        test_boards1 = [[["B", "W", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [["B", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [[" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]]]
+        self.assertEqual(self.n_player.make_capture_n_moves(1, test_boards1[0], self.n_player.stone, "2-2", test_boards1), False)
+        test_boards2 = [[["W", "W", "W", " "],
+                         ["W", "W", "W", " "],
+                         ["B", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [["W", "W", "W", " "],
+                         ["W", " ", "W", " "],
+                         ["B", " ", "B", " "],
+                         [" ", " ", " ", " "]],
+                        [["W", "W", "W", " "],
+                         ["W", " ", "W", " "],
+                         ["B", " ", " ", " "],
+                         [" ", " ", " ", " "]]]
+        self.assertEqual(self.n_player.make_capture_n_moves(1, test_boards2[0], self.n_player.stone, "1-4", test_boards2), False)
 
+    def test_make_a_move(self):
+        set_board_length(4)
+        test_boards1 = [[["B", "W", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [["B", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [[" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]]]
+        self.assertEqual(self.n_player.make_a_move(test_boards1), "1-2")
+        test_boards2 = [[["B", "W", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [[" ", "W", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [[" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]]]
+        self.assertEqual(self.n_player.make_a_move(test_boards2), "This history makes no sense!")
+        test_boards3 = [[[" ", "W", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [[" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]],
+                        [[" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "],
+                         [" ", " ", " ", " "]]]
+        self.assertEqual(self.n_player.make_a_move(test_boards3), "1-1")
 
 if __name__ == "__main__":
     unittest.main()
