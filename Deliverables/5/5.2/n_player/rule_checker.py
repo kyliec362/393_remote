@@ -88,9 +88,9 @@ def last_turn_player(boards, stone):
     # white pieces on board increased
     if len(old_board.get_points(white)) - len(older_board.get_points(white)) > 0:
         return white
-    # black must have just passed if both previous boards are empty
+    # black must have previously passed if both previous boards are empty
     if empty_board(older_board.game_board) and empty_board(old_board.game_board):
-        return stone
+        return black
     # move was a pass
     if old_board.game_board == older_board.game_board:
         # look for player's turn from previous board
