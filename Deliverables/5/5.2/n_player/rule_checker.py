@@ -154,7 +154,7 @@ class rule_checker:
         :return: Bool
         """
         if len(boards) == 1:
-            return empty_board(boards[0]) and stone == black
+            return self.valid_for_one_board(boards[0], stone)
         # check to see if liberties removed from previous boards
         if not check_liberties_removed(boards):
             return False
@@ -214,6 +214,9 @@ class rule_checker:
             return False
         return True
 
+    def valid_for_one_board(self, board, stone):
+        return empty_board(board) and stone == black
+
     def calculate_score(self, input_board):
         """
         Calculates the score of each player for a given board
@@ -250,28 +253,12 @@ class rule_checker:
         # move is a play
         point = move[0]
         boards = move[1]
-        current_board = board(boards[0])
-        # can't place stone at occupied point
-        if current_board.occupied(point):
+        updated_board = board(boards[0]).place(stone, point)
+        if updated_board == "This seat is taken!":
             return False
-        if len(boards) == 1:
-            return empty_board(current_board.game_board) and stone == black
-        if len(boards) == 2:
-            old_board = boards[1]
-            return empty_board(old_board) and \
-                (empty_board(current_board.game_board) or len(current_board.get_points(black)) == 1) and \
-                stone == white
-        # we have the previous 2 moves
-        previous_board = board(boards[1])
-        if not check_valid_capture(current_board, previous_board, stone):
+        new_boards = [updated_board] + [boards[1:]]
+        if not self.check_history(new_boards, stone):
             return False
-        # 2 consecutive passes ends game
-        if boards[0] == boards[1] and boards[1] == boards[2]:
-            return False
-        # player can't go twice in a row
-        if stone == last_turn_player(boards, stone):
-            return False
-        updated_board = current_board.place(stone, point)
         # suicide rule
         updated_board = board(updated_board).capture(get_opponent_stone(stone))
         # if we can perform suicide, move isn't valid
