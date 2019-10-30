@@ -78,28 +78,7 @@ def check_valid_capture(current_board, previous_board, stone):
     return updated_board == current_board.game_board
 
 
-# def last_turn_player(boards, stone):
-#     """
-#     Identifies the last player to make a play
-#     :return: stone
-#     """
-#     old_board = board(boards[0])
-#     older_board = board(boards[1])
-#     # white pieces on board increased
-#     if len(old_board.get_points(white)) - len(older_board.get_points(white)) > 0:
-#         return white
-#     # black must have just passed if both previous boards are empty
-#     if empty_board(older_board.game_board) and empty_board(old_board.game_board):
-#         return stone
-#     # move was a pass
-#     if old_board.game_board == older_board.game_board:
-#         # look for player's turn from previous board
-#         if len(boards) > 2:
-#             return get_opponent_stone(last_turn_player(boards[1:], get_opponent_stone(stone)))
-#         return get_opponent_stone(stone)
-#     return black
-
-def last_turn_player(boards):
+def last_turn_player(boards, stone):
     """
     Identifies the last player to make a play
     :return: stone
@@ -109,15 +88,16 @@ def last_turn_player(boards):
     # white pieces on board increased
     if len(old_board.get_points(white)) - len(older_board.get_points(white)) > 0:
         return white
+    # black must have previously passed if both previous boards are empty
+    if empty_board(older_board.game_board) and empty_board(old_board.game_board):
+        return black
     # move was a pass
     if old_board.game_board == older_board.game_board:
         # look for player's turn from previous board
         if len(boards) > 2:
-            return get_opponent_stone(last_turn_player(boards[1:]))
-        elif old_board.get_points(black) > old_board.get_points(white):
-            return white
+            return get_opponent_stone(last_turn_player(boards[1:], get_opponent_stone(stone)))
+        return get_opponent_stone(stone)
     return black
-
 
 
 def last_played_point(boards, stone):
@@ -158,7 +138,7 @@ class rule_checker:
     def check_alternating_turns(self, boards, stone, last_player, last_boards):
         if stone == last_player:
             return False
-        if last_player == last_turn_player(last_boards):
+        if last_player == last_turn_player(last_boards, get_opponent_stone(stone)):
             if empty_board(boards[2]) and last_player == black:
                 return False
             if boards[1] == boards[2]:
@@ -182,7 +162,7 @@ class rule_checker:
             # white can't go first
             if not check_first_player(boards, stone):
                 return False
-            last_player = last_turn_player(boards)
+            last_player = last_turn_player(boards, stone)
             return self.valid_between_two_boards(last_player,
                                                  [last_played_point(boards, last_player), boards], stone)
         if len(boards) == 3:
@@ -190,7 +170,7 @@ class rule_checker:
             if not check_ko_rule(boards):
                 return False
             # can't go twice in a row
-            last_player = last_turn_player(boards)
+            last_player = last_turn_player(boards, stone)
             last_boards = boards[1:]
             if not self.check_alternating_turns(boards, stone, last_player, last_boards):
                 return False
@@ -203,10 +183,10 @@ class rule_checker:
         valid_1_2 = self.valid_between_two_boards(last_player,
                                                   [last_played_point(boards, last_player),
                                                    boards], stone)
-        valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards),
-                                                  [last_played_point(last_boards, last_turn_player(last_boards)),
+        valid_2_3 = self.valid_between_two_boards(last_turn_player(last_boards, get_opponent_stone(stone)),
+                                                  [last_played_point(last_boards, last_turn_player(last_boards, get_opponent_stone(stone))),
                                                    last_boards], stone)
-        if (last_player == last_turn_player(last_boards)) or (not valid_1_2 or not valid_2_3):
+        if (last_player == last_turn_player(last_boards, get_opponent_stone(stone))) or (not valid_1_2 or not valid_2_3):
             return False
         return True
 
@@ -225,7 +205,7 @@ class rule_checker:
             return False
         if current_board.game_board == previous_board.game_board and stone == initial_stone:
             return False
-        if get_opponent_stone(stone) == last_turn_player(boards):
+        if get_opponent_stone(stone) == last_turn_player(boards, stone):
             return False
         # both players can't have an increase in stones on the board
         if not check_stone_counts(current_board, previous_board, stone):
@@ -289,7 +269,7 @@ class rule_checker:
         if boards[0] == boards[1] and boards[1] == boards[2]:
             return False
         # player can't go twice in a row
-        if stone == last_turn_player(boards):
+        if stone == last_turn_player(boards, stone):
             return False
         updated_board = current_board.place(stone, point)
         # suicide rule
