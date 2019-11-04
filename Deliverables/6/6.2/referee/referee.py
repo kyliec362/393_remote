@@ -87,10 +87,10 @@ class referee:
         white_score = scores["W"]
         # draw
         if black_score == white_score:
-            return [self.player1.name, self.player2.name].sort()
+            return [[self.player1.name, self.player2.name].sort()]
         # player1 is always black
         if black_score > white_score:
-            return [self.player1.name]
+            return [[self.player1.name]]
         return [[self.player2.name]]
 
 
