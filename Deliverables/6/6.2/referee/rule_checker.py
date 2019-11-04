@@ -122,7 +122,7 @@ class rule_checker:
 
     def score_or_validity(self, input_json):
         if len(input_json) == maxIntersection:
-            return self.calculate_score(input_json)
+            return board(input_json).calculate_score()
         return self.check_validity(input_json[0], input_json[1])
 
     def check_validity(self, stone, move):
@@ -214,31 +214,6 @@ class rule_checker:
             return False
         return True
 
-    def calculate_score(self, input_board):
-        """
-        Calculates the score of each player for a given board
-        :return: JSON
-        """
-        white_score = 0
-        black_score = 0
-        curr_board = board(input_board)
-        for i in range(len(curr_board.game_board)):  # row
-            for j in range(len(curr_board.game_board[i])):  # col
-                if curr_board.game_board[i][j] == black:
-                    black_score += 1
-                elif curr_board.game_board[i][j] == white:
-                    white_score += 1
-                else:
-                    reachable_white = curr_board.reachable(make_point(j, i), white)
-                    reachable_black = curr_board.reachable(make_point(j, i), black)
-                    # if both white and black can reach it, it is neutral
-                    if reachable_black and reachable_white:
-                        continue
-                    elif reachable_black:
-                        black_score += 1
-                    elif reachable_white:
-                        white_score += 1
-        return {"B": black_score, "W": white_score}
 
     def check_valid_move(self, stone, move):
         """
