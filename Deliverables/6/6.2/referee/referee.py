@@ -79,7 +79,7 @@ class referee:
 
     def cheated(self):
         self.swap_player()
-        return self.current_player.name
+        return [self.current_player.name]
 
     def get_winner(self):
         scores = board(self.board_history[0]).calculate_score()
@@ -91,7 +91,7 @@ class referee:
         # player1 is always black
         if black_score > white_score:
             return [self.player1.name]
-        return [self.player2.name]
+        return [[self.player2.name]]
 
 
 def main_old():
