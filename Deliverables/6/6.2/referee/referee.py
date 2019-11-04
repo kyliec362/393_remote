@@ -13,6 +13,7 @@ class referee:
     def __init__(self, stone):
         pass
 
+
 def main():
     """
     Test Driver reads json objects from stdin
