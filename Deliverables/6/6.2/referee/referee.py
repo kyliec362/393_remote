@@ -3,7 +3,7 @@ import json
 from n_player import n_player
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
-from board import make_point, board, get_board_length
+from board import make_point, board, get_board_length, make_empty_board
 
 maxIntersection = get_board_length()
 empty = " "
@@ -11,25 +11,7 @@ black = "B"
 white = "W"
 n = 1
 
-empty_board = [[" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-               [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]]
+empty_board = make_empty_board()
 
 
 class referee:
@@ -77,6 +59,7 @@ class referee:
     def update_board_history(self, new_board0):
         self.board_history = [new_board0] + self.board_history[:min(2, len(self.board_history))]
 
+    # returns winner if someone current player cheated
     def cheated(self):
         self.swap_player()
         return [self.current_player.name]
@@ -92,43 +75,6 @@ class referee:
         if black_score > white_score:
             return [self.player1.name]
         return [self.player2.name]
-
-
-def main_old():
-    """
-    Test Driver reads json objects from stdin
-    Uses the streamy library to parse
-    Queries player
-    :return: list of json objects
-    """
-
-    decoder = json.JSONDecoder()
-    special_json = sys.stdin.readline()
-    obj_count = 0
-    player1 = None
-    player2 = None
-    ref = None
-    json_tup = None
-    while special_json:
-        try:
-            json_tup = decoder.raw_decode(special_json.lstrip())
-        except:
-            special_json += sys.stdin.readline()
-        else:
-            if not player1:
-                player1 = n_player(black, json_tup[0][0])
-                obj_count = obj_count + 1
-            elif not player2:
-                player2 = n_player(white, json_tup[0][0])
-                ref = referee(player1, player2)
-                print(json.dumps([black, white]))
-                print(json.dumps(ref.board_history))
-                obj_count = obj_count + 1
-            elif ref.handle_move(json_tup[0][0]):
-                pass
-            else:
-                break
-            special_json = special_json[json_tup[1]:].rstrip() + sys.stdin.readline()
 
 
 def main():

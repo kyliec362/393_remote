@@ -5,10 +5,19 @@ import copy
 import unittest
 
 # number of rows/columns on Go board
-maxIntersection = 19
+maxIntersection = 4
 empty = " "
 black = "B"
 white = "W"
+
+def make_empty_board():
+    col = []
+    for i in range(maxIntersection):
+        row = []
+        for j in range(maxIntersection):
+            row += [" "]
+        col.append(row)
+    return col
 
 
 # here to resize board for testing purposes
