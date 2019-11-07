@@ -85,8 +85,15 @@ class PlayerTests(unittest.TestCase):
         self.assertEqual(self.ref.current_player, self.player2)
 
     def test_handle_move(self):
-        #TODO micah 
-        pass
+        self.assertTrue(self.ref.handle_move("pass"))
+        self.assertFalse(self.ref.handle_move("pass"))
+        ref2 = referee(self.player1, self.player2)
+        self.assertTrue(ref2.handle_move("1-1"))
+        self.assertTrue(ref2.handle_move("pass"))
+        self.assertFalse(ref2.handle_move("1-1"))
+        self.assertTrue(ref2.handle_move("pass"))
+
+
 
 
 if __name__ == "__main__":
