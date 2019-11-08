@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 referee/referee.py
+python3 remote_player/server.py

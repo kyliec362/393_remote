@@ -1,6 +1,6 @@
 import sys
 import json
-from n_player import n_player
+from remote_player import remote_player
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length, make_empty_board
@@ -19,7 +19,7 @@ class referee:
         self.player_count = 0
         self.player1 = player1
         self.player2 = player2
-        if isinstance(player1, n_player) and isinstance(player2, n_player):
+        if isinstance(player1, remote_player) and isinstance(player2, remote_player):
             self.player_count = 2
         self.pass_count = 0
         self.board_history = [empty_board]
@@ -92,8 +92,8 @@ def main():
     lst = list(stream(file_contents))  # parse json objects
     # assuming input is correctly formatting,
     # the second item in the second input obj should contain the stone
-    player1 = n_player(black, lst[0])
-    player2 = n_player(white, lst[1])
+    player1 = remote_player(black, lst[0])
+    player2 = remote_player(white, lst[1])
     ref = referee(player1, player2)
     for query in lst[2:]:
         result = ref.handle_move(query)

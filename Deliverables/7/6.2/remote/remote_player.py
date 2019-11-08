@@ -1,4 +1,5 @@
 import sys
+import socket
 import json
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
@@ -9,9 +10,11 @@ empty = " "
 black = "B"
 white = "W"
 n = 1
+
+# TODO once we go crazy, stop executing future inputs (use a flag and check in query?)
 crazy = "GO has gone crazy!"
 
-class n_player:
+class remote_player:
     def __init__(self, stone, name):
         self.stone = stone
         self.name = name
@@ -156,7 +159,7 @@ class n_player:
         return self.randomize_next_move(n - 1, new_boards[0], stone, point, new_boards)
 
     def next_player_move(self, stone, new_boards):
-        next_player = n_player(get_opponent_stone(stone))
+        next_player = remote_player(get_opponent_stone(stone))
         next_player.register_flag = True
         next_player.receive_flag = True
         return next_player.make_a_move_dumb(new_boards)
@@ -170,6 +173,21 @@ class n_player:
         return False
 
 
+class proxy_remote_player:
+    def __init__(self, stone, name):
+        self.remote_player = remote_player(stone, name)
+
+    def client(self, message):
+        response = None
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_address = ('localhost', 8000)
+        sock.connect(server_address)
+        try:
+            sock.sendall(message)
+        finally:
+            sock.close()
+
+
 def main():
     """
     Test Driver reads json objects from stdin
@@ -177,22 +195,9 @@ def main():
     Queries player
     :return: list of json objects
     """
-    output = []
-    file_contents = ""  # read in all json objects to a string
-    special_json = sys.stdin.readline()
-    while special_json:
-        file_contents += special_json
-        special_json = sys.stdin.readline()
-    lst = list(stream(file_contents))  # parse json objects
-    # assuming input is correctly formatting,
-    # the second item in the second input obj should contain the stone
-    stone = lst[1][1]
-    curr_player = n_player(stone)
-    for query in lst:
-        result = curr_player.query(query)
-        if result:
-            output.append(result)
-    print(json.dumps(output))
+    player = proxy_remote_player(black, "Micah")
+    player.client("WITNESS ME")
+
 
 
 if __name__ == "__main__":

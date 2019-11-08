@@ -1,6 +1,6 @@
 import unittest
 from board import set_board_length
-from n_player import n_player
+from remote_player import remote_player
 from referee import referee
 
 empty = " "
@@ -45,8 +45,8 @@ board_history2 = [board2c, board2b, board2a]
 class PlayerTests(unittest.TestCase):
 
     def setUp(self):
-        self.player1 = n_player(black, "Kylie")
-        self.player2 = n_player(white, "Micah")
+        self.player1 = remote_player(black, "Kylie")
+        self.player2 = remote_player(white, "Micah")
         self.ref = referee(self.player1, self.player2)
 
     def test_get_winner(self):
