@@ -184,7 +184,7 @@ class proxy_remote_player:
 
     def client(self, message):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_address = ('localhost', 8000)
+        server_address = ('localhost', 8002)
         sock.connect(server_address)
         response = ""
         try:
@@ -193,7 +193,6 @@ class proxy_remote_player:
             if received:
                 response = received.decode()
         finally:
-            # print(response.decode())
             sock.close()
         return response
 
@@ -209,7 +208,6 @@ def main():
     proxy = proxy_remote_player(black, name)
     server_response = proxy.client("WITNESS ME")
     lst = list(stream(server_response))[0]  # parse json objects
-    print(lst)
     for query in lst:
         result = proxy.player.query(query)
         if result and not isinstance(result, bool):
