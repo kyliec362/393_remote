@@ -14,33 +14,37 @@ n = 1
 # TODO once we go crazy, stop executing future inputs (use a flag and check in query?)
 crazy = "GO has gone crazy!"
 
-class remote_player:
+class player:
     def __init__(self, stone, name):
         self.stone = stone
         self.name = name
         self.register_flag = False
         self.receive_flag = False
+        self.crazy_flag = False
 
     def query(self, query_lst):
+        # don't keep playing if we've gone crazy (deviated from following rules)
+        if self.crazy_flag:
+            return
         # get method and arguments from input query
         method = query_lst[0].replace("-", "_")
         args = query_lst[1:]
         method = getattr(self, method)
         if method:
             return method(*args)
-        return crazy
+        return self.go_crazy()
 
     def register(self):
         if self.receive_flag or self.register_flag:
-            return crazy
+            return self.go_crazy()
         self.register_flag = True
         return "no name"
 
     def receive_stones(self, stone):
         if not self.is_stone(stone):
-            return crazy
+            return self.go_crazy()
         if self.receive_flag or not self.register_flag:
-            return crazy
+            return self.go_crazy()
         self.receive_flag = True
         self.stone = stone
         return True
@@ -85,8 +89,9 @@ class remote_player:
                     return False
         return True
 
-
-
+    def go_crazy(self):
+        self.crazy_flag = True
+        return crazy
 
     def make_a_move_dumb(self, boards):
         # don't make a move until a player has been registered with a given stone
@@ -103,7 +108,7 @@ class remote_player:
                                 return point
                 return "pass"
             return "This history makes no sense!"
-        return crazy
+        return self.go_crazy()
 
     def make_a_move(self, boards):
         # don't make a move until a player has been registered with a given stone
@@ -127,8 +132,8 @@ class remote_player:
                         return non_capture_move
                     return "pass"
                 return "This history makes no sense!"
-            return crazy
-        return crazy
+            return self.go_crazy()
+        return self.go_crazy()
 
     def make_capture_n_moves(self, n, curr_board, stone, point, boards):
         if n == 1:
@@ -159,7 +164,7 @@ class remote_player:
         return self.randomize_next_move(n - 1, new_boards[0], stone, point, new_boards)
 
     def next_player_move(self, stone, new_boards):
-        next_player = remote_player(get_opponent_stone(stone))
+        next_player = player(get_opponent_stone(stone))
         next_player.register_flag = True
         next_player.receive_flag = True
         return next_player.make_a_move_dumb(new_boards)
@@ -175,18 +180,22 @@ class remote_player:
 
 class proxy_remote_player:
     def __init__(self, stone, name):
-        self.remote_player = remote_player(stone, name)
+        self.player = player(stone, name)
 
     def client(self, message):
-        response = None
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = ('localhost', 8000)
         sock.connect(server_address)
+        response = ""
         try:
-            sock.sendall(message)
+            sock.sendall(message.encode())
+            received = sock.recv(1024)
+            if received:
+                response = received.decode()
         finally:
+            # print(response.decode())
             sock.close()
-
+        return response
 
 def main():
     """
@@ -195,9 +204,18 @@ def main():
     Queries player
     :return: list of json objects
     """
-    player = proxy_remote_player(black, "Micah")
-    player.client("WITNESS ME")
-
+    name = "Micah"
+    output = []
+    proxy = proxy_remote_player(black, name)
+    server_response = proxy.client("WITNESS ME")
+    lst = list(stream(server_response))[0]  # parse json objects
+    print(lst)
+    stone = lst[1][1]
+    for query in lst:
+        result = proxy.player.query(query)
+        if result and not isinstance(result, bool):
+            output.append(result)
+    print(json.dumps(output))
 
 
 if __name__ == "__main__":

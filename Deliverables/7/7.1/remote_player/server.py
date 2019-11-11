@@ -45,9 +45,9 @@ def main():
             while True:
                 data = connection.recv(16)
                 if data:
-                    output += data
+                    output += data.decode()
                 if output == "WITNESS ME":
-                    connection.sendall(lst)
+                    connection.sendall(json.dumps(lst).encode())
                     obj_from_client -= 1
                     output = ""
                     break
