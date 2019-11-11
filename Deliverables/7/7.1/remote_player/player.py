@@ -210,7 +210,6 @@ def main():
     server_response = proxy.client("WITNESS ME")
     lst = list(stream(server_response))[0]  # parse json objects
     print(lst)
-    stone = lst[1][1]
     for query in lst:
         result = proxy.player.query(query)
         if result and not isinstance(result, bool):

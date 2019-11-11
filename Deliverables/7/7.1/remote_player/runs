@@ -1,2 +1,3 @@
 #!/bin/bash
 cat - | ./runs & sleep 1 && ./runc
+python3 remote_player/server.py
