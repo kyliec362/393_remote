@@ -30,7 +30,13 @@ def main():
     Queries player
     :return: list of json objects
     """
-    lst = read_input_from_file()
+    #lst = read_input_from_file()
+    file_contents = ""  # read in all json objects to a string
+    special_json = sys.stdin.readline()
+    while special_json:
+        file_contents += special_json
+        special_json = sys.stdin.readline()
+    lst = list(stream(file_contents))  # parse json objects
     # create server (simulate referee)
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -58,7 +64,7 @@ def main():
                     break
         finally:
             # Clean up the connection
-            print("closing connection in server")
+            #print("closing connection in server")
             connection.close()
     #print(json.dumps(list(stream(output))))
 

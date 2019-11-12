@@ -41,8 +41,8 @@ class player:
 
     def query(self, query_lst):
         # don't keep playing if we've gone crazy (deviated from following rules)
-        #if self.crazy_flag:
-        #    return
+        if self.crazy_flag:
+            return
         # get method and arguments from input query
         method = query_lst[0].replace("-", "_")
         args = query_lst[1:]
@@ -235,8 +235,8 @@ def main():
     output = []
     proxy = proxy_remote_player(black, name)
     server_response = proxy.client("WITNESS ME")
+    #print(238, server_response)
     lst = list(stream(server_response))[0]  # parse json objects
-    print(name)
     for query in lst:
         result = proxy.player.query(query)
         if result and not isinstance(result, bool):
