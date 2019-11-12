@@ -28,6 +28,8 @@ def get_socket_address():
     socket_info = list(stream(socket_info))[0]
     return (socket_info["IP"], socket_info["port"])
 
+
+
 class player:
 
     function_names = ['register', 'receive_stones', 'make_a_move']
@@ -214,6 +216,7 @@ class proxy_remote_player:
         try:
             sock.sendall(message.encode())
             while True:
+                print("receiving")
                 received = sock.recv(4000)
                 if received:
                     response += received.decode()
@@ -235,7 +238,7 @@ def main():
     output = []
     proxy = proxy_remote_player(black, name)
     server_response = proxy.client("WITNESS ME")
-    #print(238, server_response)
+    print(238, server_response)
     lst = list(stream(server_response))[0]  # parse json objects
     for query in lst:
         result = proxy.player.query(query)
