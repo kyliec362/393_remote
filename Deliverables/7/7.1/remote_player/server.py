@@ -62,7 +62,7 @@ def main():
                 if output == "WITNESS ME":
                     connection.sendall(json.dumps(lst).encode())
                     obj_from_client -= 1
-                    output = ""
+                    #output = ""
                     break
                 else:
                     obj_from_client -= 1
@@ -70,8 +70,10 @@ def main():
         finally:
             # Clean up the connection
             print("closing connection in server")
+            print("ouput 74 in player", output)
+            #print("server output", json.dumps(list(stream(output))))
             connection.close()
-    print(json.dumps(list(stream(output))))
+
 
 
 if __name__ == "__main__":
