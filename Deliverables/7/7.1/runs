@@ -1,0 +1,2 @@
+#!/bin/bash
+python3 remote_player/server.py
