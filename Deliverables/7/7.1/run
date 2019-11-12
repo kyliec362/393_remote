@@ -1,2 +1,2 @@
 #!/bin/bash
-./runs & sleep 1 && ./runc
+./runs & sleep 1 & ./runc
