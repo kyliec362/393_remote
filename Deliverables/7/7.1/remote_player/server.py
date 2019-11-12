@@ -33,14 +33,15 @@ def main():
     """
     print("running server main")
     #lst = read_input_from_file()
-    file_contents = ""  # read in all json objects to a string
-    special_json = sys.stdin.readline()
-    while special_json:
-        file_contents += special_json
-        special_json = sys.stdin.readline()
-
-    lst = list(stream(file_contents))  # parse json objects
-    print(lst)
+    # file_contents = ""  # read in all json objects to a string
+    # special_json = sys.stdin.readline()
+    # while special_json:
+    #     file_contents += special_json
+    #     special_json = sys.stdin.readline()
+    #
+    # lst = list(stream(file_contents))  # parse json objects
+    # print(lst)
+    lst = [["register"], ["receive-stones", "B"], ["receive-stones", "W"], ["receive-stones", "B"], ["receive-stones", "W"]]
     # create server (simulate referee)
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
