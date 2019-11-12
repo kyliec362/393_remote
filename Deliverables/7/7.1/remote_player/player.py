@@ -13,6 +13,15 @@ n = 1
 
 crazy = "GO has gone crazy!"
 
+
+def set_depth():
+    config_file = open("go-player.config", "r")
+    depth = config_file.readlines()
+    depth_info = list(stream(depth))[0]
+    global n
+    n = depth_info["depth"]
+
+
 def get_socket_address():
     config_file = open("go.config", "r")
     socket_info = config_file.readlines()
@@ -222,6 +231,7 @@ def main():
     :return: list of json objects
     """
     name = "Micah"
+    set_depth()
     output = []
     proxy = proxy_remote_player(black, name)
     server_response = proxy.client("WITNESS ME")
