@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/393_remote.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/393_remote.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/7/7.1/remote_player/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/7/7.1/remote_player/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/7/7.1/remote_player/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/7/7.1/remote_player/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/7/7.1/run" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/7/7.1/run" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/7/7.1/remote_player/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-53">
+            <state relative-caret-position="645">
               <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -84,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Deliverables/7/7.1/run">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
-              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="84" />
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -165,6 +162,7 @@
         <option value="$PROJECT_DIR$/Deliverables/6/6.2/referee/tests.py" />
         <option value="$PROJECT_DIR$/Deliverables/7/7.1/remote_player/server.py" />
         <option value="$PROJECT_DIR$/Deliverables/7/7.1/remote_player/player.py" />
+        <option value="$PROJECT_DIR$/Deliverables/7/7.1/run" />
       </list>
     </option>
   </component>
@@ -381,10 +379,10 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20433997" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20433997" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Python Console" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -580,13 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/7/7.1/run">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/7/7.1/remote_player/player.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
@@ -599,11 +590,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/7/7.1/remote_player/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-53">
+        <state relative-caret-position="645">
           <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/7/7.1/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
