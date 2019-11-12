@@ -18,6 +18,7 @@ def read_input_from_file():
     while special_json:
         file_contents += special_json
         special_json = sys.stdin.readline()
+        #special_json = special_json.rstrip()
     return list(stream(file_contents))  # parse json objects
 
 
@@ -30,6 +31,7 @@ def main():
     :return: list of json objects
     """
     lst = read_input_from_file()
+    print(lst)
     #lst = [["register"], ["receive-stones", "B"] ,["receive-stones", "W"] , ["receive-stones", "B"] ,["receive-stones", "W"]]
     # create server (simulate referee)
     # Create a TCP/IP socket
