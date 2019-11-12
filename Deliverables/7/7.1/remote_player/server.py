@@ -1,6 +1,7 @@
 import sys
 import socket
 import json
+import subprocess
 from streamy import stream
 from player import get_socket_address
 from rule_checker import rule_checker, get_opponent_stone
