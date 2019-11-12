@@ -31,6 +31,7 @@ def main():
     Queries player
     :return: list of json objects
     """
+    print("running server main")
     #lst = read_input_from_file()
     file_contents = ""  # read in all json objects to a string
     special_json = sys.stdin.readline()

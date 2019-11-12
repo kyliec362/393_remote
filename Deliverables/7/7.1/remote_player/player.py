@@ -233,6 +233,7 @@ def main():
     Queries player
     :return: list of json objects
     """
+    print("running player main")
     name = "Micah"
     set_depth()
     output = []
