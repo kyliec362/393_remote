@@ -213,6 +213,7 @@ class proxy_remote_player:
         server_address = get_socket_address()
         sock.connect(server_address)
         response = ""
+        #adding comment so travis builds?
         try:
             sock.sendall(message.encode())
             while True:
