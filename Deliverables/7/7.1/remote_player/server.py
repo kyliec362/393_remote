@@ -71,7 +71,7 @@ def main():
             # Clean up the connection
             print("closing connection in server")
             connection.close()
-    #print(json.dumps(list(stream(output))))
+    print(json.dumps(list(stream(output))))
 
 
 if __name__ == "__main__":
