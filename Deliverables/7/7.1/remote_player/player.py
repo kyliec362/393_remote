@@ -11,12 +11,18 @@ black = "B"
 white = "W"
 n = 1
 
-# TODO once we go crazy, stop executing future inputs (use a flag and check in query?)
 crazy = "GO has gone crazy!"
+
+def get_socket_address():
+    config_file = open("go.config", "r")
+    socket_info = config_file.readlines()
+    socket_info = list(stream(socket_info))[0]
+    return (socket_info["IP"], socket_info["port"])
 
 class player:
 
     function_names = ['register', 'receive_stones', 'make_a_move']
+
     def __init__(self, stone, name):
         self.stone = stone
         self.name = name
@@ -25,7 +31,6 @@ class player:
         self.crazy_flag = False
 
     def query(self, query_lst):
-        #print(query_lst)
         # don't keep playing if we've gone crazy (deviated from following rules)
         #if self.crazy_flag:
         #    return
@@ -33,12 +38,10 @@ class player:
         method = query_lst[0].replace("-", "_")
         args = query_lst[1:]
         if method not in self.function_names:
-            print(36)
             return self.go_crazy()
         try:
             method = getattr(self, method)
         except:
-            print(41)
             return self.go_crazy()
         finally:
             if method:
@@ -47,17 +50,14 @@ class player:
 
     def register(self):
         if self.receive_flag or self.register_flag:
-            print(50)
             return self.go_crazy()
         self.register_flag = True
         return "no name"
 
     def receive_stones(self, stone):
         if not self.is_stone(stone):
-            print(57)
             return self.go_crazy()
         if self.receive_flag or not self.register_flag:
-            print(60)
             return self.go_crazy()
         self.receive_flag = True
         self.stone = stone
@@ -78,37 +78,28 @@ class player:
         max_boards_size = 3
         # check to make sure input is actually a list
         if not isinstance(boards, list):
-            print(81)
             return False
         # board history between length 1 and 3
         if len(boards) <= min_boards_size and len(boards) >= max_boards_size:
-            print(len(boards), min_boards_size, max_boards_size)
-            print(85)
             return False
         for board in boards:
             if not self.check_board_object(board):
-                print(89)
                 return False
         return True
 
     def check_board_object(self, board):
-        print("we chillin")
         # check types
         if not isinstance(board, list):
-            print(93)
             return False
         if not isinstance(board[0], list):
-            print(96)
             return False
         # check dimensions
         if len(board) != maxIntersection or len(board[0]) != maxIntersection:
-            print(100)
             return False
         # make sure all boards contain only maybe stones
         for i in range(maxIntersection):
             for j in range(maxIntersection):
                 if not self.is_maybe_stone(board[i][j]):
-                    print(106)
                     return False
         return True
 
@@ -137,7 +128,6 @@ class player:
     def make_a_move(self, boards):
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
-            print(self.check_boards_object(boards))
             if self.check_boards_object(boards):
                 if rule_checker().check_history(boards, self.stone):
                     curr_board = boards[0]
@@ -157,9 +147,7 @@ class player:
                         return non_capture_move
                     return "pass"
                 return "This history makes no sense!"
-            print(149)
             return self.go_crazy()
-        print(151)
         return self.go_crazy()
 
     def make_capture_n_moves(self, n, curr_board, stone, point, boards):
@@ -211,7 +199,7 @@ class proxy_remote_player:
 
     def client(self, message):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_address = ('localhost', 8002)
+        server_address = get_socket_address()
         sock.connect(server_address)
         response = ""
         try:
@@ -237,7 +225,6 @@ def main():
     output = []
     proxy = proxy_remote_player(black, name)
     server_response = proxy.client("WITNESS ME")
-    #print(server_response)
     lst = list(stream(server_response))[0]  # parse json objects
     for query in lst:
         result = proxy.player.query(query)
