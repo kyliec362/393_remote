@@ -48,20 +48,16 @@ class player:
         if self.crazy_flag:
             return
         # get method and arguments from input query
-        method = query_lst[0].replace("-", "_")
-        args = query_lst[1:]
-        if method not in self.function_names:
-            return self.go_crazy()
         try:
+            method = query_lst[0].replace("-", "_")
+            args = query_lst[1:]
+            if method not in self.function_names:
+                return self.go_crazy()
             method = getattr(self, method)
-        except:
-            return self.go_crazy()
-        finally:
             if method:
-                try:
-                    return method(*args)
-                except:
-                    return self.go_crazy()
+                return method(*args)
+            return self.go_crazy()
+        except:
             return self.go_crazy()
 
     def register(self):
