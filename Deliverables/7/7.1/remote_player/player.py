@@ -93,7 +93,7 @@ class player:
         if not isinstance(boards, list):
             return False
         # board history between length 1 and 3
-        if len(boards) <= min_boards_size and len(boards) >= max_boards_size:
+        if len(boards) <= min_boards_size or len(boards) >= max_boards_size:
             return False
         for board in boards:
             if not self.check_board_object(board):
