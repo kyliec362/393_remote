@@ -38,6 +38,7 @@ def main():
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_address = get_socket_address()
     sock.bind(server_address)
+    sock.settimeout(60)
     # print(server_address)
     sock.listen(1)
     output = ""
