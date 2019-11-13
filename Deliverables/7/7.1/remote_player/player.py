@@ -248,11 +248,15 @@ def main():
         proxy.client("done")
         # print("no response")
         return
-    lst = list(stream(server_response))[0]  # parse json objects
-    for query in lst:
-        result = proxy.player.query(query)
-        if result and not isinstance(result, bool):
-            output.append(result)
+    try:
+        lst = list(stream(server_response))[0]  # parse json objects
+    except:
+        output.append(crazy)
+    finally:
+        for query in lst:
+            result = proxy.player.query(query)
+            if result and not isinstance(result, bool):
+                output.append(result)
     # print(251)
     proxy.client(json.dumps(output))
     proxy.client("done")

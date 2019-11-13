@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="206e1309-ae13-4545-964f-b63fe52f38f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/remote_player/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/remote_player/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/remote_player/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/remote_player/player.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/remote_player/player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="62" column="23" lean-forward="true" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+            <state relative-caret-position="399">
+              <caret line="261" column="24" lean-forward="true" selection-start-line="261" selection-start-column="24" selection-end-line="261" selection-end-column="24" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -24,7 +24,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/remote_player/server.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="305">
@@ -51,8 +51,8 @@
     <findStrings>
       <find>addr</find>
       <find>print</find>
-      <find>lst</find>
       <find>stream</find>
+      <find>lst</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -62,8 +62,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/run" />
-        <option value="$PROJECT_DIR$/remote_player/player.py" />
         <option value="$PROJECT_DIR$/remote_player/server.py" />
+        <option value="$PROJECT_DIR$/remote_player/player.py" />
       </list>
     </option>
   </component>
@@ -186,6 +186,17 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/remote_player/player.py</url>
+          <line>240</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/run">
       <provider selected="true" editor-type-id="text-editor">
@@ -194,20 +205,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/remote_player/player.py">
+    <entry file="file://$PROJECT_DIR$/remote_player/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="62" column="23" lean-forward="true" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+        <state relative-caret-position="305">
+          <caret line="71" column="62" lean-forward="true" selection-start-line="71" selection-start-column="62" selection-end-line="71" selection-end-column="62" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/remote_player/server.py">
+    <entry file="file://$PROJECT_DIR$/remote_player/player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="71" column="62" lean-forward="true" selection-start-line="71" selection-start-column="62" selection-end-line="71" selection-end-column="62" />
+        <state relative-caret-position="399">
+          <caret line="261" column="24" lean-forward="true" selection-start-line="261" selection-start-column="24" selection-end-line="261" selection-end-column="24" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
