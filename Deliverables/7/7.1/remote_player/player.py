@@ -93,7 +93,7 @@ class player:
         if not isinstance(boards, list):
             return False
         # board history between length 1 and 3
-        if len(boards) <= min_boards_size or len(boards) >= max_boards_size:
+        if len(boards) < min_boards_size or len(boards) > max_boards_size:
             return False
         for board in boards:
             if not self.check_board_object(board):
@@ -135,7 +135,6 @@ class player:
                                 return point
                 return "pass"
             return "This history makes no sense!"
-
         return self.go_crazy()
 
     def make_a_move(self, boards):
@@ -214,13 +213,11 @@ class proxy_remote_player:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = get_socket_address()
         sock.settimeout(5)
-        # print(server_address)
         sock.connect(server_address)
         response = ""
         try:
             sock.sendall(message.encode())
             while True:
-                # print("receiving")
                 received = sock.recv(1000)
                 if received:
                     response += received.decode()

@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/remote_player/player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="91" selection-start-line="91" selection-end-line="91" />
+            <state relative-caret-position="277">
+              <caret line="259" column="10" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="10" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -204,8 +204,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/remote_player/player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
+        <state relative-caret-position="277">
+          <caret line="259" column="10" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="10" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
