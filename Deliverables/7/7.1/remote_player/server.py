@@ -30,7 +30,7 @@ def main():
     Queries player
     :return: list of json objects
     """
-    print("running server main")
+    # print("running server main")
     #lst = [["register"], ["receive-stones", "B"], ["receive-stones", "W"], ["receive-stones", "B"], ["receive-stones", "W"]]
     # create server (simulate referee)
     # Create a TCP/IP socket
@@ -38,14 +38,14 @@ def main():
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_address = get_socket_address()
     sock.bind(server_address)
-    print(server_address)
+    # print(server_address)
     sock.listen(1)
     output = ""
     client_done_flag = False
     # print(44)
     while not client_done_flag:
         connection, client_address = sock.accept()
-        print(47)
+        # print(47)
         try:
             # Receive the data in small chunks and collect it
             while True:
@@ -59,12 +59,12 @@ def main():
                     # print(65)
                     break
                 if data == "done":
-                    print("done flag set")
+                    # print("done flag set")
                     connection.sendall("done".encode())
                     client_done_flag = True
                     break
                 if data == "WITNESS ME":
-                    print(64)
+                    # print(64)
                     lst = read_input_from_file()
                     # print(lst)
                     connection.sendall(json.dumps(lst).encode())
@@ -72,13 +72,13 @@ def main():
                     break
         finally:
             # Clean up the connection
-            print("closing connection in server")
+            # print("closing connection in server")
             connection.close()
     # print(73, output)
     output = output.replace("done","")
     output = list(stream(output))
     output = output[0]
-    print(74, json.dumps(output))
+    print(json.dumps(output))
 
 
 if __name__ == "__main__":

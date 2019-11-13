@@ -214,13 +214,13 @@ class proxy_remote_player:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = get_socket_address()
         sock.settimeout(5)
-        print(server_address)
+        # print(server_address)
         sock.connect(server_address)
         response = ""
         try:
             sock.sendall(message.encode())
             while True:
-                print("receiving")
+                # print("receiving")
                 received = sock.recv(1000)
                 if received:
                     response += received.decode()
@@ -257,7 +257,7 @@ def main():
         result = proxy.player.query(query)
         if result and not isinstance(result, bool):
             output.append(result)
-    print(251)
+    # print(251)
     proxy.client(json.dumps(output))
     proxy.client("done")
     #print(json.dumps(output))
