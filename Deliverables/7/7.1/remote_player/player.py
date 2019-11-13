@@ -58,7 +58,10 @@ class player:
             return self.go_crazy()
         finally:
             if method:
-                return method(*args)
+                try:
+                    return method(*args)
+                except:
+                    return self.go_crazy()
             return self.go_crazy()
 
     def register(self):

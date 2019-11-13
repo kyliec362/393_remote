@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/remote_player/player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="259" column="10" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="10" />
+            <state relative-caret-position="201">
+              <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/remote_player/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+            <state relative-caret-position="679">
+              <caret line="68" column="23" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="23" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -51,6 +51,8 @@
     <findStrings>
       <find>addr</find>
       <find>print</find>
+      <find>stream</find>
+      <find>lst</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,8 +196,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/remote_player/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+        <state relative-caret-position="679">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="23" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -204,8 +206,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/remote_player/player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="259" column="10" selection-start-line="259" selection-start-column="5" selection-end-line="259" selection-end-column="10" />
+        <state relative-caret-position="201">
+          <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
