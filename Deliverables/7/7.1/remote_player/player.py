@@ -26,7 +26,9 @@ def get_socket_address():
     config_file = open("go.config", "r")
     socket_info = config_file.readlines()
     socket_info = list(stream(socket_info))[0]
-    return (socket_info["IP"], socket_info["port"])
+    port = socket_info["port"]
+    return (socket_info["IP"], port)
+
 
 
 
@@ -211,17 +213,23 @@ class proxy_remote_player:
     def client(self, message):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = get_socket_address()
+        sock.settimeout(5)
+        print(server_address)
         sock.connect(server_address)
         response = ""
         try:
             sock.sendall(message.encode())
             while True:
                 print("receiving")
-                received = sock.recv(4000)
+                received = sock.recv(1000)
                 if received:
                     response += received.decode()
                 else:
                     break
+        except:
+            # print("exception")
+            sock.close()
+            return
         finally:
             sock.close()
         return response
@@ -233,19 +241,26 @@ def main():
     Queries player
     :return: list of json objects
     """
-    print("running player main")
+    # print("running player main")
     name = "Micah"
     set_depth()
     output = []
     proxy = proxy_remote_player(black, name)
     server_response = proxy.client("WITNESS ME")
-    print(238, server_response)
+    # print(238, server_response)
+    if len(server_response) < 1:
+        proxy.client("done")
+        # print("no response")
+        return
     lst = list(stream(server_response))[0]  # parse json objects
     for query in lst:
         result = proxy.player.query(query)
         if result and not isinstance(result, bool):
             output.append(result)
-    print(json.dumps(output))
+    print(251)
+    proxy.client(json.dumps(output))
+    proxy.client("done")
+    #print(json.dumps(output))
 
 
 if __name__ == "__main__":
