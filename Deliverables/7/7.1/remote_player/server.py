@@ -19,8 +19,10 @@ def read_input_from_file():
     while special_json:
         file_contents += special_json
         special_json = sys.stdin.readline()
-    return file_contents
-    #return list(stream(file_contents))  # parse json objects
+    try:
+        return list(stream(file_contents))  # parse json objects
+    except:
+        return [crazy]
 
 
 
@@ -67,9 +69,9 @@ def main():
                     break
                 if data == "WITNESS ME":
                     # print(64)
-                    file_contents = read_input_from_file()
+                    lst = read_input_from_file()
                     # print(lst)
-                    connection.sendall(file_contents.encode())
+                    connection.sendall(json.dumps(lst).encode())
                     output = ""
                     break
         finally:
