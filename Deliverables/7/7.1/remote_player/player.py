@@ -12,6 +12,7 @@ white = "W"
 n = 1
 
 crazy = "GO has gone crazy!"
+history = "This history makes no sense!"
 
 # read 'capture in n moves' depth from config file
 def set_depth():
@@ -133,7 +134,7 @@ class player:
                             if rule_checker().check_validity(self.stone, [point, boards]):
                                 return point
                 return "pass"
-            return "This history makes no sense!"
+            return history
         return self.go_crazy()
 
     def make_a_move(self, boards):
@@ -157,7 +158,7 @@ class player:
                     if non_capture_move:
                         return non_capture_move
                     return "pass"
-                return "This history makes no sense!"
+                return history
             return self.go_crazy()
         return self.go_crazy()
 
