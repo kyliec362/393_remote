@@ -15,13 +15,23 @@ crazy = "GO has gone crazy!"
 
 def read_input_from_file():
     file_contents = ""  # read in all json objects to a string
+    file_contents_so_far = ""
     special_json = sys.stdin.readline()
     while special_json:
         file_contents += special_json
+        try:
+            decoded = list(stream(file_contents))
+        except:
+            pass
+        finally:
+            file_contents_so_far = decoded
         special_json = sys.stdin.readline()
+
     try:
         return list(stream(file_contents))  # parse json objects
     except:
+        if len(file_contents_so_far) > 0:
+            return file_contents_so_far
         return [crazy]
 
 
