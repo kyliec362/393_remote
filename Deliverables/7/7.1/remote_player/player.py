@@ -13,7 +13,7 @@ n = 1
 
 crazy = "GO has gone crazy!"
 
-
+# read 'capture in n moves' depth from config file
 def set_depth():
     config_file = open("go-player.config", "r")
     depth = config_file.readlines()
@@ -223,7 +223,6 @@ class proxy_remote_player:
                 else:
                     break
         except:
-            # print("exception")
             sock.close()
             return
         finally:
@@ -237,16 +236,13 @@ def main():
     Queries player
     :return: list of json objects
     """
-    # print("running player main")
     name = "Micah"
     set_depth()
     output = []
     proxy = proxy_remote_player(black, name)
     server_response = proxy.client("WITNESS ME")
-    # print(238, server_response)
     if len(server_response) < 1:
         proxy.client("done")
-        # print("no response")
         return
     try:
         lst = list(stream(server_response))[0]  # parse json objects
@@ -257,10 +253,8 @@ def main():
             result = proxy.player.query(query)
             if result and not isinstance(result, bool):
                 output.append(result)
-    # print(251)
     proxy.client(json.dumps(output))
     proxy.client("done")
-    #print(json.dumps(output))
 
 
 if __name__ == "__main__":

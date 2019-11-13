@@ -21,6 +21,9 @@ def read_input_from_file():
         file_contents += special_json
         special_json = sys.stdin.readline()
         decoded = ""
+        # try to decode into json as we go
+        # because if something later breaks the json formatting
+        # we still want to be able to run all prior valid json
         try:
             decoded = list(stream(file_contents))
         except:
@@ -43,8 +46,6 @@ def main():
     Queries player
     :return: list of json objects
     """
-    # print("running server main")
-    #lst = [["register"], ["receive-stones", "B"], ["receive-stones", "W"], ["receive-stones", "B"], ["receive-stones", "W"]]
     # create server (simulate referee)
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -52,44 +53,34 @@ def main():
     server_address = get_socket_address()
     sock.bind(server_address)
     sock.settimeout(60)
-    # print(server_address)
     sock.listen(1)
     output = ""
     client_done_flag = False
-    # print(44)
     while not client_done_flag:
         connection, client_address = sock.accept()
-        # print(47)
         try:
             # Receive the data in small chunks and collect it
             while True:
                 data = connection.recv(64)
-                # print(59,data)
                 if data:
                     data = data.decode()
-                    # print(61,data)
                     output += data
                 else:
-                    # print(65)
                     break
                 if data == "done":
-                    # print("done flag set")
                     connection.sendall("done".encode())
                     client_done_flag = True
                     break
                 if data == "WITNESS ME":
-                    # print(64)
                     lst = read_input_from_file()
-                    # print(lst)
                     connection.sendall(json.dumps(lst).encode())
                     output = ""
                     break
         finally:
             # Clean up the connection
-            # print("closing connection in server")
             connection.close()
-    # print(73, output)
-    output = output.replace("done","")
+    # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
+    output = output.replace("done", "")
     output = list(stream(output))
     output = output[0]
     print(json.dumps(output))

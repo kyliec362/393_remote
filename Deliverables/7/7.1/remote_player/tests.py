@@ -1,6 +1,6 @@
 import unittest
 from board import set_board_length
-from remote_player import remote_player
+from player import proxy_remote_player
 from referee import referee
 
 empty = " "
@@ -42,50 +42,29 @@ board2a = [["B", "B", "W", " "],
 
 board_history2 = [board2c, board2b, board2a]
 
+
 class PlayerTests(unittest.TestCase):
 
     def setUp(self):
-        self.player1 = remote_player(black, "Kylie")
-        self.player2 = remote_player(white, "Micah")
-        self.ref = referee(self.player1, self.player2)
+        name = "Micah"
+        proxy = proxy_remote_player(black, name)
 
-    def test_get_winner(self):
-        # test a draw
-        self.ref.board_history = board_history1
-        self.assertEqual(self.ref.get_winner(), ['Kylie', 'Micah'])
-        # test single winner
-        self.ref.board_history = board_history2
-        self.assertEqual(self.ref.get_winner(), ['Kylie'])
+    # test single board in history
+    def test_check_board_object(self):
+        # TODO micah
+        pass
 
-    def test_cheated(self):
-        self.ref.board_history = [board1a]
-        self.ref.current_player = self.player1
-        self.assertEqual(self.ref.cheated(), ['Micah'])
+    # test full board history
+    def test_check_boards_object(self):
+        # TODO micah
+        pass
 
-    def test_update_board_history(self):
-        # test shorter board history (less than 3)
-        self.ref.board_history = [board1a]
-        self.ref.current_player = self.player1
-        self.ref.handle_move("1-1")
-        self.assertEqual(self.ref.board_history, [board1b, board1a])
-        # test populated board history (3 boards)
-        self.ref.board_history = board_history2
-        self.ref.current_player = self.player2
-        self.ref.handle_move("4-4")
-        self.assertEqual(self.ref.board_history, [board2d, board2c, board2b])
-        # test a pass move
-        self.ref.board_history = board_history2
-        self.ref.current_player = self.player2
-        self.ref.handle_move("pass")
-        self.assertEqual(self.ref.board_history, [board2c, board2c, board2b])
+    def test_make_a_move(self):
+        # TODO kylie
+        pass
 
-    def test_swap_player(self):
-        self.ref.current_player = self.player1
-        self.ref.swap_player()
-        self.assertEqual(self.ref.current_player, self.player2)
-
-    def test_handle_move(self):
-        #TODO micah 
+    def test_query(self):
+        # TODO kylie
         pass
 
 
