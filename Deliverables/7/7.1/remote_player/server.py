@@ -19,14 +19,14 @@ def read_input_from_file():
     special_json = sys.stdin.readline()
     while special_json:
         file_contents += special_json
+        special_json = sys.stdin.readline()
+        decoded = ""
         try:
             decoded = list(stream(file_contents))
         except:
-            pass
-        finally:
-            file_contents_so_far = decoded
-        special_json = sys.stdin.readline()
-
+            continue
+        if len(decoded) > 0:
+            file_contents_so_far = list(stream(file_contents))
     try:
         return list(stream(file_contents))  # parse json objects
     except:
