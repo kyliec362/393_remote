@@ -127,7 +127,6 @@ class player:
 
     def make_a_move_random(self, boards):
         # don't make a move until a player has been registered with a given stone
-        print(self.receive_flag, self.register_flag)
         if self.receive_flag and self.register_flag:
             if rule_checker().check_history(boards, self.stone):
                 generate_random_point()
@@ -136,7 +135,6 @@ class player:
                     return point
                 return "pass"
             return history
-        print(138)
         return self.go_crazy()
 
     def make_a_move_dumb(self, boards):
@@ -232,6 +230,7 @@ class proxy_remote_player:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = get_socket_address()
         sock.settimeout(5)
+        # TODO client not connecting to server error handling
         sock.connect(server_address)
         response = ""
         try:
@@ -239,14 +238,17 @@ class proxy_remote_player:
             while True:
                 received = sock.recv(1000)
                 if received:
+                    # print("received: ", received)
                     response += received.decode()
                 else:
                     break
         except:
+            # print(248)
             sock.close()
-            return
+            return response
         finally:
             sock.close()
+        # print("resp: ", response)
         return response
 
 def main():
@@ -263,28 +265,21 @@ def main():
     proxy.player.register_flag = True
     proxy.player.receive_flag = True
     server_response = proxy.client("WITNESS ME")
-    print(type(server_response))
-    print(server_response)
-    if not server_response or len(server_response) < 1:
-        print(263)
-        proxy.client("done")
-        return
-    server_response = str(server_response)
-    try:
-        print(266)
-        boards = list(stream(server_response))[0]  # parse json objects
-        proxy.client(proxy.player.make_a_move_random(boards))
-        print(boards)
-    except:
-        print(270, "exception")
-        output.append(crazy)
-
-    #     for query in lst:
-    #         result = proxy.player.query(query)
-    #         if result and not isinstance(result, bool):
-    #             output.append(result)
-    # proxy.client(json.dumps(output))
+    while server_response and len(server_response) > 1:
+        server_response = str(server_response)
+        try:
+            boards = list(stream(server_response))[0]  # parse json objects
+            play = proxy.player.make_a_move_random(boards)
+            #print(play)
+            server_response = proxy.client(play)
+            #print("new: ", server_response)
+            #print(boards)
+        except:
+            #print(270, "exception")
+            proxy.client("done")
+            return
     proxy.client("done")
+    return
 
 
 if __name__ == "__main__":

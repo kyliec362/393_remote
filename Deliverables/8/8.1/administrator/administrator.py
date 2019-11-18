@@ -10,7 +10,7 @@ from referee import referee
 config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
-player_pkg = __import__("player_pkg")
+player_pkg = __import__(default_player_file_path)
 from player_pkg import proxy_remote_player, player
 default_player = player
 
