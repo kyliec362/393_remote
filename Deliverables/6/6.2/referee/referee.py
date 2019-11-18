@@ -34,6 +34,7 @@ class referee:
 
     # returns true if game should continue, false if not
     def handle_move(self, input):
+        print(37, input)
         self.game_output.append(self.board_history)
         if input == "pass":
             if self.pass_count == 1:

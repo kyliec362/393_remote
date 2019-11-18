@@ -11,9 +11,8 @@ config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
 player_pkg = __import__("player_pkg")
-from player_pkg import proxy_remote_player
-default_player = proxy_remote_player
-print(default_player)
+from player_pkg import proxy_remote_player, player
+default_player = player
 
 
 maxIntersection = get_board_length()
@@ -57,10 +56,13 @@ class administrator:
         self.default_player = default_player(white, "default")
         self.remote_player = None
         self.referee = None
+        self.client_done_flag = False
 
     def check_input(self, input):
         if input == "pass":
             return True
+        if input == crazy:
+            return False
         try:
             parse_point(input)
         except:
@@ -83,11 +85,13 @@ class administrator:
         return False
 
     def setup_game(self):
-        self.remote_player = proxy_remote_player(black, "Yggdrasil")
+        self.remote_player = player(black, "Yggdrasil")
         self.referee = referee(self.remote_player, self.default_player)
         self.set_true_register_receive_flag(self.default_player)
         self.set_true_register_receive_flag(self.remote_player)
 
+    def set_client_done_flag(self):
+        self.client_done_flag = not self.client_done_flag
 
     def set_true_register_receive_flag(self, player):
         player.register_flag = True
@@ -95,22 +99,21 @@ class administrator:
 
     def run_server(self):
         sock = self.setup_server()
-        output = ""
-        client_done_flag = False
-        while not client_done_flag:
+        while not self.client_done_flag:
             connection, client_address = sock.accept()
             try:
                 # Receive the data in small chunks and collect it
                 while True:
                     data = connection.recv(64)
+                    #print(106, data)
                     if data:
                         data = data.decode()
                     else:
                         break
                     if data == "done":
                         connection.sendall("done".encode())
-                        client_done_flag = True
-                        break
+                        connection.close()
+                        return self.referee.get_winner()
                     elif data == "WITNESS ME":
                         self.setup_game()
                         connection.sendall(json.dumps(self.referee.board_history).encode())
@@ -120,19 +123,19 @@ class administrator:
                             if self.referee_two_moves(data):
                                 connection.sendall(json.dumps(self.referee.board_history).encode())
                                 continue
-                        output = self.referee.get_winner()
-                        client_done_flag = True
-                        break
-
+                        connection.close()
+                        return self.referee.get_winner()
             finally:
                 # Clean up the connection
                 connection.close()
         # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
-        output = list(stream(output))
-        print(json.dumps(output))
+        if referee:
+            return self.referee.get_winner()
+        return ""
 
 
 
 if __name__ == '__main__':
     admin = administrator()
-    admin.run_server()
+    output = admin.run_server()
+    print(output)

@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/7/7.1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/7/7.1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/run" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/run" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +22,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/rule_checker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
+            <state relative-caret-position="-276">
               <caret line="247" column="24" lean-forward="true" selection-start-line="247" selection-start-column="24" selection-end-line="247" selection-end-column="24" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -29,35 +32,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="270" selection-start-line="270" selection-end-line="270" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/server.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="649">
-              <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#356#1164#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+            <state relative-caret-position="134">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -75,15 +65,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/go-player.config">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="262" selection-start-line="262" selection-end-line="263" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="97" column="19" lean-forward="true" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+            <state relative-caret-position="250">
+              <caret line="140" column="9" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="9" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#562#1370#0" />
@@ -93,22 +99,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="38" selection-start-column="38" selection-end-column="38" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py">
+        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/makefile">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/run">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="1" column="38" lean-forward="true" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -125,18 +133,35 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>captu</find>
-      <find>print</find>
       <find>prin</find>
       <find>player(</find>
       <find>make_capture</find>
       <find>copy</find>
       <find>randomize</find>
       <find>n_player</find>
-      <find>point</find>
       <find>receive_fl</find>
       <find>place</find>
-      <find>referee</find>
       <find>set_dep</find>
+      <find>decode</find>
+      <find>referee</find>
+      <find>self.remote_pla</find>
+      <find>proxy</find>
+      <find>referee(</find>
+      <find>handle</find>
+      <find>parse</find>
+      <find>get_winner</find>
+      <find>calculate_sc</find>
+      <find>setup</find>
+      <find>return crazy</find>
+      <find>return go</find>
+      <find>crazy</find>
+      <find>return self.go</find>
+      <find>set_</find>
+      <find>set</find>
+      <find>setti</find>
+      <find>timeout</find>
+      <find>point</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,14 +173,12 @@
         <option value="$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.1/player/player.py" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/n_player.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/tests.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/board.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.2/n_player/rule_checker.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.1/player/tests.py" />
         <option value="$PROJECT_DIR$/Deliverables/5/5.1/player/board.py" />
-        <option value="$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py" />
         <option value="$PROJECT_DIR$/Deliverables/6/6.2/input1" />
         <option value="$PROJECT_DIR$/Deliverables/6/6.2/output1" />
         <option value="$PROJECT_DIR$/Deliverables/6/6.2/input4" />
@@ -164,19 +187,23 @@
         <option value="$PROJECT_DIR$/Deliverables/6/6.2/output5" />
         <option value="$PROJECT_DIR$/Deliverables/6/6.2/referee/tests.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/server.py" />
-        <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/go.config" />
-        <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/go.config" />
+        <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py" />
+        <option value="$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py" />
+        <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py" />
+        <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/Deliverables/8/8.1/run" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="y" value="22" />
-    <option name="width" value="1680" />
-    <option name="height" value="1028" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="width" value="1132" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -446,16 +473,16 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.17437252" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21268164" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Python Console" order="0" />
+      <window_info anchor="bottom" id="Python Console" order="0" weight="0.32956153" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.042432815" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.41752577" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.31683168" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.417256" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -465,15 +492,15 @@
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.34412155" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.21268164" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Python Console" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.042432815" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" visible="true" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3298969" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32956153" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.31683168" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.41752577" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -485,6 +512,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py</url>
+          <line>286</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py</url>
+          <line>101</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -520,13 +559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="211" column="40" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -622,16 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/rule_checker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="247" column="24" lean-forward="true" selection-start-line="247" selection-start-column="24" selection-end-line="247" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/go-player.config">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -642,13 +664,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="38" selection-start-column="38" selection-end-column="38" />
+          <caret column="46" selection-start-column="46" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="47" column="19" lean-forward="true" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -663,16 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/go.config">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -680,10 +699,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py">
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
+        <state relative-caret-position="134">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -692,8 +721,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="270" selection-start-line="270" selection-end-line="270" />
+        <state relative-caret-position="218">
+          <caret line="262" selection-start-line="262" selection-end-line="263" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="231" column="25" selection-start-line="231" selection-start-column="25" selection-end-line="231" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/rule_checker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-276">
+          <caret line="247" column="24" lean-forward="true" selection-start-line="247" selection-start-column="24" selection-end-line="247" selection-end-column="24" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -702,12 +748,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="97" column="19" lean-forward="true" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+        <state relative-caret-position="250">
+          <caret line="140" column="9" selection-start-line="140" selection-start-column="4" selection-end-line="140" selection-end-column="9" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#562#1370#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="38" lean-forward="true" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
         </state>
       </provider>
     </entry>

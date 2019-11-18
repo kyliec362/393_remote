@@ -127,6 +127,7 @@ class player:
 
     def make_a_move_random(self, boards):
         # don't make a move until a player has been registered with a given stone
+        print(self.receive_flag, self.register_flag)
         if self.receive_flag and self.register_flag:
             if rule_checker().check_history(boards, self.stone):
                 generate_random_point()
@@ -135,6 +136,7 @@ class player:
                     return point
                 return "pass"
             return history
+        print(138)
         return self.go_crazy()
 
     def make_a_move_dumb(self, boards):
@@ -258,15 +260,23 @@ def main():
     set_depth()
     output = []
     proxy = proxy_remote_player(black, name)
+    proxy.player.register_flag = True
+    proxy.player.receive_flag = True
     server_response = proxy.client("WITNESS ME")
-    if len(server_response) < 1:
+    print(type(server_response))
+    print(server_response)
+    if not server_response or len(server_response) < 1:
+        print(263)
         proxy.client("done")
         return
+    server_response = str(server_response)
     try:
+        print(266)
         boards = list(stream(server_response))[0]  # parse json objects
         proxy.client(proxy.player.make_a_move_random(boards))
         print(boards)
     except:
+        print(270, "exception")
         output.append(crazy)
 
     #     for query in lst:

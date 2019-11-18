@@ -1,6 +1,7 @@
 import sys
 import socket
 import json
+import random
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length
@@ -16,22 +17,26 @@ history = "This history makes no sense!"
 
 # read 'capture in n moves' depth from config file
 def set_depth():
-    config_file = open("go-player.config", "r")
-    depth = config_file.readlines()
-    depth_info = list(stream(depth))[0]
-    global n
-    n = depth_info["depth"]
+    pass
+    # config_file = open("go-player.config", "r")
+    # depth = config_file.readlines()
+    # depth_info = list(stream(depth))[0]
+    # print(depth_info)
+    # global n
+    # n = depth_info["depth"]
 
 
 def get_socket_address():
-    config_file = open("go.config", "r")
-    socket_info = config_file.readlines()
-    socket_info = list(stream(socket_info))[0]
-    port = socket_info["port"]
-    return (socket_info["IP"], port)
+    return ("localhost", 8000)
+    # config_file = open("go.config", "r")
+    # socket_info = config_file.readlines()
+    # socket_info = list(stream(socket_info))[0]
+    # port = socket_info["port"]
+    # return (socket_info["IP"], port)
 
 
-
+def generate_random_point():
+    return make_point(random.randint(0, maxIntersection - 1), random.randint(0, maxIntersection - 1))
 
 class player:
 
@@ -119,6 +124,18 @@ class player:
     def go_crazy(self):
         self.crazy_flag = True
         return crazy
+
+    def make_a_move_random(self, boards):
+        # don't make a move until a player has been registered with a given stone
+        if self.receive_flag and self.register_flag:
+            if rule_checker().check_history(boards, self.stone):
+                generate_random_point()
+                point = generate_random_point()
+                if rule_checker().check_validity(self.stone, [point, boards]):
+                    return point
+                return "pass"
+            return history
+        return self.go_crazy()
 
     def make_a_move_dumb(self, boards):
         # don't make a move until a player has been registered with a given stone
@@ -241,20 +258,30 @@ def main():
     set_depth()
     output = []
     proxy = proxy_remote_player(black, name)
+    proxy.player.register_flag = True
+    proxy.player.receive_flag = True
     server_response = proxy.client("WITNESS ME")
-    if len(server_response) < 1:
+    print(type(server_response))
+    print(server_response)
+    if not server_response or len(server_response) < 1:
+        print(263)
         proxy.client("done")
         return
+    server_response = str(server_response)
     try:
-        lst = list(stream(server_response))[0]  # parse json objects
+        print(266)
+        boards = list(stream(server_response))[0]  # parse json objects
+        proxy.client(proxy.player.make_a_move_random(boards))
+        print(boards)
     except:
+        print(270, "exception")
         output.append(crazy)
-    finally:
-        for query in lst:
-            result = proxy.player.query(query)
-            if result and not isinstance(result, bool):
-                output.append(result)
-    proxy.client(json.dumps(output))
+
+    #     for query in lst:
+    #         result = proxy.player.query(query)
+    #         if result and not isinstance(result, bool):
+    #             output.append(result)
+    # proxy.client(json.dumps(output))
     proxy.client("done")
 
 
