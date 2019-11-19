@@ -5,7 +5,7 @@ import copy
 import unittest
 
 # number of rows/columns on Go board
-maxIntersection = 5
+maxIntersection = 9
 empty = " "
 black = "B"
 white = "W"

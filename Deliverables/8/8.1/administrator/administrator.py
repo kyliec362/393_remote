@@ -124,11 +124,14 @@ class administrator:
                                     continue
                                 else:
                                     connection.close()
+                                    print(127)
                                     return self.referee.get_winner()
                             else:
                                 connection.close()
+                                print(131)
                                 return json.dumps([self.default_player.name])
                 except:
+                    print(132)
                     return json.dumps([self.default_player.name])
                 finally:
                     # Clean up the connection
@@ -138,7 +141,9 @@ class administrator:
                 break
         # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
         if self.referee:
+            print(142)
             return self.referee.get_winner()
+        print(144)
         return json.dumps([self.default_player.name])
 
 
