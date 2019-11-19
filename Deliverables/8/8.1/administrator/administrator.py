@@ -121,12 +121,16 @@ class administrator:
                                     connection.sendall(json.dumps(self.referee.board_history).encode())
                                     continue
                             connection.close()
+                            print(124)
                             return self.referee.get_winner()
+                except:
+                    print(127)
                 finally:
                     # Clean up the connection
                     connection.close()
             except:
                 # timeout
+                print("timeout")
                 break
         # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
         if self.referee:
