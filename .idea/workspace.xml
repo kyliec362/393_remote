@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/go.config" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/go.config" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +24,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -56,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/go.config">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="71" selection-start-column="71" selection-end-column="71" />
+              <caret column="58" selection-start-column="58" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -174,8 +166,8 @@
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player_file.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" />
-        <option value="$PROJECT_DIR$/Deliverables/8/8.1/go.config" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py" />
+        <option value="$PROJECT_DIR$/Deliverables/8/8.1/go.config" />
       </list>
     </option>
   </component>
@@ -452,7 +444,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28269485" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.28269485" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Python Console" order="0" weight="0.32956153" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.115983024" />
@@ -460,7 +452,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32956153" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.19519095" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.19519095" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.417256" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -718,10 +710,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py">
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1870">
-          <caret line="110" column="29" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -735,20 +727,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/go.config">
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="71" selection-start-column="71" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        <state relative-caret-position="1870">
+          <caret line="110" column="29" selection-start-line="110" selection-start-column="29" selection-end-line="110" selection-end-column="29" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/go.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="58" selection-start-column="58" selection-end-column="58" />
         </state>
       </provider>
     </entry>
