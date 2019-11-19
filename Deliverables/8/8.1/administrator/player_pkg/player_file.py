@@ -140,14 +140,14 @@ class player:
 
     def make_a_move_random_maybe_illegal(self, boards):
         # don't make a move until a player has been registered with a given stone
-        # if self.receive_flag and self.register_flag:
-        #     if rule_checker().check_history(boards, self.stone):
-        #         point = generate_random_point()
-        #         if random.randint(0, maxIntersection - 1) % 3 != 0:
-        #             return point
-        #         return "pass"
-        return history
-        #return self.go_crazy()
+        if self.receive_flag and self.register_flag:
+            if rule_checker().check_history(boards, self.stone):
+                point = generate_random_point()
+                if random.randint(0, maxIntersection - 1) % 3 != 0:
+                    return point
+                return "pass"
+            return history
+        return self.go_crazy()
 
     def make_a_move_dumb(self, boards):
         # don't make a move until a player has been registered with a given stone

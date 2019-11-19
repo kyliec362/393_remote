@@ -116,26 +116,29 @@ class administrator:
                             connection.sendall(json.dumps(self.referee.board_history).encode())
                             break
                         else:
+                            # TODO  if the remote player transmits invalid values to the administrator default wins
                             if self.check_input(data):
                                 if self.referee_two_moves(data):
                                     connection.sendall(json.dumps(self.referee.board_history).encode())
                                     continue
-                            connection.close()
-                            print(124)
-                            return self.referee.get_winner()
+                                else:
+                                    connection.close()
+                                    return self.referee.get_winner()
+                            else:
+                                connection.close()
+                                return json.dumps([self.default_player.name])
                 except:
-                    print(127)
+                    return json.dumps([self.default_player.name])
                 finally:
                     # Clean up the connection
                     connection.close()
             except:
                 # timeout
-                print("timeout")
                 break
         # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
         if self.referee:
             return self.referee.get_winner()
-        return []
+        return json.dumps([self.default_player.name])
 
 
 
