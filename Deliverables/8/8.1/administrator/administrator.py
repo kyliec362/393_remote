@@ -148,8 +148,13 @@ class administrator:
 
 
 
-if __name__ == '__main__':
+def main():
     print(146)
     admin = administrator()
     output = admin.run_server()
     print(output)
+    return output
+
+if __name__ == '__main__':
+    main()
+
