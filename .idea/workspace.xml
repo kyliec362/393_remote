@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/go.config" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/go.config" afterDir="false" />
-    </list>
+    <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/go.config">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="58" selection-start-column="58" selection-end-column="58" />
+              <caret column="57" selection-start-column="57" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -740,7 +738,7 @@
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/go.config">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="58" selection-start-column="58" selection-end-column="58" />
+          <caret column="57" selection-start-column="57" selection-end-column="57" />
         </state>
       </provider>
     </entry>
