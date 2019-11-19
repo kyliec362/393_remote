@@ -2,7 +2,7 @@ import sys
 import socket
 import json
 from streamy import stream
-from player import get_socket_address
+from player_pkg import player
 from board import make_point, board, get_board_length
 
 maxIntersection = get_board_length()
@@ -49,7 +49,7 @@ def main():
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server_address = get_socket_address()
+    server_address = player.get_socket_address()
     sock.bind(server_address)
     sock.settimeout(60)
     sock.listen(1)

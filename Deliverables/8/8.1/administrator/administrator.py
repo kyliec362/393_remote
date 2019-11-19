@@ -1,7 +1,6 @@
 import sys
 import socket
 import json
-from player import get_socket_address, proxy_remote_player
 from streamy import stream
 from board import make_point, board, get_board_length, make_empty_board, parse_point
 from referee import referee
@@ -110,11 +109,7 @@ class administrator:
                         data = data.decode()
                     else:
                         break
-                    if data == "done":
-                        connection.sendall("done".encode())
-                        connection.close()
-                        return self.referee.get_winner()
-                    elif data == "WITNESS ME":
+                    if data == "WITNESS ME":
                         self.setup_game()
                         connection.sendall(json.dumps(self.referee.board_history).encode())
                         break

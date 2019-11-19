@@ -2,6 +2,7 @@ import sys
 import socket
 import json
 import random
+sys.path.append('../')
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length
@@ -273,12 +274,12 @@ def main():
             #print(play)
             server_response = proxy.client(play)
             #print("new: ", server_response)
-            #print(boards)
+            print(play, " ", boards)
         except:
             #print(270, "exception")
-            proxy.client("done")
+            #proxy.client("done")
             return
-    proxy.client("done")
+    #proxy.client("done")
     return
 
 

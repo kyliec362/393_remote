@@ -1,10 +1,9 @@
 import sys
 import json
-from player import player
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length, make_empty_board
-
+from player_pkg.player_file import player
 maxIntersection = get_board_length()
 empty = " "
 black = "B"
@@ -65,6 +64,7 @@ class referee:
         return [self.current_player.name]
 
     def get_winner(self):
+        print(67, self.board_history[0])
         scores = board(self.board_history[0]).calculate_score()
         black_score = scores["B"] 
         white_score = scores["W"]
