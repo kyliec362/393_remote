@@ -98,6 +98,7 @@ class administrator:
         player.receive_flag = True
 
     def run_server(self):
+        print(101)
         sock = self.setup_server()
         while True:
             try:
@@ -143,6 +144,7 @@ class administrator:
 
 
 if __name__ == '__main__':
+    print(146)
     admin = administrator()
     output = admin.run_server()
     print(output)
