@@ -28,7 +28,7 @@ def set_depth():
 
 
 def get_socket_address():
-    return ("localhost", 8000)
+    return ("localhost", 8080)
     # config_file = open("go.config", "r")
     # socket_info = config_file.readlines()
     # socket_info = list(stream(socket_info))[0]
@@ -138,6 +138,17 @@ class player:
             return history
         return self.go_crazy()
 
+    def make_a_move_random_maybe_illegal(self, boards):
+        # don't make a move until a player has been registered with a given stone
+        # if self.receive_flag and self.register_flag:
+        #     if rule_checker().check_history(boards, self.stone):
+        #         point = generate_random_point()
+        #         if random.randint(0, maxIntersection - 1) % 3 != 0:
+        #             return point
+        #         return "pass"
+        return history
+        #return self.go_crazy()
+
     def make_a_move_dumb(self, boards):
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
@@ -231,7 +242,6 @@ class proxy_remote_player:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = get_socket_address()
         sock.settimeout(5)
-        # TODO client not connecting to server error handling
         sock.connect(server_address)
         response = ""
         try:
@@ -270,9 +280,11 @@ def main():
         server_response = str(server_response)
         try:
             boards = list(stream(server_response))[0]  # parse json objects
-            play = proxy.player.make_a_move_random(boards)
+            #play = proxy.player.make_a_move_random(boards)
+            play = proxy.player.make_a_move_random_maybe_illegal(boards)
             #print(play)
             server_response = proxy.client(play)
+            print(server_response)
             #print("new: ", server_response)
             print(play, " ", boards)
         except:

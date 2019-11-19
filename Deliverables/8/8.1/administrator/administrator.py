@@ -20,6 +20,7 @@ black = "B"
 white = "W"
 n = 1
 crazy = "GO has gone crazy!"
+history = "This history makes no sense!"
 empty_board = make_empty_board()
 
 def read_input_from_file():
@@ -60,7 +61,7 @@ class administrator:
     def check_input(self, input):
         if input == "pass":
             return True
-        if input == crazy:
+        if input == crazy or input == history:
             return False
         try:
             parse_point(input)
@@ -73,7 +74,7 @@ class administrator:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind((self.ip, self.port))
-        sock.settimeout(60)
+        sock.settimeout(40)
         sock.listen(1)
         return sock
 
@@ -126,7 +127,7 @@ class administrator:
         # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
         if referee:
             return self.referee.get_winner()
-        return ""
+        return []
 
 
 
