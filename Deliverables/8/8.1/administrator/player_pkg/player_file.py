@@ -167,7 +167,6 @@ class player:
         return self.go_crazy()
 
     def make_a_move(self, boards):
-        print(170)
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
             if self.check_boards_object(boards):
@@ -250,17 +249,14 @@ class proxy_remote_player:
             while True:
                 received = sock.recv(1000)
                 if received:
-                    # print("received: ", received)
                     response += received.decode()
                 else:
                     break
         except:
-            # print(248)
             sock.close()
             return response
         finally:
             sock.close()
-        # print("resp: ", response)
         return response
 
 def main():
@@ -281,18 +277,10 @@ def main():
         server_response = str(server_response)
         try:
             boards = list(stream(server_response))[0]  # parse json objects
-            #play = proxy.player.make_a_move_random(boards)
             play = proxy.player.make_a_move_random_maybe_illegal(boards)
-            #print(play)
             server_response = proxy.client(play)
-            print(server_response)
-            #print("new: ", server_response)
-            print(play, " ", boards)
         except:
-            #print(270, "exception")
-            #proxy.client("done")
             return
-    #proxy.client("done")
     return
 
 

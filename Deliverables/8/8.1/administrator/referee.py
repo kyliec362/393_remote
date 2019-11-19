@@ -64,7 +64,6 @@ class referee:
         return [self.current_player.name]
 
     def get_winner(self):
-        print(67, self.board_history[0])
         scores = board(self.board_history[0]).calculate_score()
         black_score = scores["B"] 
         white_score = scores["W"]

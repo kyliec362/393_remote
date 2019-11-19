@@ -58,6 +58,9 @@ class administrator:
         self.referee = None
         self.client_done_flag = False
 
+    def default_wins(self):
+        return json.dumps([self.default_player.name])
+
     def check_input(self, input):
         if input == "pass":
             return True
@@ -98,7 +101,6 @@ class administrator:
         player.receive_flag = True
 
     def run_server(self):
-        print(101)
         sock = self.setup_server()
         while True:
             try:
@@ -107,7 +109,6 @@ class administrator:
                     # Receive the data in small chunks and collect it
                     while True:
                         data = connection.recv(64)
-                        #print(106, data)
                         if data:
                             data = data.decode()
                         else:
@@ -117,22 +118,18 @@ class administrator:
                             connection.sendall(json.dumps(self.referee.board_history).encode())
                             break
                         else:
-                            # TODO  if the remote player transmits invalid values to the administrator default wins
                             if self.check_input(data):
                                 if self.referee_two_moves(data):
                                     connection.sendall(json.dumps(self.referee.board_history).encode())
                                     continue
                                 else:
                                     connection.close()
-                                    print(127)
                                     return self.referee.get_winner()
                             else:
                                 connection.close()
-                                print(131)
-                                return json.dumps([self.default_player.name])
+                                return self.default_wins()
                 except:
-                    print(132)
-                    return json.dumps([self.default_player.name])
+                    return self.default_wins()
                 finally:
                     # Clean up the connection
                     connection.close()
@@ -141,20 +138,12 @@ class administrator:
                 break
         # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
         if self.referee:
-            print(142)
             return self.referee.get_winner()
-        print(144)
-        return json.dumps([self.default_player.name])
+        return self.default_wins()
 
 
-
-def main():
-    print(146)
+if __name__ == '__main__':
     admin = administrator()
     output = admin.run_server()
     print(output)
-    return output
-
-if __name__ == '__main__':
-    main()
 
