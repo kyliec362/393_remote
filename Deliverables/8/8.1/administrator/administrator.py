@@ -99,33 +99,37 @@ class administrator:
 
     def run_server(self):
         sock = self.setup_server()
-        while not self.client_done_flag:
-            connection, client_address = sock.accept()
+        while True:
             try:
-                # Receive the data in small chunks and collect it
-                while True:
-                    data = connection.recv(64)
-                    #print(106, data)
-                    if data:
-                        data = data.decode()
-                    else:
-                        break
-                    if data == "WITNESS ME":
-                        self.setup_game()
-                        connection.sendall(json.dumps(self.referee.board_history).encode())
-                        break
-                    else:
-                        if self.check_input(data):
-                            if self.referee_two_moves(data):
-                                connection.sendall(json.dumps(self.referee.board_history).encode())
-                                continue
-                        connection.close()
-                        return self.referee.get_winner()
-            finally:
-                # Clean up the connection
-                connection.close()
+                connection, client_address = sock.accept()
+                try:
+                    # Receive the data in small chunks and collect it
+                    while True:
+                        data = connection.recv(64)
+                        #print(106, data)
+                        if data:
+                            data = data.decode()
+                        else:
+                            break
+                        if data == "WITNESS ME":
+                            self.setup_game()
+                            connection.sendall(json.dumps(self.referee.board_history).encode())
+                            break
+                        else:
+                            if self.check_input(data):
+                                if self.referee_two_moves(data):
+                                    connection.sendall(json.dumps(self.referee.board_history).encode())
+                                    continue
+                            connection.close()
+                            return self.referee.get_winner()
+                finally:
+                    # Clean up the connection
+                    connection.close()
+            except:
+                # timeout
+                break
         # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
-        if referee:
+        if self.referee:
             return self.referee.get_winner()
         return []
 
