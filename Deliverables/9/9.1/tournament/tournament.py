@@ -24,7 +24,8 @@ config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
-from player_pkg import proxy_remote_player, player
+# from player_pkg import proxy_remote_player, player
+from player_pkg.player_file import player
 default_player = player
 
 
@@ -32,6 +33,7 @@ default_player = player
 class Tournament(abc.ABC):
 
     def __init__(self):
+        print(36)
         self.round_number = 0
         self.num_players = 0
         self.set_num_players()
@@ -39,7 +41,6 @@ class Tournament(abc.ABC):
         self.set_players()
         self.schedule = []
         self.generate_schedule(self.players)
-        pass
 
 
     def get_num_players(self):
@@ -90,35 +91,40 @@ class Tournament(abc.ABC):
 class Cup(Tournament):
 
     def __init__(self):
+        super().__init__()
         self.port = info["port"]
         self.ip = info["IP"]
 
-    # TODO can prob just run the game here and return winner to scheduler sca
+    # TODO can prob just run the game here and return winner to scheduler
+    # TODO update admin to take two players to give to ref?
     def setup_single_game(self, player1, player2):
         pass
 
     # TODO can abstract to use this to run all the games for single elim
     def generate_schedule(self, players):
-        num_players = len(players)
-        num_games = num_players - 1
+        num_games = self.num_players - 1
         self.schedule = [None for i in range(num_games)]
-        num_games_round_one = int(num_players / 2)
+        num_games_round_one = int(self.num_players / 2)
         for i in range(0, num_games_round_one, 2):
             self.schedule[i] = self.setup_single_game(players[i], players[i + 1])
 
-    # TODO finish logic
     def get_round_indices(self, round_num):
+        games_this_round = self.num_players / 2
         start = 0
-        end = start
-        num_players = self.num_players
+        end = games_this_round - 1
         for i in range(round_num):
-            games_this_round = self.num_players / ((i + 1) * 2)
-            games_next_found = self.num_players / ((i + 2) * 2)
-            start += games_this_round
-            end = (start + games_next_found)
-
-        print(start, end)
+            games_this_round = games_this_round / 2
+            start = end + 1
+            end = start + (games_this_round - 1)
         return (start, end)
+
+    #get round for round robin or next round in single elim
+    def get_round(self):
+        pass
+
+    def rank(self):
+        pass
+
 
 
 
@@ -131,7 +137,7 @@ class League(Tournament):
         self.win_record = {}
 
 
-class Schedule(abc.ABC):
+# class Schedule(abc.ABC):
 
 
 

@@ -1,6 +1,5 @@
 import unittest
-from board import set_board_length
-from player import proxy_remote_player
+from tournament import Cup
 
 # !!! remember to change board size to 4 for testing !!! #
 
@@ -50,45 +49,23 @@ board3 = [[" ", "S", " ", " "],
           [" ", " ", " ", " "]]
 
 
-class PlayerTests(unittest.TestCase):
+class TournamentTests(unittest.TestCase):
 
     def setUp(self):
-        self.name = "Micah"
+        pass
 
     # test single board in history
-    def test_check_board_object(self):
-        # TODO micah
-        pass
-
-    # test full board history
-    def test_check_boards_object(self):
-        # TODO micah
-        pass
-
-    def test_make_a_move(self):
-        proxy = proxy_remote_player(black, self.name)
-        proxy.player.register_flag = True
-        proxy.player.receive_flag = True
-        self.assertEqual(proxy.player.make_a_move(board_history2), history)
-        self.assertEqual(proxy.player.make_a_move(board_history1), "1-3")
-        self.assertEqual(proxy.player.make_a_move([board1a, board1a, board1a, board1a]), crazy)
-        self.assertEqual(proxy.player.make_a_move([]), crazy)
-        self.assertEqual(proxy.player.make_a_move([board3, board1a]), crazy)
-
-    def test_query(self):
-        self.assertEqual(proxy_remote_player(black, self.name).player.query(["make-a-move"]),crazy)
-        self.assertEqual(proxy_remote_player(black, self.name).player.query(["rejister"]), crazy)
-        self.assertEqual(proxy_remote_player(black, self.name).player.query(["register"]), "no name")
-        self.assertEqual(proxy_remote_player(black, self.name).player.query(["make-a-move", board_history2]), crazy)
-        self.assertEqual(proxy_remote_player(black, self.name).player.query(["receive-stones", white]), crazy)
-        proxy = proxy_remote_player(black, self.name)
-        proxy.player.query(["register"])
-        self.assertNotEqual(proxy.player.query(["receive-stones", black]), crazy)
-        proxy2 = proxy_remote_player(black, self.name)
-        proxy2.player.query(["register"])
-        proxy2.player.query(["receive-stones", black])
-        self.assertEqual(proxy2.player.query(["make-a-move", board_history1]), "1-3")
-
+    def test_get_round_indices(self):
+        c = Cup()
+        print("\n--0--")
+        c.get_round_indices(0)
+        print("\n--1--")
+        c.get_round_indices(1)
+        print("\n--2--")
+        c.get_round_indices(2)
+        #print(c.get_round_indices(0))
+        #print(c.get_round_indices(1))
+        #print(c.get_round_indices(2))
 
 
 if __name__ == "__main__":
