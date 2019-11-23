@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py" afterDir="false" />
-    </list>
+    <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,10 +22,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
+            <state relative-caret-position="4318">
               <caret line="254" column="9" selection-start-line="254" selection-start-column="4" selection-end-line="254" selection-end-column="9" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -68,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
+            <state relative-caret-position="899">
               <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -447,7 +443,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.28269485" />
@@ -458,7 +453,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.6321004" visible="true" weight="0.37340876" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.6321004" weight="0.37340876" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.417256" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -733,16 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="254" column="9" selection-start-line="254" selection-start-column="4" selection-end-line="254" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player_file.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -755,11 +740,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
+        <state relative-caret-position="899">
           <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#671#1479#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/board.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4318">
+          <caret line="254" column="9" selection-start-line="254" selection-start-column="4" selection-end-line="254" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
