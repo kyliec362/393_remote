@@ -54,18 +54,14 @@ class TournamentTests(unittest.TestCase):
     def setUp(self):
         pass
 
+
     # test single board in history
+    # test with 8 players
     def test_get_round_indices(self):
         c = Cup()
-        print("\n--0--")
-        c.get_round_indices(0)
-        print("\n--1--")
-        c.get_round_indices(1)
-        print("\n--2--")
-        c.get_round_indices(2)
-        #print(c.get_round_indices(0))
-        #print(c.get_round_indices(1))
-        #print(c.get_round_indices(2))
+        self.assertEqual((0,3), c.get_round_indices(0))
+        self.assertEqual((4,5), c.get_round_indices(1))
+        self.assertEqual((6,6), c.get_round_indices(2))
 
 
 if __name__ == "__main__":

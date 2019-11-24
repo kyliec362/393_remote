@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="206e1309-ae13-4545-964f-b63fe52f38f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tournament/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tournament.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +21,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
+            <state relative-caret-position="-719">
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -76,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tournament/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+            <state relative-caret-position="244">
+              <caret line="56" selection-start-line="56" selection-end-line="56" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -129,8 +129,8 @@
       <find>stream</find>
       <find>history</find>
       <find>&quot;This history makes no sense!&quot;</find>
-      <find>remote</find>
       <find>remote_</find>
+      <find>remote</find>
       <find>schedule</find>
     </findStrings>
     <replaceStrings>
@@ -151,8 +151,8 @@
         <option value="$PROJECT_DIR$/remote_player/tests.py" />
         <option value="$PROJECT_DIR$/remote_player/board.py" />
         <option value="$PROJECT_DIR$/run" />
-        <option value="$PROJECT_DIR$/tournament/tests.py" />
         <option value="$PROJECT_DIR$/tournament/tournament.py" />
+        <option value="$PROJECT_DIR$/tournament/tests.py" />
       </list>
     </option>
   </component>
@@ -289,9 +289,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_tests_py_(1) - 2019.11.23 at 17h 34m 54s.xml">
-      <configuration name="Unittests in tests.py (1)" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_tests_py_(1) - 2019.11.23 at 17h 35m 17s.xml">
       <configuration name="Unittests in tests.py (1)" configurationId="tests" />
     </history-entry>
@@ -319,24 +316,27 @@
     <history-entry file="Unittests_in_tests_py_(1) - 2019.11.23 at 17h 41m 36s.xml">
       <configuration name="Unittests in tests.py (1)" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_tests_py - 2019.11.24 at 14h 03m 41s.xml">
+      <configuration name="Unittests in tests.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.111979164" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.111979164" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.91796875" visible="true" weight="0.18381344" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.91796875" visible="true" weight="0.32784638" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49934897" weight="0.19478738" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.08203125" side_tool="true" visible="true" weight="0.18381344" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.08203125" side_tool="true" visible="true" weight="0.32784638" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -421,12 +421,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournament/tests.py">
+    <entry file="file://$PROJECT_DIR$/tournament/administrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+        <state relative-caret-position="-540">
+          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="50" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -438,22 +438,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournament/administrator.py">
+    <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540">
-          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="50" />
+        <state relative-caret-position="-719">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
+    <entry file="file://$PROJECT_DIR$/tournament/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
+        <state relative-caret-position="244">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
