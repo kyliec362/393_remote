@@ -37,10 +37,11 @@ class Tournament(abc.ABC):
         self.num_players = 0
         self.set_num_players()
         self.players = []
+        self.players_connections = {}
         self.set_players()
         self.schedule = []
         self.generate_schedule(self.players)
-        pass
+
 
 
     def get_num_players(self):

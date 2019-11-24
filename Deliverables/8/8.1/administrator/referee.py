@@ -26,10 +26,14 @@ class referee:
         self.game_output = [black, white]
 
     def swap_player(self):
+        self.current_player = self.get_opposite_player()
+
+    def get_opposite_player(self):
         if self.current_player == self.player1:
-            self.current_player = self.player2
+            return self.player2
         else:
-            self.current_player = self.player1
+            return self.player1
+
 
     # returns true if game should continue, false if not
     def handle_move(self, input):

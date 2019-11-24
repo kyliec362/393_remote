@@ -11,8 +11,8 @@ info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
 from player_pkg import proxy_remote_player, player
-default_player = player
 
+default_player = player
 
 maxIntersection = get_board_length()
 empty = " "
@@ -22,6 +22,8 @@ n = 1
 crazy = "GO has gone crazy!"
 history = "This history makes no sense!"
 empty_board = make_empty_board()
+recv_size = 64
+
 
 def read_input_from_file():
     file_contents = ""  # read in all json objects to a string
@@ -50,16 +52,16 @@ def read_input_from_file():
 
 class administrator:
 
-    def __init__(self):
-        self.port = info["port"]
-        self.ip = info["IP"]
-        self.default_player = default_player(white, "default")
-        self.remote_player = None
+    def __init__(self, player1, player2, conn1, conn2):
+        self.player2 = player2
+        self.player1 = player1
+        self.conn2 = conn2
+        self.conn1 = conn1
         self.referee = None
         self.client_done_flag = False
 
-    def default_wins(self):
-        return json.dumps([self.default_player.name])
+    def opposite_wins(self):
+        return [json.dumps(self.referee.get_opposite_player().name)]
 
     def check_input(self, input):
         if input == "pass":
@@ -73,25 +75,21 @@ class administrator:
         finally:
             return True
 
-    def setup_server(self):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        sock.bind((self.ip, self.port))
-        sock.settimeout(40)
-        sock.listen(1)
-        return sock
+    # TODO add a while loop method that referees all moves until games over
 
-    def referee_two_moves(self, input):
+    # TODO change to refereeing single moves one by one
+    def referee_move(self, input):
         if self.referee.handle_move(input):
-            if self.referee.handle_move(self.default_player.make_a_move(self.referee.board_history)):
-                return True
+            return True
+            # if self.referee.handle_move(self.player2.make_a_move(self.referee.board_history)):
+            #     return True
         return False
 
     def setup_game(self):
-        self.remote_player = player(black, "Yggdrasil")
-        self.referee = referee(self.remote_player, self.default_player)
-        self.set_true_register_receive_flag(self.default_player)
-        self.set_true_register_receive_flag(self.remote_player)
+        self.player1 = player(black, "Yggdrasil")
+        self.referee = referee(self.player1, self.player2)
+        self.set_true_register_receive_flag(self.player2)
+        self.set_true_register_receive_flag(self.player1)
 
     def set_client_done_flag(self):
         self.client_done_flag = not self.client_done_flag
@@ -100,46 +98,83 @@ class administrator:
         player.register_flag = True
         player.receive_flag = True
 
-    def run_server(self):
-        sock = self.setup_server()
+    def run_game(self):
+        self.setup_game()
+
         while True:
-            try:
-                connection, client_address = sock.accept()
-                try:
-                    # Receive the data in small chunks and collect it
-                    while True:
-                        data = connection.recv(64)
-                        if data:
-                            data = data.decode()
-                        else:
-                            break
-                        if data == "WITNESS ME":
-                            self.setup_game()
-                            connection.sendall(json.dumps(self.referee.board_history).encode())
-                            break
-                        else:
-                            if self.check_input(data):
-                                if self.referee_two_moves(data):
-                                    connection.sendall(json.dumps(self.referee.board_history).encode())
-                                    continue
-                                else:
-                                    connection.close()
-                                    return self.referee.get_winner()
-                            else:
-                                connection.close()
-                                return self.default_wins()
-                except:
-                    return self.default_wins()
-                finally:
-                    # Clean up the connection
+            if self.referee.current_player == self.player1:
+                game_output = self.connection_helper(self.conn1)
+            else:
+                game_output = self.connection_helper(self.conn2)
+
+            if game_output:
+                return game_output
+
+    def connection_helper(self, connection):
+        try:
+            data = self.connection.recv(recv_size)
+            if data:
+                data = data.decode()
+            else:
+                # TODO not sure if correct
+                return
+            if data == "WITNESS ME":
+                self.connection.sendall(json.dumps(self.referee.board_history).encode())
+            else:
+                if self.check_input(data):
+                    if self.referee_move(data):
+                        connection.sendall(json.dumps(self.referee.board_history).encode())
+
+                    else:
+                        connection.close()
+                        return self.referee.get_winner()
+                else:
                     connection.close()
-            except:
-                # timeout
-                break
-        # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
-        if self.referee:
-            return self.referee.get_winner()
-        return self.default_wins()
+                    return self.opposite_wins()
+        # TODO ? client disconnects? (*chuckles* I'm in danger)
+        except:
+            return self.opposite_wins()
+
+    # def run_server(self):
+    #     sock = self.setup_server()
+    #     while True:
+    #         try:
+    #             connection, client_address = sock.accept()
+    #             try:
+    #                 # Receive the data in small chunks and collect it
+    #                 while True:
+    #                     data = connection.recv(64)
+    #                     if data:
+    #                         data = data.decode()
+    #                     else:
+    #                         break
+    #                     if data == "WITNESS ME":
+    #                         self.setup_game()
+    #                         connection.sendall(json.dumps(self.referee.board_history).encode())
+    #                         break
+    #                     else:
+    #                         if self.check_input(data):
+    #                             if self.referee_two_moves(data):
+    #                                 connection.sendall(json.dumps(self.referee.board_history).encode())
+    #                                 continue
+    #                             else:
+    #                                 connection.close()
+    #                                 return self.referee.get_winner()
+    #                         else:
+    #                             connection.close()
+    #                             return self.opposite_wins()
+    #             except:
+    #                 return self.opposite_wins()
+    #             finally:
+    #                 # Clean up the connection
+    #                 connection.close()
+    #         except:
+    #             # timeout
+    #             break
+    #     # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
+    #     if self.referee:
+    #         return self.referee.get_winner()
+    #     return self.opposite_wins()
 
 
 if __name__ == '__main__':
