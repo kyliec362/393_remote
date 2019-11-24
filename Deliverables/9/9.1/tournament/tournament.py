@@ -1,6 +1,7 @@
 import abc
 from typing import List
 from math import log, ceil
+import operator
 import sys
 import socket
 import json
@@ -33,14 +34,13 @@ default_player = player
 class Tournament(abc.ABC):
 
     def __init__(self):
-        print(36)
         self.round_number = 0
         self.num_players = 0
         self.set_num_players()
         self.players = []
         self.set_players()
-        self.schedule = []
-        self.generate_schedule(self.players)
+        self.game_outcomes = []
+        self.win_record = {}
 
 
     def get_num_players(self):
@@ -72,17 +72,11 @@ class Tournament(abc.ABC):
         pass
 
     @abc.abstractmethod
-    #initial schedule
-    def generate_schedule(self, players):
+    def run_games(self, players):
         pass
 
     @abc.abstractmethod
     def get_round_indices(self, round_num):
-        pass
-
-    @abc.abstractmethod
-    #get round for round robin or next round in single elim
-    def get_round(self):
         pass
 
 
@@ -94,36 +88,54 @@ class Cup(Tournament):
         super().__init__()
         self.port = info["port"]
         self.ip = info["IP"]
+        self.remaining_players = self.players
 
     # TODO can prob just run the game here and return winner to scheduler
     # TODO update admin to take two players to give to ref?
-    def setup_single_game(self, player1, player2):
-        pass
+    def run_single_game(self, player1, player2):
+        #TODO write logic, for now just returning a dummy winner
+        return player1
+
+    def init_game_outcomes(self):
+        self.game_outcomes = [None for i in range(self.num_players - 1)]
 
     # TODO can abstract to use this to run all the games for single elim
-    def generate_schedule(self, players):
-        num_games = self.num_players - 1
-        self.schedule = [None for i in range(num_games)]
-        num_games_round_one = int(self.num_players / 2)
-        for i in range(0, num_games_round_one, 2):
-            self.schedule[i] = self.setup_single_game(players[i], players[i + 1])
+    def run_games(self, players):
+        num_rounds = log(self.num_players, 2)
+        for i in range(num_rounds):
+            self.run_game(self.remaining_players, i)
+        return self.get_tournament_winner()
 
+    def run_game(self, remaining_players, round_num):
+        start, end = self.get_round_indices(round_num)
+        for i in range(start, end, 2):
+            self.game_outcomes[i] = self.run_single_game(remaining_players[i], remaining_players[i + 1])
+        self.eliminate_losers(round_num)
+        self.rank()
+
+    def eliminate_losers(self, round_num):
+        start, end = self.get_round_indices(round_num)
+        self.remaining_players = self.game_outcomes[start:(end + 1)]
+
+    # inclusive indices
     def get_round_indices(self, round_num):
-        games_this_round = self.num_players / 2
+        games_this_round = int(self.num_players / 2)
         start = 0
         end = games_this_round - 1
         for i in range(round_num):
-            games_this_round = games_this_round / 2
+            games_this_round = int(games_this_round / 2)
             start = end + 1
             end = start + (games_this_round - 1)
         return (start, end)
 
-    #get round for round robin or next round in single elim
-    def get_round(self):
-        pass
+    def get_tournament_winner(self):
+        return max(self.win_record.items(), key=operator.itemgetter(1))[0]
 
+    # update ranks
+    # TODO update to handle cheaters
     def rank(self):
-        pass
+        for player in self.remaining_players:
+            self.win_record[player] += 1
 
 
 

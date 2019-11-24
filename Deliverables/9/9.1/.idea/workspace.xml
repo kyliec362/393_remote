@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="206e1309-ae13-4545-964f-b63fe52f38f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tournament.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+            <state relative-caret-position="154">
+              <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -133,10 +131,12 @@
       <find>&quot;This history makes no sense!&quot;</find>
       <find>remote</find>
       <find>remote_</find>
+      <find>schedule</find>
     </findStrings>
     <replaceStrings>
       <replace>player</replace>
       <replace>history</replace>
+      <replace>game_outcomes</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -239,21 +239,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in tests.py (1)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="7.1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tournament" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tournament/tests.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in C:/Users/KylieC/Documents/Northwestern/Fall Quarter 2019/EECS393/393_remote/Deliverables/9/9.1/remote_player/tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="7.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -267,10 +253,24 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="7.1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tournament" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tournament/tests.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Unittests in tests.py (1)" />
-        <item itemvalue="Python tests.Unittests in tests.py" />
+        <item itemvalue="Python tests.Unittests in C:/Users/KylieC/Documents/Northwestern/Fall Quarter 2019/EECS393/393_remote/Deliverables/9/9.1/remote_player/tests.py" />
         <item itemvalue="Python.server" />
       </list>
     </recent_temporary>
@@ -353,7 +353,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/tournament/tournament.py</url>
-          <line>113</line>
+          <line>123</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -450,8 +450,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+        <state relative-caret-position="154">
+          <caret line="106" column="43" selection-start-line="106" selection-start-column="43" selection-end-line="106" selection-end-column="43" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
