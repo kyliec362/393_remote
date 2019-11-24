@@ -7,6 +7,7 @@ import json
 from streamy import stream
 from board import make_point, board, get_board_length, make_empty_board, parse_point
 from referee import referee
+from itertools import combinations
 
 # constants
 maxIntersection = get_board_length()
@@ -128,7 +129,148 @@ class League(Tournament):
     def __init__(self):
         self.port = info["port"]
         self.ip = info["IP"]
-        self.win_record = {}
+        self.num_players = len(self.players)
+        self.ranking_info_arr = [RankingInfo for i in range(len(self.players))]
+        self.players_names_arr = [None for i in range(self.num_players)]
+        self.set_players_names_arr()
+        self.cheated_list = []
+
+
+
+    # TODO format output
+    def rank(self):
+        ranks_list = self.get_num_ranks()
+        ranks_list.sort()
+        ranks_list.reverse()
+        final_rankings = [List for i in range(len(ranks_list))]
+        for i in range(len(self.ranking_info_arr)):
+            item = self.ranking_info_arr[i]
+            for j in range(len(ranks_list)):
+                if item.wins == ranks_list[j]:
+                    final_rankings[j].extend(self.players_names_arr[i])
+        if len(self.cheated_list) > 0:
+            final_rankings.extend(self.cheated_list)
+        return final_rankings
+
+
+    def get_num_ranks(self):
+        all_wins = [None for i in range(self.num_players)]
+        count = 0
+        for item in self.ranking_info_arr:
+            all_wins[count] = item.wins
+            count = count + 1
+        wins_no_duplicates = []
+        [wins_no_duplicates.append(x) for x in all_wins if x not in wins_no_duplicates]
+        return wins_no_duplicates
+
+
+
+    def generate_schedule(self, players):
+        num_players = len(players)
+        num_games = int((num_players / 2) * (num_players - 1))
+        indice_player_list = [None for i in range(num_players)]
+        for i in range(num_players):
+            indice_player_list[i] = i
+        combs = combinations(indice_player_list, 2)
+        self.schedule = [None for i in range(num_games)]
+        for i in range (num_games):
+            self.schedule[i] = combs.next()
+
+
+    def set_players_names_arr(self):
+        for i in range(self.num_players):
+            self.players_names_arr[i] = self.players[i].name
+            #self.ranking_info_arr[i].name = self.players[i].name
+
+    def get_players_names_arr(self):
+        return self.players_names_arr
+
+    # TODO can prob just run the game here and return winner to scheduler sca
+    # return dictionary winner: , loser:, cheater handle tie
+    def setup_single_game(self, player1, player2):
+        pass
+
+    def handle_game_result(self, game_dict, p1_indice, p2_indice, p1, p2):
+        if game_dict["cheated"] == p1.name:
+            self.ranking_info_arr[p2_indice].wins += 1
+            self.handle_game_result(p1.name, p1_indice)
+        elif game_dict["cheated"] == p2.name:
+            self.ranking_info_arr[p1_indice].wins += 1
+            self.handle_game_result(p2.name, p2_indice)
+        elif game_dict["winner"] == p1.name:
+            self.ranking_info_arr[p1_indice].wins += 1
+            self.ranking_info_arr[p1_indice].defeated_opponents.extend(p2_indice)
+            self.ranking_info_arr[p2_indice].losses += 1
+        elif game_dict["winner"] == p2.name:
+            self.ranking_info_arr[p2_indice].wins += 1
+            self.ranking_info_arr[p2_indice].defeated_opponents.extend(p1_indice)
+            self.ranking_info_arr[p1_indice].losses += 1
+
+    def handle_cheater(self, indice):
+        ranking_obj = self.ranking_info_arr[indice]
+        ranking_obj.wins = 0
+        ranking_obj.cheated = True
+        for i in ranking_obj.defeated_opponents:
+            self.ranking_info_arr[i].wins += 1
+            self.ranking_info_arr[i].losses -= 1
+        self.players[indice] = default_player
+        self.players_names_arr[indice] = default_player
+        self.cheated_list.extend(ranking_obj)
+        self.remove_cheater_defeated(indice)
+        self.ranking_info_arr[indice] = RankingInfo
+
+    def remove_cheater_defeated(self, indice):
+        for item in self.ranking_info_arr:
+            for obj in item.defeated_opponents:
+                if obj == indice:
+                    item.defeated_opponents.remove(indice)
+                    break
+
+
+    def play_schedule(self, players):
+        num_games = int((len(self.players) / 2) * (len(self.players) - 1))
+        for i in range (num_games):
+            player_one_indice = self.schedule[i][0]
+            player_two_indice = self.schedule[i][1]
+            player_one = self.players[player_one_indice]
+            player_two = self.players[player_two_indice]
+            game_dict = self.setup_single_game(player_one, player_two)
+            self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
+        self.rank()
+
+
+    # need only if need to make it pretty
+    # #used to generate all the game sets
+    # def generate_game_player_matches(self, num_players):
+    #     indice_player_list = [None for i in range(num_games)]
+    #     for i in range(num_players):
+    #         indice_player_list[i] = i
+    #     schedule_indices_unsorted = combinations(indice_player_list)
+    #     # could do something here to make the rounds pretty but don't think i absolutely need to
+    #     # schedule_indices_sorted = [None for i in range(schedule_indices_unsorted)]
+    #     # for i in range(len(schedule_indices_unsorted)):
+
+
+
+
+    def get_round(self):
+        return self.round_number
+
+    def get_round_indices(self, round_num):
+        games_per_round = int(len(self.players) / 2)
+        starting_indice = games_per_round * round_num
+        ending_indice = games_per_round + (games_per_round * round_num)
+        return [starting_indice, ending_indice]
+
+
+class RankingInfo:
+    def _init_(self):
+        self.wins = 0
+        self.losses = 0
+        self.cheated = False
+        self.defeated_opponents = []
+        self.name
+
 
 
 class Schedule(abc.ABC):
