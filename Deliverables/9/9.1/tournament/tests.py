@@ -1,6 +1,5 @@
 import unittest
-from .player_pkg.player_file import player, proxy_remote_player
-from tournament import Cup, Tournament
+from .tournament import Cup, Tournament
 
 # !!! remember to change board size to 4 for testing !!! #
 

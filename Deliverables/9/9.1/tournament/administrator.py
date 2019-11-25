@@ -1,8 +1,8 @@
 import sys
 import json
-from streamy import stream
-from board import get_board_length, make_empty_board, parse_point
-from referee import referee
+from .streamy import stream
+from .board import get_board_length, make_empty_board, parse_point
+from .referee import referee
 
 # configuration
 config_file = open("go.config", "r")

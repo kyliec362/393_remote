@@ -8,9 +8,9 @@ import json
 from itertools import combinations
 import random
 import string
-from streamy import stream
-from board import get_board_length, make_empty_board
-from administrator import administrator
+from .streamy import stream
+from .board import get_board_length, make_empty_board
+from .administrator import administrator
 
 # constants
 maxIntersection = get_board_length()
