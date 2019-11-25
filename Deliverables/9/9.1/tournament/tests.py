@@ -1,7 +1,6 @@
 import unittest
-from .board import set_board_length
 from .player_pkg.player_file import player, proxy_remote_player
-from .tournament import Cup
+from tournament import Cup, Tournament
 
 # !!! remember to change board size to 4 for testing !!! #
 
@@ -54,10 +53,11 @@ board3 = [[" ", "S", " ", " "],
 class PlayerTests(unittest.TestCase):
 
     def setUp(self):
-        self.name = "Micah"
+        pass
 
     # test single board in history
     def set_players(self):
+        sock = Tournament.setup_server()
         pass
 
     # test single board in history
@@ -67,6 +67,7 @@ class PlayerTests(unittest.TestCase):
         self.assertEqual((0, 3), c.get_round_indices(0))
         self.assertEqual((4, 5), c.get_round_indices(1))
         self.assertEqual((6, 6), c.get_round_indices(2))
+
 
 if __name__ == "__main__":
     unittest.main()

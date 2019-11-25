@@ -278,7 +278,6 @@ def main():
     """
     name = "Micah"
     set_depth()
-    output = []
     proxy = proxy_remote_player(black, name)
     proxy.player.register_flag = True
     proxy.player.receive_flag = True
