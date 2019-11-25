@@ -1,16 +1,15 @@
 import sys
-import socket
 import json
-from streamy import stream
-from board import make_point, board, get_board_length, make_empty_board, parse_point
-from referee import referee
+from .streamy import stream
+from .board import get_board_length, make_empty_board, parse_point
+from .referee import referee
 
 # configuration
 config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
-from player_pkg import proxy_remote_player, player
+from .player_pkg import proxy_remote_player, player
 
 default_player = player
 
@@ -77,12 +76,9 @@ class administrator:
 
     # TODO add a while loop method that referees all moves until games over
 
-    # TODO change to refereeing single moves one by one
     def referee_move(self, input):
         if self.referee.handle_move(input):
             return True
-            # if self.referee.handle_move(self.player2.make_a_move(self.referee.board_history)):
-            #     return True
         return False
 
     def setup_game(self):
@@ -135,46 +131,7 @@ class administrator:
         except:
             return self.opposite_wins()
 
-    # def run_server(self):
-    #     sock = self.setup_server()
-    #     while True:
-    #         try:
-    #             connection, client_address = sock.accept()
-    #             try:
-    #                 # Receive the data in small chunks and collect it
-    #                 while True:
-    #                     data = connection.recv(64)
-    #                     if data:
-    #                         data = data.decode()
-    #                     else:
-    #                         break
-    #                     if data == "WITNESS ME":
-    #                         self.setup_game()
-    #                         connection.sendall(json.dumps(self.referee.board_history).encode())
-    #                         break
-    #                     else:
-    #                         if self.check_input(data):
-    #                             if self.referee_two_moves(data):
-    #                                 connection.sendall(json.dumps(self.referee.board_history).encode())
-    #                                 continue
-    #                             else:
-    #                                 connection.close()
-    #                                 return self.referee.get_winner()
-    #                         else:
-    #                             connection.close()
-    #                             return self.opposite_wins()
-    #             except:
-    #                 return self.opposite_wins()
-    #             finally:
-    #                 # Clean up the connection
-    #                 connection.close()
-    #         except:
-    #             # timeout
-    #             break
-    #     # done shouldn't be part of the game-play output, it is just a client-server acknowledgement
-    #     if self.referee:
-    #         return self.referee.get_winner()
-    #     return self.opposite_wins()
+
 
 
 if __name__ == '__main__':

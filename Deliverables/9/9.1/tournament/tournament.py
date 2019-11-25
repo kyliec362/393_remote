@@ -1,13 +1,16 @@
+import sys
 import abc
 from typing import List
 from math import log, ceil
-import sys
+import operator
 import socket
 import json
-from streamy import stream
-from board import make_point, board, get_board_length, make_empty_board, parse_point
-from referee import referee
 from itertools import combinations
+import random
+import string
+from .streamy import stream
+from .board import get_board_length, make_empty_board
+from .administrator import administrator
 
 # constants
 maxIntersection = get_board_length()
@@ -29,27 +32,43 @@ from player_pkg import proxy_remote_player, player
 default_player = player
 
 
+def random_string():
+    """Generate a random string of fixed length """
+    length = 5
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
+
+def flip_coin():
+    return random.randint(0, 1) == 0
+
 # cup and robin classes implement tournament interface
 class Tournament(abc.ABC):
 
-    def __init__(self):
+    def __init__(self, num_remote_players):
+        self.port = info["port"]
+        self.ip = info["IP"]
+        self.sock = self.setup_server()
         self.round_number = 0
         self.num_players = 0
-        self.set_num_players()
+        self.num_remote_players = num_remote_players
         self.players = []
         self.players_connections = {}
         self.set_players()
+        self.make_players_power_two()
         self.schedule = []
         self.generate_schedule(self.players)
 
 
+    def setup_server(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        sock.bind((self.ip, self.port))
+        sock.settimeout(40)
+        sock.listen(5)
+        return sock
 
     def get_num_players(self):
         return self.num_players
-
-    # TODO read from command line args
-    def set_num_players(self):
-        self.num_players = 8
 
     def get_players(self):
         return self.players
@@ -62,11 +81,20 @@ class Tournament(abc.ABC):
         for i in range(num_defaults):
             #TODO player should get unique name and not need color set before game starts
             players = players + [default_player(white, "default")]
+        self.num_players = len(players)
         return players
 
     def set_players(self):
-        # TODO wait for remote connections
-        pass
+        num_joined = 0
+        while num_joined < self.num_remote_players:
+            try:
+                connection, client_address = self.sock.accept()
+                new_player = proxy_remote_player(connection)
+                self.players.append(new_player)
+                self.players_connections[new_player] = connection
+                print(96)
+            except:
+                continue
 
     @abc.abstractmethod
     def rank(self):
@@ -75,6 +103,10 @@ class Tournament(abc.ABC):
     @abc.abstractmethod
     #initial schedule
     def generate_schedule(self, players):
+        pass
+
+    @abc.abstractmethod
+    def run_games(self, players):
         pass
 
     @abc.abstractmethod
@@ -91,36 +123,68 @@ class Tournament(abc.ABC):
 # single elimination
 class Cup(Tournament):
 
-    def __init__(self):
-        self.port = info["port"]
-        self.ip = info["IP"]
+    def __init__(self, num_remote_players):
+        super().__init__(num_remote_players)
+        self.remaining_players = self.players
+        self.game_outcomes = []
+        self.win_record = {}  # TODO replace schedule state var with this
 
-    # TODO can prob just run the game here and return winner to scheduler sca
-    def setup_single_game(self, player1, player2):
-        pass
+    # TODO When a game finishes your referee should notify both players in a game that the game is over.
+    # For remote players this boils down to receiving a message ["end-game"]
+    # to which it replies with the JSON string "OK".
+    def run_single_game(self, player1, player2):
+        admin = administrator(player1, player2, self.players_connections[player1], self.players_connections[player2])
+        winner_name = admin.run_game()
+        if player1.name == winner_name:
+            return player1
+        return player2
 
-    # TODO can abstract to use this to run all the games for single elim
-    def generate_schedule(self, players):
-        num_players = len(players)
-        num_games = num_players - 1
-        self.schedule = [None for i in range(num_games)]
-        num_games_round_one = int(num_players / 2)
-        for i in range(0, num_games_round_one, 2):
-            self.schedule[i] = self.setup_single_game(players[i], players[i + 1])
+    def init_game_outcomes(self):
+        self.game_outcomes = [None for i in range(self.num_players - 1)]
 
-    # TODO finish logic
+    def run_games(self, players):
+        num_rounds = int(log(self.num_players, 2))
+        for i in range(num_rounds):
+            self.run_game(self.remaining_players, i)
+        return self.get_tournament_winner()
+
+    def run_game(self, remaining_players, round_num):
+        start, end = self.get_round_indices(round_num)
+        for i in range(start, end, 2):
+            self.game_outcomes[i] = self.run_single_game(remaining_players[i], remaining_players[i + 1])
+        self.eliminate_losers(round_num)
+        self.rank()
+
+    def eliminate_losers(self, round_num):
+        start, end = self.get_round_indices(round_num)
+        self.remaining_players = self.game_outcomes[start:(end + 1)]
+
+    # inclusive indices
     def get_round_indices(self, round_num):
+        games_this_round = int(self.num_players / 2)
         start = 0
-        end = start
-        num_players = self.num_players
+        end = games_this_round - 1
         for i in range(round_num):
-            games_this_round = self.num_players / ((i + 1) * 2)
-            games_next_found = self.num_players / ((i + 2) * 2)
-            start += games_this_round
-            end = (start + games_next_found)
-
-        print(start, end)
+            games_this_round = int(games_this_round / 2)
+            start = end + 1
+            end = start + (games_this_round - 1)
         return (start, end)
+
+    def get_tournament_winner(self):
+        return max(self.win_record.items(), key=operator.itemgetter(1))[0]
+
+    # update ranks
+    # TODO update to handle cheaters
+    def rank(self):
+        for player in self.remaining_players:
+            self.win_record[player] += 1
+
+    def get_round(self):
+        pass #TODO
+
+    def generate_schedule(self, players):
+        pass #TODO
+
 
 
 
@@ -274,8 +338,18 @@ class RankingInfo:
 
 
 
-class Schedule(abc.ABC):
+def main():
+    cup = "-cup"
+    league = "-league"
+    tournament_style = sys.argv[1]
+    num_remote_players = int(sys.argv[2])
+    if tournament_style == cup:
+        c = Cup(num_remote_players)
 
+
+
+if __name__ == '__main__':
+    main()
 
 
 
