@@ -27,8 +27,8 @@ empty_board = make_empty_board()
 config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
-player_pkg = __import__(default_player_file_path)
-from player_pkg import proxy_remote_player, player
+#player_pkg = __import__(default_player_file_path)
+from .player_pkg import proxy_remote_player, player
 default_player = player
 
 
@@ -87,6 +87,7 @@ class Tournament(abc.ABC):
 
     def set_players(self):
         num_joined = 0
+        print(90)
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()

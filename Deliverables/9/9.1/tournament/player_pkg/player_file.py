@@ -2,10 +2,10 @@ import sys
 import socket
 import json
 import random
-sys.path.append('../')
-from streamy import stream
-from rule_checker import rule_checker, get_opponent_stone
-from board import make_point, board, get_board_length
+# sys.path.append('../')
+from ..streamy import stream
+from ..rule_checker import rule_checker, get_opponent_stone
+from ..board import make_point, board, get_board_length
 
 maxIntersection = get_board_length()
 empty = " "
