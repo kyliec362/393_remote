@@ -28,12 +28,12 @@ def set_depth():
 
 
 def get_socket_address():
-    return ("localhost", 8080)
-    # config_file = open("go.config", "r")
-    # socket_info = config_file.readlines()
-    # socket_info = list(stream(socket_info))[0]
-    # port = socket_info["port"]
-    # return (socket_info["IP"], port)
+    # return ("localhost", 8080)
+    config_file = open("go.config", "r")
+    socket_info = config_file.readlines()
+    socket_info = list(stream(socket_info))[0]
+    port = socket_info["port"]
+    return (socket_info["IP"], port)
 
 
 def generate_random_point():
@@ -235,8 +235,18 @@ class player:
 
 
 class proxy_remote_player:
-    def __init__(self, stone, name):
+    def __init__(self, connection, stone, name):
         self.player = player(stone, name)
+        self.connection = connection
+
+    def make_a_move_(self, boards):
+        self.connection.sendall('["make-a-move",' + boards + ']')
+
+    def register(self):
+        self.connection.sendall('["register"]') # TODO enocde?
+
+    def receive_stones(self, stone):
+        self.connection.sendall('["receive-stones",' + stone + ']')
 
     def client(self, message):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

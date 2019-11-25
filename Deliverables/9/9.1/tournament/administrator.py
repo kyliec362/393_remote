@@ -94,6 +94,13 @@ class administrator:
         player.register_flag = True
         player.receive_flag = True
 
+    # TODO When a game finishes your referee should notify both players in a game that the game is over.
+    # For remote players this boils down to receiving a message ["end-game"]
+    # to which it replies with the JSON string "OK".
+    def send_end_game_message(self):
+        self.conn1.sendall(json.dumps('["end-game]').encode())
+        self.conn2.sendall(json.dumps('["end-game]').encode())
+
     def run_game(self):
         self.setup_game()
 
@@ -104,6 +111,7 @@ class administrator:
                 game_output = self.connection_helper(self.conn2)
 
             if game_output:
+                self.send_end_game_message()
                 return game_output
 
     def connection_helper(self, connection):
@@ -135,7 +143,5 @@ class administrator:
 
 
 if __name__ == '__main__':
-    admin = administrator()
-    output = admin.run_server()
-    print(output)
+    pass
 

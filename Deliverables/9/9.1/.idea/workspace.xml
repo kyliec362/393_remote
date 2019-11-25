@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="206e1309-ae13-4545-964f-b63fe52f38f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/run" beforeDir="false" afterPath="$PROJECT_DIR$/run" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/administrator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/player_pkg/player_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/player_pkg/player_file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tournament.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,24 +23,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="337" lean-forward="true" selection-start-line="337" selection-end-line="337" />
+            <state relative-caret-position="58">
+              <caret line="137" selection-start-line="137" selection-end-line="137" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#3425#8874#0" />
                 <element signature="e#8900#9047#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tournament/administrator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            <state relative-caret-position="376">
+              <caret line="113" column="44" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -52,10 +52,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournament/player_pkg/player_file.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+            <state relative-caret-position="379">
+              <caret line="248" column="54" lean-forward="true" selection-start-line="248" selection-start-column="54" selection-end-line="248" selection-end-column="54" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#2396#2477#0" />
+                <element signature="e#2530#2629#0" />
+                <element signature="e#2682#3125#0" />
+                <element signature="e#3176#3705#0" />
+                <element signature="e#3739#3782#0" />
+                <element signature="e#3834#4313#0" />
+                <element signature="e#4379#4807#0" />
+                <element signature="e#4857#5642#0" />
+                <element signature="e#5687#6977#0" />
+                <element signature="e#7060#7646#0" />
+                <element signature="e#7728#8436#0" />
+                <element signature="e#8497#8681#0" />
+                <element signature="e#8752#9012#0" />
+                <element signature="e#9161#9734#0" />
               </folding>
             </state>
           </provider>
@@ -84,8 +98,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournament/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
+            <state relative-caret-position="-401">
               <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#268#389#0" />
+                <element signature="e#400#521#0" />
+                <element signature="e#532#653#0" />
+                <element signature="e#711#832#0" />
+                <element signature="e#843#964#0" />
+                <element signature="e#975#1096#0" />
+                <element signature="e#1107#1228#0" />
+                <element signature="e#1285#1403#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,8 +159,15 @@
       <find>new_pla</find>
       <find>get_round</find>
       <find>ip</find>
-      <find>remote</find>
       <find>num_remote</find>
+      <find>make_a_mov</find>
+      <find>connec</find>
+      <find>connection</find>
+      <find>prox</find>
+      <find>proxy</find>
+      <find>remote</find>
+      <find>receive_s</find>
+      <find>admin</find>
     </findStrings>
     <replaceStrings>
       <replace>player</replace>
@@ -157,9 +188,9 @@
         <option value="$PROJECT_DIR$/remote_player/board.py" />
         <option value="$PROJECT_DIR$/run" />
         <option value="$PROJECT_DIR$/tournament/tests.py" />
-        <option value="$PROJECT_DIR$/tournament/administrator.py" />
         <option value="$PROJECT_DIR$/tournament/player_pkg/player_file.py" />
         <option value="$PROJECT_DIR$/tournament/tournament.py" />
+        <option value="$PROJECT_DIR$/tournament/administrator.py" />
       </list>
     </option>
   </component>
@@ -414,13 +445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournament/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -428,33 +452,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournament/administrator.py">
+    <entry file="file://$PROJECT_DIR$/tournament/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        <state relative-caret-position="-401">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#268#389#0" />
+            <element signature="e#400#521#0" />
+            <element signature="e#532#653#0" />
+            <element signature="e#711#832#0" />
+            <element signature="e#843#964#0" />
+            <element signature="e#975#1096#0" />
+            <element signature="e#1107#1228#0" />
+            <element signature="e#1285#1403#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tournament/player_pkg/player_file.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+        <state relative-caret-position="379">
+          <caret line="248" column="54" lean-forward="true" selection-start-line="248" selection-start-column="54" selection-end-line="248" selection-end-column="54" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#2396#2477#0" />
+            <element signature="e#2530#2629#0" />
+            <element signature="e#2682#3125#0" />
+            <element signature="e#3176#3705#0" />
+            <element signature="e#3739#3782#0" />
+            <element signature="e#3834#4313#0" />
+            <element signature="e#4379#4807#0" />
+            <element signature="e#4857#5642#0" />
+            <element signature="e#5687#6977#0" />
+            <element signature="e#7060#7646#0" />
+            <element signature="e#7728#8436#0" />
+            <element signature="e#8497#8681#0" />
+            <element signature="e#8752#9012#0" />
+            <element signature="e#9161#9734#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="337" lean-forward="true" selection-start-line="337" selection-end-line="337" />
+        <state relative-caret-position="58">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#3425#8874#0" />
             <element signature="e#8900#9047#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournament/administrator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="113" column="44" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

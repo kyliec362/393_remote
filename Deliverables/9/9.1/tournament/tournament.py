@@ -54,7 +54,6 @@ class Tournament(abc.ABC):
         self.players = []
         self.players_connections = {}
         self.set_players()
-        self.make_players_power_two()
         self.schedule = []
         self.generate_schedule(self.players)
 
@@ -77,24 +76,27 @@ class Tournament(abc.ABC):
         base = 2
         num_players = len(players)
         next_power_two = int(pow(base, ceil(log(num_players, base))))
+        if next_power_two
         num_defaults = next_power_two - num_players
         for i in range(num_defaults):
             #TODO player should get unique name and not need color set before game starts
             players = players + [default_player(white, "default")]
         self.num_players = len(players)
-        return players
+        self.players = players
+
 
     def set_players(self):
         num_joined = 0
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()
-                new_player = proxy_remote_player(connection)
+                new_player = proxy_remote_player(connection, 'B', random_string()) # TODO player shouldnt take in stone
                 self.players.append(new_player)
                 self.players_connections[new_player] = connection
                 print(96)
             except:
                 continue
+        self.make_players_power_two()
 
     @abc.abstractmethod
     def rank(self):
@@ -132,6 +134,7 @@ class Cup(Tournament):
     # TODO When a game finishes your referee should notify both players in a game that the game is over.
     # For remote players this boils down to receiving a message ["end-game"]
     # to which it replies with the JSON string "OK".
+
     def run_single_game(self, player1, player2):
         admin = administrator(player1, player2, self.players_connections[player1], self.players_connections[player2])
         winner_name = admin.run_game()
