@@ -12,6 +12,7 @@ empty = " "
 black = "B"
 white = "W"
 n = 1
+recv_size = 1024  # amount we can receive at a time (pseudo arbitrary)
 
 crazy = "GO has gone crazy!"
 history = "This history makes no sense!"
@@ -41,11 +42,10 @@ def client(message):
     server_address = get_socket_address()
     sock.settimeout(5)
     sock.connect(server_address)
-    recv_size = 1024  # amount we can receive at a time (pseudo arbitrary)
     response = ""
     try:
         sock.sendall(message.encode())
-        print(48)
+        print("sent to tournament " + message)
         while True:
             received = sock.recv(recv_size)
             print(received)
@@ -263,25 +263,51 @@ class proxy_remote_player:
     def __init__(self, connection, stone, name):
         # self.player = player(stone, name)
         self.connection = connection
+        self.name = name
+        self.stone = stone
 
     def make_a_move_(self, boards):
-        self.connection.sendall('["make-a-move",' + boards + ']')
+        try:
+            self.connection.sendall('["make-a-move",' + boards + ']')
+            return True
+        except:
+            return False
 
     def register(self):
-        self.connection.sendall('["register"]')  # TODO enocde?
+        try:
+            self.connection.sendall('["register"]')
+            return True
+        except:
+            print("Register failed sending")
+            return False
 
     def receive_stones(self, stone):
-        self.connection.sendall('["receive-stones",' + stone + ']')
+        try:
+            self.connection.sendall('["receive-stones",' + stone + ']')
+        except:
+            return False
+        else:
+            self.stone = stone
+            return True
 
+    def end_game(self):
+        response = ""
+        try:
+            self.connection.sendall('["end-game"]')
+            while True:
+                received = self.connection.recv(recv_size)
+                if received:
+                    response += received.decode()
+                else:
+                    break
+        except:
+            return False
+        else:
+            if response == "OK":
+                return True
+            return False
 
 def main():
-    """
-    Test Driver reads json objects from stdin
-    Uses the streamy library to parse
-    Queries player
-    :return: list of json objects
-    """
-    name = "Micah"
     set_depth()
     client("WITNESS ME")
     client("WITNESS ME")

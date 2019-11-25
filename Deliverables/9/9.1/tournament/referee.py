@@ -4,6 +4,7 @@ from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length, make_empty_board
 from player_pkg.player_file import player
+import random
 maxIntersection = get_board_length()
 empty = " "
 black = "B"
@@ -12,6 +13,8 @@ n = 1
 
 empty_board = make_empty_board()
 
+def flip_coin():
+    return random.randint(0, 1) == 0
 
 class referee:
     def __init__(self, player1, player2):
@@ -73,11 +76,13 @@ class referee:
         white_score = scores["W"]
         # draw
         if black_score == white_score:
-            return sorted([self.player1.name, self.player2.name])
+            if flip_coin():
+                return ([self.player1.name], False)
+            return ([self.player2.name], False)
         # player1 is always black
         if black_score > white_score:
-            return [self.player1.name]
-        return [self.player2.name]
+            return ([self.player1.name], False) # win wasn't due to cheating
+        return ([self.player2.name], False)  # win wasn't due to cheating
 
 
 def main():

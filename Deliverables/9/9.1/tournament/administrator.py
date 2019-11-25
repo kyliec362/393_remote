@@ -59,8 +59,10 @@ class administrator:
         self.referee = None
         self.client_done_flag = False
 
+    # tuple of winner and whether the win was a result of cheating
+    # (True means there was cheating, False means no cheating)
     def opposite_wins(self):
-        return [json.dumps(self.referee.get_opposite_player().name)]
+        return ([json.dumps(self.referee.get_opposite_player().name)], True)
 
     def check_input(self, input):
         if input == "pass":
@@ -84,8 +86,10 @@ class administrator:
     def setup_game(self):
         self.player1 = player(black, "Yggdrasil")
         self.referee = referee(self.player1, self.player2)
-        self.set_true_register_receive_flag(self.player2)
-        self.set_true_register_receive_flag(self.player1)
+        self.register_receive_player(self.player1, black)
+        self.register_receive_player(self.player2, white)
+        # self.set_true_register_receive_flag(self.player2)
+        # self.set_true_register_receive_flag(self.player1)
 
     def set_client_done_flag(self):
         self.client_done_flag = not self.client_done_flag
@@ -94,12 +98,16 @@ class administrator:
         player.register_flag = True
         player.receive_flag = True
 
+    def register_receive_player(self, player, stone):
+        player.register()
+        player.receive_stones(stone)
+
     # TODO When a game finishes your referee should notify both players in a game that the game is over.
     # For remote players this boils down to receiving a message ["end-game"]
     # to which it replies with the JSON string "OK".
     def send_end_game_message(self):
-        self.conn1.sendall(json.dumps('["end-game]').encode())
-        self.conn2.sendall(json.dumps('["end-game]').encode())
+        self.conn1.sendall(json.dumps('["end-game"]').encode())
+        self.conn2.sendall(json.dumps('["end-game"]').encode())
 
     def run_game(self):
         self.setup_game()
@@ -128,7 +136,6 @@ class administrator:
                 if self.check_input(data):
                     if self.referee_move(data):
                         connection.sendall(json.dumps(self.referee.board_history).encode())
-
                     else:
                         connection.close()
                         return self.referee.get_winner()
@@ -138,9 +145,6 @@ class administrator:
         # TODO ? client disconnects? (*chuckles* I'm in danger)
         except:
             return self.opposite_wins()
-
-
-
 
 if __name__ == '__main__':
     pass
