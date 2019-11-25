@@ -76,11 +76,11 @@ class Tournament(abc.ABC):
         base = 2
         num_players = len(players)
         next_power_two = int(pow(base, ceil(log(num_players, base))))
-        if next_power_two
+        next_power_two = min(base, next_power_two)
         num_defaults = next_power_two - num_players
         for i in range(num_defaults):
             #TODO player should get unique name and not need color set before game starts
-            players = players + [default_player(white, "default")]
+            players = players + [default_player(white, random_string())]
         self.num_players = len(players)
         self.players = players
 

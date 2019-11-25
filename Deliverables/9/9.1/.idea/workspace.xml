@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="206e1309-ae13-4545-964f-b63fe52f38f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tournament/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/administrator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/player_pkg/player_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/player_pkg/player_file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tournament.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +21,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="137" selection-start-line="137" selection-end-line="137" />
+            <state relative-caret-position="231">
+              <caret line="82" column="70" selection-start-line="82" selection-start-column="70" selection-end-line="82" selection-end-column="70" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#3425#8874#0" />
@@ -37,7 +35,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournament/administrator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="376">
@@ -189,8 +187,8 @@
         <option value="$PROJECT_DIR$/run" />
         <option value="$PROJECT_DIR$/tournament/tests.py" />
         <option value="$PROJECT_DIR$/tournament/player_pkg/player_file.py" />
-        <option value="$PROJECT_DIR$/tournament/tournament.py" />
         <option value="$PROJECT_DIR$/tournament/administrator.py" />
+        <option value="$PROJECT_DIR$/tournament/tournament.py" />
       </list>
     </option>
   </component>
@@ -493,24 +491,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#3425#8874#0" />
-            <element signature="e#8900#9047#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tournament/administrator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="113" column="44" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournament/tournament.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="82" column="70" selection-start-line="82" selection-start-column="70" selection-end-line="82" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#3425#8874#0" />
+            <element signature="e#8900#9047#0" />
           </folding>
         </state>
       </provider>
