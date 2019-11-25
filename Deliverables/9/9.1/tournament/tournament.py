@@ -38,8 +38,6 @@ def random_string():
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(length))
 
-def flip_coin():
-    return random.randint(0, 1) == 0
 
 # cup and robin classes implement tournament interface
 class Tournament(abc.ABC):
@@ -109,7 +107,7 @@ class Tournament(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def run_games(self, players):
+    def run_tournament(self, players):
         pass
 
     @abc.abstractmethod
@@ -136,28 +134,35 @@ class Cup(Tournament):
     # For remote players this boils down to receiving a message ["end-game"]
     # to which it replies with the JSON string "OK".
 
-    def run_single_game(self, player1, player2):
+    def run_game(self, player1, player2):
         admin = administrator(player1, player2, self.players_connections[player1], self.players_connections[player2])
-        winner_name = admin.run_game()
+        winner_name, cheated = admin.run_round()
         if player1.name == winner_name:
-            return player1
-        return player2
+            if cheated:
+                return (player1, [player2])
+            return (player1, [])
+        else:
+            if cheated:
+                return (player2, [player1])
+            return (player2, [])
 
     def init_game_outcomes(self):
         self.game_outcomes = [None for i in range(self.num_players - 1)]
 
-    def run_games(self, players):
+    def run_tournament(self, players):
         num_rounds = int(log(self.num_players, 2))
+        # run though every round in tournament
         for i in range(num_rounds):
-            self.run_game(self.remaining_players, i)
-        return self.get_tournament_winner()
+            self.run_round(self.remaining_players, i)
+        # get winner
+        return self.rank()
 
-    def run_game(self, remaining_players, round_num):
+    def run_round(self, remaining_players, round_num):
         start, end = self.get_round_indices(round_num)
         for i in range(start, end, 2):
-            self.game_outcomes[i] = self.run_single_game(remaining_players[i], remaining_players[i + 1])
+            self.game_outcomes[i] = self.run_game(remaining_players[i], remaining_players[i + 1])
         self.eliminate_losers(round_num)
-        self.rank()
+        self.update_win_record()
 
     def eliminate_losers(self, round_num):
         start, end = self.get_round_indices(round_num)
@@ -174,12 +179,12 @@ class Cup(Tournament):
             end = start + (games_this_round - 1)
         return (start, end)
 
-    def get_tournament_winner(self):
+    def rank(self):
         return max(self.win_record.items(), key=operator.itemgetter(1))[0]
 
     # update ranks
     # TODO update to handle cheaters
-    def rank(self):
+    def update_win_record(self):
         for player in self.remaining_players:
             self.win_record[player] += 1
 
