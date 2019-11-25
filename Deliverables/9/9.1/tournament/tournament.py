@@ -5,7 +5,8 @@ from math import log, ceil
 import operator
 import socket
 import json
-from itertools import combinations
+import itertools
+
 import random
 import string
 from streamy import stream
@@ -190,21 +191,17 @@ class Cup(Tournament):
         pass #TODO
 
 
-
-
-
-#round robin
+# round robin
 class League(Tournament):
-    def __init__(self):
+    def __init__(self, num_remote_players):
+        super().__init__(num_remote_players)
         self.port = info["port"]
         self.ip = info["IP"]
         self.num_players = len(self.players)
-        self.ranking_info_arr = [RankingInfo for i in range(len(self.players))]
+        self.ranking_info_arr = [RankingInfo() for i in range(len(self.players))]
         self.players_names_arr = [None for i in range(self.num_players)]
         self.set_players_names_arr()
         self.cheated_list = []
-
-
 
     # TODO format output
     def rank(self):
@@ -221,7 +218,6 @@ class League(Tournament):
             final_rankings.extend(self.cheated_list)
         return final_rankings
 
-
     def get_num_ranks(self):
         all_wins = [None for i in range(self.num_players)]
         count = 0
@@ -232,40 +228,49 @@ class League(Tournament):
         [wins_no_duplicates.append(x) for x in all_wins if x not in wins_no_duplicates]
         return wins_no_duplicates
 
-
-
     def generate_schedule(self, players):
         num_players = len(players)
         num_games = int((num_players / 2) * (num_players - 1))
         indice_player_list = [None for i in range(num_players)]
         for i in range(num_players):
             indice_player_list[i] = i
-        combs = combinations(indice_player_list, 2)
+        combs = itertools.combinations(indice_player_list, 2)
         self.schedule = [None for i in range(num_games)]
         for i in range (num_games):
             self.schedule[i] = combs.next()
 
-
     def set_players_names_arr(self):
         for i in range(self.num_players):
             self.players_names_arr[i] = self.players[i].name
-            #self.ranking_info_arr[i].name = self.players[i].name
+            # self.ranking_info_arr[i].name = self.players[i].name
 
     def get_players_names_arr(self):
         return self.players_names_arr
 
+    def get_opposite_player_name(self, player1, player2, name):
+        if name == player1.name:
+            return player2.name
+        else:
+            return player1.name
+
     # TODO can prob just run the game here and return winner to scheduler sca
     # return dictionary winner: , loser:, cheater handle tie
     def setup_single_game(self, player1, player2):
-        pass
+        admin = administrator(player1, player2, self.players_connections[player1], self.players_connections[player2])
+        winner_name, cheated = admin.run_game()
+        dict_cheater_name = ""
+        if cheated:
+            dict_cheater_name = self.get_opposite_player_name(player1, player2, winner_name)
+        return_dict = {"winner": winner_name, "cheated": dict_cheater_name}
+        return return_dict
 
     def handle_game_result(self, game_dict, p1_indice, p2_indice, p1, p2):
         if game_dict["cheated"] == p1.name:
             self.ranking_info_arr[p2_indice].wins += 1
-            self.handle_game_result(p1.name, p1_indice)
+            self.handle_cheater(p1_indice)
         elif game_dict["cheated"] == p2.name:
             self.ranking_info_arr[p1_indice].wins += 1
-            self.handle_game_result(p2.name, p2_indice)
+            self.handle_cheater(p2_indice)
         elif game_dict["winner"] == p1.name:
             self.ranking_info_arr[p1_indice].wins += 1
             self.ranking_info_arr[p1_indice].defeated_opponents.extend(p2_indice)
@@ -286,7 +291,7 @@ class League(Tournament):
         self.players_names_arr[indice] = default_player
         self.cheated_list.extend(ranking_obj)
         self.remove_cheater_defeated(indice)
-        self.ranking_info_arr[indice] = RankingInfo
+        self.ranking_info_arr[indice] = RankingInfo()
 
     def remove_cheater_defeated(self, indice):
         for item in self.ranking_info_arr:
@@ -295,10 +300,9 @@ class League(Tournament):
                     item.defeated_opponents.remove(indice)
                     break
 
-
     def play_schedule(self, players):
         num_games = int((len(self.players) / 2) * (len(self.players) - 1))
-        for i in range (num_games):
+        for i in range(num_games):
             player_one_indice = self.schedule[i][0]
             player_two_indice = self.schedule[i][1]
             player_one = self.players[player_one_indice]
@@ -306,7 +310,6 @@ class League(Tournament):
             game_dict = self.setup_single_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
         self.rank()
-
 
     # need only if need to make it pretty
     # #used to generate all the game sets
@@ -318,9 +321,6 @@ class League(Tournament):
     #     # could do something here to make the rounds pretty but don't think i absolutely need to
     #     # schedule_indices_sorted = [None for i in range(schedule_indices_unsorted)]
     #     # for i in range(len(schedule_indices_unsorted)):
-
-
-
 
     def get_round(self):
         return self.round_number
@@ -338,7 +338,7 @@ class RankingInfo:
         self.losses = 0
         self.cheated = False
         self.defeated_opponents = []
-        self.name
+        #self.name
 
 
 

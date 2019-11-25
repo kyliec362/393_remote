@@ -1,6 +1,6 @@
 import unittest
-from .player_pkg.player_file import player, proxy_remote_player
-from tournament import Cup, Tournament
+#from .player_pkg.player_file import player, proxy_remote_player
+from tournament import Cup, Tournament, League, RankingInfo
 
 # !!! remember to change board size to 4 for testing !!! #
 
@@ -52,22 +52,40 @@ board3 = [[" ", "S", " ", " "],
 
 class PlayerTests(unittest.TestCase):
 
+    # def setUp(self):
+    #     pass
+    #
+    # # test single board in history
+    # def set_players(self):
+    #     sock = Tournament.setup_server()
+    #     pass
+    #
+    # # test single board in history
+    # # test with 8 players
+    # def test_get_round_indices(self):
+    #     c = Cup(8)
+    #     self.assertEqual((0, 3), c.get_round_indices(0))
+    #     self.assertEqual((4, 5), c.get_round_indices(1))
+    #     self.assertEqual((6, 6), c.get_round_indices(2))
     def setUp(self):
-        pass
+        self.league = League(8)
+        self.eightArr = [None for i in range(8)]
 
-    # test single board in history
-    def set_players(self):
-        sock = Tournament.setup_server()
-        pass
+    def test_generate_schedule(self):
+        print(self.league.generate_schedule(self.eightArr))
+        self.assertEqual(True, True)
 
-    # test single board in history
-    # test with 8 players
-    def test_get_round_indices(self):
-        c = Cup(8)
-        self.assertEqual((0, 3), c.get_round_indices(0))
-        self.assertEqual((4, 5), c.get_round_indices(1))
-        self.assertEqual((6, 6), c.get_round_indices(2))
 
+# class LeagueTests(unittest.TestCase):
+#
+#     def setUp(self):
+#         self.league = League(8)
+#         self.eightArr = [None for i in range(8)]
+#
+#     def generate_schedule_test(self):
+#         print(self.league.generate_schedule(self.eightArr))
+#         self.assertEqual(True, True)
 
 if __name__ == "__main__":
+    print(83)
     unittest.main()
