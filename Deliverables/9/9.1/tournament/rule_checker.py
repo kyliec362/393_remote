@@ -1,7 +1,7 @@
 import sys
 import json
-from .streamy import stream
-from .board import board, make_point, get_board_length
+from streamy import stream
+from board import board, make_point, get_board_length
 import copy
 
 empty = " "

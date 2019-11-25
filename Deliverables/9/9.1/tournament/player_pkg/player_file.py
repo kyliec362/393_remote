@@ -2,10 +2,10 @@ import sys
 import socket
 import json
 import random
-# sys.path.append('../')
-from ..streamy import stream
-from ..rule_checker import rule_checker, get_opponent_stone
-from ..board import make_point, board, get_board_length
+sys.path.append('../')
+from streamy import stream
+from rule_checker import rule_checker, get_opponent_stone
+from board import make_point, board, get_board_length
 
 maxIntersection = get_board_length()
 empty = " "
@@ -29,11 +29,36 @@ def set_depth():
 
 def get_socket_address():
     # return ("localhost", 8080)
-    config_file = open("go.config", "r")
+    config_file = open("../go.config", "r")
     socket_info = config_file.readlines()
     socket_info = list(stream(socket_info))[0]
     port = socket_info["port"]
-    return (socket_info["IP"], port)
+    ip = socket_info["IP"]
+    return (ip, port)
+
+def client(message):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_address = get_socket_address()
+    sock.settimeout(5)
+    sock.connect(server_address)
+    recv_size = 1024  # amount we can receive at a time (pseudo arbitrary)
+    response = ""
+    try:
+        sock.sendall(message.encode())
+        print(48)
+        while True:
+            received = sock.recv(recv_size)
+            print(received)
+            if received:
+                response += received.decode()
+            else:
+                break
+    except:
+        sock.close()
+        return response
+    finally:
+        sock.close()
+    return response
 
 
 def generate_random_point():
@@ -236,38 +261,18 @@ class player:
 
 class proxy_remote_player:
     def __init__(self, connection, stone, name):
-        self.player = player(stone, name)
+        # self.player = player(stone, name)
         self.connection = connection
 
     def make_a_move_(self, boards):
         self.connection.sendall('["make-a-move",' + boards + ']')
 
     def register(self):
-        self.connection.sendall('["register"]') # TODO enocde?
+        self.connection.sendall('["register"]')  # TODO enocde?
 
     def receive_stones(self, stone):
         self.connection.sendall('["receive-stones",' + stone + ']')
 
-    def client(self, message):
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_address = get_socket_address()
-        sock.settimeout(5)
-        sock.connect(server_address)
-        response = ""
-        try:
-            sock.sendall(message.encode())
-            while True:
-                received = sock.recv(1000)
-                if received:
-                    response += received.decode()
-                else:
-                    break
-        except:
-            sock.close()
-            return response
-        finally:
-            sock.close()
-        return response
 
 def main():
     """
@@ -278,18 +283,18 @@ def main():
     """
     name = "Micah"
     set_depth()
-    proxy = proxy_remote_player(black, name)
-    proxy.player.register_flag = True
-    proxy.player.receive_flag = True
-    server_response = proxy.client("WITNESS ME")
-    while server_response and len(server_response) > 1:
-        server_response = str(server_response)
-        try:
-            boards = list(stream(server_response))[0]  # parse json objects
-            play = proxy.player.make_a_move_random_maybe_illegal(boards)
-            server_response = proxy.client(play)
-        except:
-            return
+    client("WITNESS ME")
+    client("WITNESS ME")
+    client("WITNESS ME")
+    client("WITNESS ME")
+    # while server_response and len(server_response) > 1:
+    #     server_response = str(server_response)
+    #     try:
+    #         boards = list(stream(server_response))[0]  # parse json objects
+    #         play = proxy.player.make_a_move_random_maybe_illegal(boards)
+    #         server_response = proxy.client(play)
+    #     except:
+    #         return
     return
 
 

@@ -27,8 +27,8 @@ empty_board = make_empty_board()
 config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
-#player_pkg = __import__(default_player_file_path)
-from .player_pkg import proxy_remote_player, player
+player_pkg = __import__(default_player_file_path)
+from player_pkg import proxy_remote_player, player
 default_player = player
 
 
@@ -63,7 +63,7 @@ class Tournament(abc.ABC):
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind((self.ip, self.port))
         sock.settimeout(40)
-        sock.listen(5)
+        sock.listen(1)
         return sock
 
     def get_num_players(self):
@@ -72,17 +72,16 @@ class Tournament(abc.ABC):
     def get_players(self):
         return self.players
 
-    def make_players_power_two(self, players: List):
+    def make_players_power_two(self):
         base = 2
-        num_players = len(players)
+        num_players = len(self.players)
         next_power_two = int(pow(base, ceil(log(num_players, base))))
         next_power_two = min(base, next_power_two)
         num_defaults = next_power_two - num_players
         for i in range(num_defaults):
             #TODO player should get unique name and not need color set before game starts
-            players = players + [default_player(white, random_string())]
-        self.num_players = len(players)
-        self.players = players
+            self.players = self.players + [default_player(white, random_string())]
+        self.num_players = len(self.players)
 
 
     def set_players(self):
@@ -94,10 +93,11 @@ class Tournament(abc.ABC):
                 new_player = proxy_remote_player(connection, 'B', random_string())  # TODO player shouldnt take in stone
                 self.players.append(new_player)
                 self.players_connections[new_player] = connection
-                print(96)
+                num_joined += 1
             except:
                 continue
         self.make_players_power_two()
+        print(104)
 
     @abc.abstractmethod
     def rank(self):
@@ -343,9 +343,9 @@ class RankingInfo:
 
 
 def main():
-    cup = "-cup"
+    cup = 'cup'
     league = "-league"
-    tournament_style = sys.argv[1]
+    tournament_style = str(sys.argv[1])[1:]
     num_remote_players = int(sys.argv[2])
     if tournament_style == cup:
         c = Cup(num_remote_players)

@@ -1,6 +1,6 @@
 import sys
 import json
-from .streamy import stream
+from streamy import stream
 import copy
 import unittest
 
