@@ -1,5 +1,7 @@
 import unittest
-from .player_pkg.player_file import player, proxy_remote_player
+# from .player_pkg.player_file import player, proxy_remote_player
+import sys
+sys.path.append("./")
 from tournament import Cup, Tournament
 
 # !!! remember to change board size to 4 for testing !!! #
@@ -55,10 +57,10 @@ class PlayerTests(unittest.TestCase):
     def setUp(self):
         pass
 
-    # test single board in history
-    def set_players(self):
-        sock = Tournament.setup_server()
-        pass
+    # # test single board in history
+    # def set_players(self):
+    #     sock = Tournament.setup_server()
+    #     pass
 
     # test single board in history
     # test with 8 players

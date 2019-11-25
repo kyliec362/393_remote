@@ -8,6 +8,7 @@ import json
 from itertools import combinations
 import random
 import string
+import math
 from streamy import stream
 from board import get_board_length, make_empty_board
 from administrator import administrator
@@ -30,6 +31,7 @@ default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
 from player_pkg import proxy_remote_player, player
 default_player = player
+config_file.close()
 
 
 def random_string():
@@ -149,6 +151,7 @@ class Cup(Tournament):
     def init_game_outcomes(self):
         self.game_outcomes = [None for i in range(self.num_players - 1)]
 
+    # TODO dont need players param
     def run_tournament(self, players):
         num_rounds = int(log(self.num_players, 2))
         # run though every round in tournament
@@ -158,11 +161,14 @@ class Cup(Tournament):
         return self.rank()
 
     def run_round(self, remaining_players, round_num):
+        cheaters = []
         start, end = self.get_round_indices(round_num)
         for i in range(start, end, 2):
-            self.game_outcomes[i] = self.run_game(remaining_players[i], remaining_players[i + 1])
+            winner, cheater = self.run_game(remaining_players[i], remaining_players[i + 1])
+            self.game_outcomes[i] = winner
+            cheaters += cheater
         self.eliminate_losers(round_num)
-        self.update_win_record()
+        self.update_win_record(cheaters)
 
     def eliminate_losers(self, round_num):
         start, end = self.get_round_indices(round_num)
@@ -182,11 +188,12 @@ class Cup(Tournament):
     def rank(self):
         return max(self.win_record.items(), key=operator.itemgetter(1))[0]
 
-    # update ranks
-    # TODO update to handle cheaters
-    def update_win_record(self):
+    def update_win_record(self, cheaters):
         for player in self.remaining_players:
             self.win_record[player] += 1
+        for c in cheaters:
+            # keep cheaters always with the lowest score
+            self.win_record[c] = (-1 * math.inf)
 
     def get_round(self):
         pass #TODO

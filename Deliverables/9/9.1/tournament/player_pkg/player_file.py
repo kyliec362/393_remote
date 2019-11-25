@@ -107,6 +107,9 @@ class player:
         self.stone = stone
         return True
 
+    def end_game(self):
+        return "OK"
+
     def is_stone(self, stone):
         if stone == black or stone == white:
             return True
