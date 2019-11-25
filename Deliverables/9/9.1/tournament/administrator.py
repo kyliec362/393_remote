@@ -1,15 +1,15 @@
 import sys
 import json
-from .streamy import stream
-from .board import get_board_length, make_empty_board, parse_point
-from .referee import referee
+from streamy import stream
+from board import get_board_length, make_empty_board, parse_point
+from referee import referee
 
 # configuration
 config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
-from .player_pkg import proxy_remote_player, player
+from player_pkg import proxy_remote_player, player
 
 default_player = player
 
