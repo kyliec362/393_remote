@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/393_remote.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/393_remote.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,20 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/referee.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="132" column="19" selection-start-line="132" selection-start-column="19" selection-end-line="132" selection-end-column="50" />
+            <state relative-caret-position="209">
+              <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -54,10 +38,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="156" column="42" lean-forward="true" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-126">
+              <caret line="280" column="24" lean-forward="true" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/run">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="91" column="63" lean-forward="true" selection-start-line="91" selection-start-column="63" selection-end-line="91" selection-end-column="63" />
+            <state relative-caret-position="447">
+              <caret line="189" column="32" lean-forward="true" selection-start-line="189" selection-start-column="32" selection-end-line="189" selection-end-column="32" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -76,14 +93,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>decode</find>
       <find>referee</find>
       <find>self.remote_pla</find>
       <find>proxy</find>
       <find>referee(</find>
       <find>handle</find>
       <find>parse</find>
-      <find>get_winner</find>
       <find>calculate_sc</find>
       <find>setup</find>
       <find>return go</find>
@@ -97,7 +112,6 @@
       <find>return crazy</find>
       <find>sett</find>
       <find>crazy</find>
-      <find>winner</find>
       <find>make_a_mo</find>
       <find>json.dumps([self.default_player.name])</find>
       <find>170</find>
@@ -106,6 +120,9 @@
       <find>get_socket</find>
       <find>conn</find>
       <find>WIT</find>
+      <find>winner</find>
+      <find>get_winner</find>
+      <find>run_tour</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,9 +161,11 @@
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/player_pkg/player_file.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/referee.py" />
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" />
-        <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" />
         <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/referee.py" />
         <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py" />
+        <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" />
+        <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py" />
+        <option value="$PROJECT_DIR$/Deliverables/9/9.1/run" />
       </list>
     </option>
   </component>
@@ -194,6 +213,15 @@
               <item name="9" type="462c0819:PsiDirectoryNode" />
               <item name="9.1" type="462c0819:PsiDirectoryNode" />
               <item name="tournament" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="393_remote" type="b2602c69:ProjectViewProjectNode" />
+              <item name="393_remote" type="462c0819:PsiDirectoryNode" />
+              <item name="Deliverables" type="462c0819:PsiDirectoryNode" />
+              <item name="9" type="462c0819:PsiDirectoryNode" />
+              <item name="9.1" type="462c0819:PsiDirectoryNode" />
+              <item name="tournament" type="462c0819:PsiDirectoryNode" />
+              <item name="player_pkg" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -411,7 +439,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.18890357" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18890357" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Python Console" order="0" sideWeight="0.4993895" weight="0.32941177" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.115983024" />
@@ -472,20 +500,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Deliverables/4/4.1/rule_checker/rule_checker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="151" column="45" selection-start-line="151" selection-start-column="45" selection-end-line="151" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/5/5.2/n_player/streamy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/5/5.1/player/rule_checker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -591,13 +605,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/8/8.1/administrator/go-player.config">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="47" column="19" lean-forward="true" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
@@ -714,13 +721,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/referee.py">
+    <entry file="file://$PROJECT_DIR$/Deliverables/6/6.2/referee/referee.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="396">
+          <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -733,10 +737,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py">
+    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/referee.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="91" column="63" lean-forward="true" selection-start-line="91" selection-start-column="63" selection-end-line="91" selection-end-column="63" />
+        <state relative-caret-position="209">
+          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -745,11 +749,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="132" column="19" selection-start-line="132" selection-start-column="19" selection-end-line="132" selection-end-column="50" />
+        <state relative-caret-position="289">
+          <caret line="156" column="42" lean-forward="true" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="189" column="32" lean-forward="true" selection-start-line="189" selection-start-column="32" selection-end-line="189" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="280" column="24" lean-forward="true" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/run">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
         </state>
       </provider>
     </entry>

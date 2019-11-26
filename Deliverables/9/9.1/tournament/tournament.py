@@ -104,22 +104,14 @@ class Tournament(abc.ABC):
         pass
 
     @abc.abstractmethod
-    #initial schedule
-    def generate_schedule(self, players):
+    def run_tournament(self):
         pass
 
     @abc.abstractmethod
-    def run_tournament(self, players):
+    def close_connections(self):
         pass
 
-    @abc.abstractmethod
-    def get_round_indices(self, round_num):
-        pass
 
-    @abc.abstractmethod
-    #get round for round robin or next round in single elim
-    def get_round(self):
-        pass
 
 
 
@@ -152,7 +144,7 @@ class Cup(Tournament):
         self.game_outcomes = [None for i in range(self.num_players - 1)]
 
     # TODO dont need players param
-    def run_tournament(self, players):
+    def run_tournament(self):
         num_rounds = int(log(self.num_players, 2))
         # run though every round in tournament
         for i in range(num_rounds):
@@ -195,13 +187,8 @@ class Cup(Tournament):
             # keep cheaters always with the lowest score
             self.win_record[c] = (-1 * math.inf)
 
-    def get_round(self):
-        pass #TODO
-
-    def generate_schedule(self, players):
-        pass #TODO
-
-
+    def close_connections(self):
+        pass # TODO close all connections in player connections
 
 
 
@@ -356,11 +343,15 @@ class RankingInfo:
 
 def main():
     cup = 'cup'
-    league = "-league"
+    league = "league"
     tournament_style = str(sys.argv[1])[1:]
     num_remote_players = int(sys.argv[2])
     if tournament_style == cup:
         c = Cup(num_remote_players)
+        c.run_tournament()
+    if tournament_style == league:
+        l = League(num_remote_players)
+        l.play_schedule() # TODO change to run tournament
 
 
 

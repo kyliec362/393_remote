@@ -272,8 +272,12 @@ class proxy_remote_player:
     def make_a_move_(self, boards):
         try:
             self.connection.sendall('["make-a-move",' + boards + ']')
-            return True
+            data = self.connection.recv(recv_size)
+            if data:
+                return data.decode()
+            return False
         except:
+            print("Make a move failed")
             return False
 
     def register(self):
@@ -307,7 +311,7 @@ class proxy_remote_player:
             return False
         else:
             if response == "OK":
-                return True
+                return response
             return False
 
 def main():

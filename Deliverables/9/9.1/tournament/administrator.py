@@ -101,13 +101,28 @@ class administrator:
         player.register()
         player.receive_stones(stone)
 
-    # TODO When a game finishes your referee should notify both players in a game that the game is over.
-    # For remote players this boils down to receiving a message ["end-game"]
-    # to which it replies with the JSON string "OK".
-    def end_game_update_winner(self, original_winner):
-        response1 = self.player1.end_game()
-        response2 = self.player2.end_game()
-        # TODO finish
+    def end_game_update_winner(self, original_winner, cheated):
+        ok = "OK"
+        original_winner_player = self.get_player_from_name(original_winner)
+        original_loser_player = self.referee.get_opposite_player(original_winner_player)
+        response1 = original_winner_player.end_game()
+        original_loser_player.end_game()
+        if not cheated and response1 != ok:
+            return ([json.dumps(original_loser_player.name)], cheated)
+        return ([json.dumps(original_winner_player.name)], cheated)
+
+    def get_player_from_name(self, name):
+        if name == self.player1.name:
+            return self.player1
+        if name == self.player2.name:
+            return self.player2
+        else:
+            raise Exception("Invalid name given")
+
+
+
+
+
 
 
     def run_game(self):
@@ -123,9 +138,9 @@ class administrator:
                 # game over, figure out the winner
                 # alert players it's game over (check for disconnects)
                 else:
-                    original_winner = self.referee.get_winner()
+                    original_winner, cheated = self.referee.get_winner()
                     # get the actual winner
-                    return self.end_game_update_winner(original_winner)
+                    return self.end_game_update_winner(original_winner, cheated)
             return self.opposite_wins()
 
     def connection_helper(self, connection):
