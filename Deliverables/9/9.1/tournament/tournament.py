@@ -133,7 +133,7 @@ class Cup(Tournament):
     # to which it replies with the JSON string "OK".
 
     def run_game(self, player1, player2):
-        admin = administrator(player1, player2, self.players_connections[player1], self.players_connections[player2])
+        admin = administrator(player1, player2)
         winner_name, cheated = admin.run_round()
         if player1.name == winner_name:
             if cheated:
@@ -184,6 +184,7 @@ class Cup(Tournament):
 
     # TODO print all rnakings, not just winner
     def rank(self):
+        print(187, self.win_record)
         print(max(self.win_record.items(), key=operator.itemgetter(1))[0])
 
     def update_win_record(self, cheaters):

@@ -52,11 +52,9 @@ def read_input_from_file():
 
 class administrator:
 
-    def __init__(self, player1, player2, conn1, conn2):
+    def __init__(self, player1, player2):
         self.player2 = player2
         self.player1 = player1
-        self.conn2 = conn2
-        self.conn1 = conn1
         self.referee = None
         self.client_done_flag = False
 
@@ -118,12 +116,6 @@ class administrator:
             return self.player2
         else:
             raise Exception("Invalid name given")
-
-
-
-
-
-
 
     def run_game(self):
         self.setup_game()
