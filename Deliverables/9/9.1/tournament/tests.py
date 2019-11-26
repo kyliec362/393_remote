@@ -85,7 +85,7 @@ class PlayerTests(unittest.TestCase):
 
     def test_run_tournament(self):
         players = "dumb"
-        print(self.league.run_tournament(players))
+        print(self.league.run_tournament())
 
         self.assertEqual(True, True)
 

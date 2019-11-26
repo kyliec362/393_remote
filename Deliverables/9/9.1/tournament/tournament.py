@@ -309,7 +309,7 @@ class League(Tournament):
                     item.defeated_opponents.remove(indice)
                     break
 
-    def run_tournament(self, players):
+    def run_tournament(self):
         num_games = int((len(self.players) / 2) * (len(self.players) - 1))
         for i in range(num_games):
             player_one_indice = self.schedule[i][0]
@@ -361,7 +361,7 @@ def main():
         c.run_tournament()
     if tournament_style == league:
         l = League(num_remote_players)
-        l.play_schedule() # TODO change to run tournament
+        l.run_tournament() # TODO change to run tournament
 
 
 
