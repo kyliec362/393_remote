@@ -193,16 +193,6 @@ class Cup(Tournament):
             # keep cheaters always with the lowest score
             self.win_record[c] = (-1 * math.inf)
 
-<<<<<<< HEAD
-    def get_round(self):
-        pass #TODO
-
-    def generate_schedule(self, players):
-        pass #TODO
-
-
-# round robin
-=======
     def close_connections(self):
         for conn in list(self.players_connections.values()):
             conn.close()
@@ -210,7 +200,6 @@ class Cup(Tournament):
 
 
 #round robin
->>>>>>> 16318187faa573b7a8216d43b710b10057f3803c
 class League(Tournament):
     def __init__(self, num_remote_players):
         super().__init__(num_remote_players)

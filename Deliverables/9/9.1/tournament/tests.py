@@ -1,13 +1,7 @@
 import unittest
-<<<<<<< HEAD
 from tournament import Cup, Tournament, League, RankingInfo
 import sys
-=======
-# from .player_pkg.player_file import player, proxy_remote_player
-import sys
-sys.path.append("./")
-from tournament import Cup, Tournament
->>>>>>> 16318187faa573b7a8216d43b710b10057f3803c
+
 
 # !!! remember to change board size to 4 for testing !!! #
 
@@ -78,17 +72,11 @@ class PlayerTests(unittest.TestCase):
         self.league = League(0)
         self.eightArr = [None for i in range(2)]
 
-<<<<<<< HEAD
     def test_generate_schedule(self):
         self.league.generate_schedule(self.eightArr)
         print(self.league.schedule)
         self.assertEqual(True, True)
-=======
-    # # test single board in history
-    # def set_players(self):
-    #     sock = Tournament.setup_server()
-    #     pass
->>>>>>> 16318187faa573b7a8216d43b710b10057f3803c
+
 
     def test_set_players_names_arr(self):
         self.league.set_players_names_arr()
