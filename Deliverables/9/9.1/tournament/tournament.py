@@ -150,7 +150,8 @@ class Cup(Tournament):
         for i in range(num_rounds):
             self.run_round(self.remaining_players, i)
         # get winner
-        return self.rank()
+        self.close_connections()
+        self.rank()
 
     def run_round(self, remaining_players, round_num):
         cheaters = []
@@ -177,8 +178,9 @@ class Cup(Tournament):
             end = start + (games_this_round - 1)
         return (start, end)
 
+    # TODO print all rnakings, not just winner
     def rank(self):
-        return max(self.win_record.items(), key=operator.itemgetter(1))[0]
+        print(max(self.win_record.items(), key=operator.itemgetter(1))[0])
 
     def update_win_record(self, cheaters):
         for player in self.remaining_players:
@@ -188,7 +190,8 @@ class Cup(Tournament):
             self.win_record[c] = (-1 * math.inf)
 
     def close_connections(self):
-        pass # TODO close all connections in player connections
+        for conn in list(self.players_connections.values()):
+            conn.close()
 
 
 

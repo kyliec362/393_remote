@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="900479c2-6c52-40db-8c89-ed877473ece3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/run">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -70,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="189" column="32" lean-forward="true" selection-start-line="189" selection-start-column="32" selection-end-line="189" selection-end-column="32" />
+            <state relative-caret-position="254">
+              <caret line="182" column="74" lean-forward="true" selection-start-line="182" selection-start-column="74" selection-end-line="182" selection-end-column="74" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -163,9 +161,9 @@
         <option value="$PROJECT_DIR$/Deliverables/8/8.1/administrator/administrator.py" />
         <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/referee.py" />
         <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/administrator.py" />
-        <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" />
         <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py" />
         <option value="$PROJECT_DIR$/Deliverables/9/9.1/run" />
+        <option value="$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py" />
       </list>
     </option>
   </component>
@@ -757,16 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="189" column="32" lean-forward="true" selection-start-line="189" selection-start-column="32" selection-end-line="189" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/player_pkg/player_file.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-126">
@@ -781,6 +769,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Deliverables/9/9.1/tournament/tournament.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="182" column="74" lean-forward="true" selection-start-line="182" selection-start-column="74" selection-end-line="182" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
