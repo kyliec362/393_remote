@@ -73,7 +73,7 @@ class PlayerTests(unittest.TestCase):
         self.eightArr = [None for i in range(2)]
 
     def test_generate_schedule(self):
-        self.league.generate_schedule(self.eightArr)
+        self.league.generate_schedule()
         print(self.league.schedule)
         self.assertEqual(True, True)
 
@@ -84,7 +84,6 @@ class PlayerTests(unittest.TestCase):
         self.assertEqual(True, True)
 
     def test_run_tournament(self):
-        players = "dumb"
         print(self.league.run_tournament())
 
         self.assertEqual(True, True)
