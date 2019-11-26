@@ -56,7 +56,7 @@ class Tournament(abc.ABC):
         self.players_connections = {}
         self.set_players()
         self.schedule = []
-        self.generate_schedule(self.players)
+
 
 
     def setup_server(self):
@@ -210,6 +210,7 @@ class League(Tournament):
         self.players_names_arr = [None for i in range(self.num_players)]
         self.set_players_names_arr()
         self.cheated_list = []
+        self.generate_schedule()
 
     # TODO format output
     def rank(self):
@@ -224,6 +225,11 @@ class League(Tournament):
                     final_rankings[j].extend(self.players_names_arr[i])
         if len(self.cheated_list) > 0:
             final_rankings.extend(self.cheated_list)
+        outputString = "Final Rankings \n"
+        for i in range(len(final_rankings)):
+            outputString += str(i) + " Place: "
+            for j in range(len(final_rankings[i])):
+                outputString += final_rankings[i][j]
         return final_rankings
 
     def get_num_ranks(self):
