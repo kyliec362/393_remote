@@ -228,7 +228,8 @@ class League(Tournament):
         outputString = "Final Rankings \n"
         for i in range(len(final_rankings)):
             outputString += str(i) + " Place: "
-            for j in range(len(final_rankings[i])):
+            tied_list = final_rankings[i]
+            for j in range(len(tied_list)):
                 outputString += final_rankings[i][j]
         return final_rankings
 
@@ -345,6 +346,10 @@ class League(Tournament):
         starting_indice = games_per_round * round_num
         ending_indice = games_per_round + (games_per_round * round_num)
         return [starting_indice, ending_indice]
+
+    def close_connections(self):
+        for conn in list(self.players_connections.values()):
+            conn.close()
 
 
 class RankingInfo:
