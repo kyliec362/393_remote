@@ -69,23 +69,23 @@ class PlayerTests(unittest.TestCase):
     #     self.assertEqual((4, 5), c.get_round_indices(1))
     #     self.assertEqual((6, 6), c.get_round_indices(2))
     def setUp(self):
-        self.league = League(0)
+        self.league = League(3)
         self.eightArr = [None for i in range(2)]
 
     def test_generate_schedule(self):
         self.league.generate_schedule()
-        print(self.league.schedule)
+       # print(self.league.schedule)
         self.assertEqual(True, True)
 
 
     def test_set_players_names_arr(self):
         self.league.set_players_names_arr()
-        print(self.league.players_names_arr)
+        #print(self.league.players_names_arr)
         self.assertEqual(True, True)
 
     def test_run_tournament(self):
-        print(self.league.run_tournament())
-
+        #print(self.league.run_tournament())
+        self.league.run_tournament()
         self.assertEqual(True, True)
 
 # class LeagueTests(unittest.TestCase):
@@ -99,5 +99,5 @@ class PlayerTests(unittest.TestCase):
 #         self.assertEqual(True, True)
 
 if __name__ == "__main__":
-    print(83)
+    #print(83)
     unittest.main(warnings='ignore')

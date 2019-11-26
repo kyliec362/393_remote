@@ -209,6 +209,7 @@ class League(Tournament):
 
     # TODO format output
     def rank(self):
+        #print("In rank")
         ranks_list = self.get_num_ranks()
         ranks_list.sort()
         ranks_list.reverse()
@@ -223,10 +224,11 @@ class League(Tournament):
             final_rankings.extend(self.cheated_list)
         output_string = "Final Rankings \n"
         for i in range(len(final_rankings)):
-            output_string += str(i) + " Place: "
-            tied_list = final_rankings[i]
-            for j in range(len(tied_list)):
-                output_string += final_rankings[i][j]
+            output_string += str(i + 1) + " Place: " + str(final_rankings[i])
+            # tied_list = final_rankings[i]
+            # for j in range(len(tied_list)):
+            #     output_string += " , " + final_rankings[i][j]
+        print(output_string)
         return final_rankings
 
     def create_list_of_lists(self, lst):
@@ -237,10 +239,12 @@ class League(Tournament):
 
     def get_num_ranks(self):
         all_wins = [None for i in range(self.num_players)]
-        count = 0
-        for item in self.ranking_info_arr:
-            all_wins[count] = item.wins
-            count = count + 1
+        # count = 0
+        for i in range(len(self.ranking_info_arr)):
+            # print("self.ranking_info_arr[i[")
+            # print(self.ranking_info_arr[i].losses)
+            all_wins[i] = self.ranking_info_arr[i].wins
+            # count = count + 1
         wins_no_duplicates = []
         [wins_no_duplicates.append(x) for x in all_wins if x not in wins_no_duplicates]
         return wins_no_duplicates
@@ -274,11 +278,11 @@ class League(Tournament):
     # TODO can prob just run the game here and return winner to scheduler sca
     # return dictionary winner: , loser:, cheater handle tie
     def setup_single_game(self, player1, player2):
-        print("in setup single game")
+       # print("in setup single game")
         admin = administrator(player1, player2)
-        print("before admin run game")
+        #print("before admin run game")
         winner_name, cheated = admin.run_game()
-        print("after admin run game")
+        #print("after admin run game")
         dict_cheater_name = ""
         if cheated:
             dict_cheater_name = self.get_opposite_player_name(player1, player2, winner_name)
@@ -286,6 +290,8 @@ class League(Tournament):
         return return_dict
 
     def handle_game_result(self, game_dict, p1_indice, p2_indice, p1, p2):
+        # print("winner")
+        # print(game_dict["winner"])
         if game_dict["cheated"] == p1.name:
             self.ranking_info_arr[p2_indice].wins += 1
             self.handle_cheater(p1_indice)
@@ -322,10 +328,10 @@ class League(Tournament):
                     break
 
     def run_tournament(self):
-        print("in run tournament")
+       # print("in run tournament")
         num_games = int((len(self.players) / 2) * (len(self.players) - 1))
         for i in range(num_games):
-            print("in run tournament for loop")
+            #print("in run tournament for loop")
             player_one_indice = self.schedule[i][0]
             player_two_indice = self.schedule[i][1]
             player_one = self.players[player_one_indice]
@@ -360,7 +366,7 @@ class League(Tournament):
 
 
 class RankingInfo:
-    def _init_(self):
+    def __init__(self):
         self.wins = 0
         self.losses = 0
         self.cheated = False
