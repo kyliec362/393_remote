@@ -57,8 +57,6 @@ class Tournament(abc.ABC):
         self.set_players()
         self.schedule = []
 
-
-
     def setup_server(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -90,7 +88,6 @@ class Tournament(abc.ABC):
 
     def set_players(self):
         num_joined = 0
-        print(90)
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()
@@ -101,7 +98,6 @@ class Tournament(abc.ABC):
             except:
                 continue
         self.make_players_power_two()
-        print(104)
 
     @abc.abstractmethod
     def rank(self):
@@ -128,12 +124,10 @@ class Cup(Tournament):
         self.game_outcomes = []
         self.win_record = {}  # TODO replace schedule state var with this
 
-    # TODO When a game finishes your referee should notify both players in a game that the game is over.
-    # For remote players this boils down to receiving a message ["end-game"]
-    # to which it replies with the JSON string "OK".
+    # TODO reset receives stones call for each game
 
     def run_game(self, player1, player2):
-        admin = administrator(player1, player2, self.players_connections[player1], self.players_connections[player2])
+        admin = administrator(player1, player2)
         winner_name, cheated = admin.run_round()
         if player1.name == winner_name:
             if cheated:
@@ -184,6 +178,7 @@ class Cup(Tournament):
 
     # TODO print all rnakings, not just winner
     def rank(self):
+        print(187, self.win_record)
         print(max(self.win_record.items(), key=operator.itemgetter(1))[0])
 
     def update_win_record(self, cheaters):
@@ -369,6 +364,7 @@ def main():
     num_remote_players = int(sys.argv[2])
     if tournament_style == cup:
         c = Cup(num_remote_players)
+        print(368)
         c.run_tournament()
     if tournament_style == league:
         l = League(num_remote_players)
