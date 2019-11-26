@@ -37,6 +37,12 @@ class referee:
         else:
             return self.player1
 
+    def get_opposite_player_from_name(self, name):
+        if name == self.player1.name:
+            return self.player2
+        else:
+            return self.player1
+
 
     # returns true if game should continue, false if not
     def handle_move(self, input):

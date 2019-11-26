@@ -102,7 +102,7 @@ class administrator:
     def end_game_update_winner(self, original_winner, cheated):
         ok = "OK"
         original_winner_player = self.get_player_from_name(original_winner)
-        original_loser_player = self.referee.get_opposite_player(original_winner_player)
+        original_loser_player = self.referee.get_opposite_player_from_name(original_winner)
         response1 = original_winner_player.end_game()
         original_loser_player.end_game()
         if not cheated and response1 != ok:
@@ -115,49 +115,33 @@ class administrator:
         if name == self.player2.name:
             return self.player2
         else:
+            print(name, self.player1.name, self.player2.name)
             raise Exception("Invalid name given")
 
     def run_game(self):
         self.setup_game()
+       # print("admin @", 122)
         while True:
             move = self.referee.current_player.make_a_move(self.referee.board_history)
+            #print("admin @", 125, self.referee.board_history)
             # if player didn't disconnect while making a move
+            #print("admin @", 126)
             if move and self.check_input(move):
                 not_over = self.referee.handle_move(move)
                 # if the game didn't end, continue to next turn
                 if not_over:
+                    #print("admin @", 132)
                     continue
                 # game over, figure out the winner
                 # alert players it's game over (check for disconnects)
                 else:
+                    #print("admin @", 136)
                     original_winner, cheated = self.referee.get_winner()
                     # get the actual winner
-                    return self.end_game_update_winner(original_winner, cheated)
+                    return self.end_game_update_winner(original_winner[0], cheated)
+            #print("admin @", 141)
             return self.opposite_wins()
 
-    def connection_helper(self, connection):
-        try:
-            data = self.connection.recv(recv_size)
-            if data:
-                data = data.decode()
-            else:
-                # TODO not sure if correct
-                return
-            if data == "WITNESS ME":
-                self.connection.sendall(json.dumps(self.referee.board_history).encode())
-            else:
-                if self.check_input(data):
-                    if self.referee_move(data):
-                        connection.sendall(json.dumps(self.referee.board_history).encode())
-                    else:
-                        connection.close()
-                        return self.referee.get_winner()
-                else:
-                    connection.close()
-                    return self.opposite_wins()
-        # TODO ? client disconnects? (*chuckles* I'm in danger)
-        except:
-            return self.opposite_wins()
 
 if __name__ == '__main__':
     pass
