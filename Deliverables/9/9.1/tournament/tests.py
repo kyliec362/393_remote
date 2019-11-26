@@ -1,6 +1,13 @@
 import unittest
-#from .player_pkg.player_file import player, proxy_remote_player
+<<<<<<< HEAD
 from tournament import Cup, Tournament, League, RankingInfo
+import sys
+=======
+# from .player_pkg.player_file import player, proxy_remote_player
+import sys
+sys.path.append("./")
+from tournament import Cup, Tournament
+>>>>>>> 16318187faa573b7a8216d43b710b10057f3803c
 
 # !!! remember to change board size to 4 for testing !!! #
 
@@ -68,13 +75,31 @@ class PlayerTests(unittest.TestCase):
     #     self.assertEqual((4, 5), c.get_round_indices(1))
     #     self.assertEqual((6, 6), c.get_round_indices(2))
     def setUp(self):
-        self.league = League(8)
-        self.eightArr = [None for i in range(8)]
+        self.league = League(0)
+        self.eightArr = [None for i in range(2)]
 
+<<<<<<< HEAD
     def test_generate_schedule(self):
-        print(self.league.generate_schedule(self.eightArr))
+        self.league.generate_schedule(self.eightArr)
+        print(self.league.schedule)
+        self.assertEqual(True, True)
+=======
+    # # test single board in history
+    # def set_players(self):
+    #     sock = Tournament.setup_server()
+    #     pass
+>>>>>>> 16318187faa573b7a8216d43b710b10057f3803c
+
+    def test_set_players_names_arr(self):
+        self.league.set_players_names_arr()
+        print(self.league.players_names_arr)
         self.assertEqual(True, True)
 
+    def test_run_tournament(self):
+        players = "dumb"
+        print(self.league.run_tournament(players))
+
+        self.assertEqual(True, True)
 
 # class LeagueTests(unittest.TestCase):
 #
@@ -88,4 +113,4 @@ class PlayerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     print(83)
-    unittest.main()
+    unittest.main(warnings='ignore')

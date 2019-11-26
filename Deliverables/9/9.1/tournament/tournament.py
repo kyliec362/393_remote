@@ -9,6 +9,7 @@ import itertools
 
 import random
 import string
+import math
 from streamy import stream
 from board import get_board_length, make_empty_board
 from administrator import administrator
@@ -31,6 +32,7 @@ default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
 from player_pkg import proxy_remote_player, player
 default_player = player
+config_file.close()
 
 
 def random_string():
@@ -74,8 +76,11 @@ class Tournament(abc.ABC):
     def make_players_power_two(self):
         base = 2
         num_players = len(self.players)
-        next_power_two = int(pow(base, ceil(log(num_players, base))))
-        next_power_two = min(base, next_power_two)
+        if num_players <= 0:
+            next_power_two = 2
+        else:
+            next_power_two = int(pow(base, ceil(log(num_players, base))))
+            next_power_two = min(base, next_power_two)
         num_defaults = next_power_two - num_players
         for i in range(num_defaults):
             #TODO player should get unique name and not need color set before game starts
@@ -103,22 +108,14 @@ class Tournament(abc.ABC):
         pass
 
     @abc.abstractmethod
-    #initial schedule
-    def generate_schedule(self, players):
+    def run_tournament(self):
         pass
 
     @abc.abstractmethod
-    def run_tournament(self, players):
+    def close_connections(self):
         pass
 
-    @abc.abstractmethod
-    def get_round_indices(self, round_num):
-        pass
 
-    @abc.abstractmethod
-    #get round for round robin or next round in single elim
-    def get_round(self):
-        pass
 
 
 
@@ -150,20 +147,25 @@ class Cup(Tournament):
     def init_game_outcomes(self):
         self.game_outcomes = [None for i in range(self.num_players - 1)]
 
-    def run_tournament(self, players):
+    # TODO dont need players param
+    def run_tournament(self):
         num_rounds = int(log(self.num_players, 2))
         # run though every round in tournament
         for i in range(num_rounds):
             self.run_round(self.remaining_players, i)
         # get winner
-        return self.rank()
+        self.close_connections()
+        self.rank()
 
     def run_round(self, remaining_players, round_num):
+        cheaters = []
         start, end = self.get_round_indices(round_num)
         for i in range(start, end, 2):
-            self.game_outcomes[i] = self.run_game(remaining_players[i], remaining_players[i + 1])
+            winner, cheater = self.run_game(remaining_players[i], remaining_players[i + 1])
+            self.game_outcomes[i] = winner
+            cheaters += cheater
         self.eliminate_losers(round_num)
-        self.update_win_record()
+        self.update_win_record(cheaters)
 
     def eliminate_losers(self, round_num):
         start, end = self.get_round_indices(round_num)
@@ -180,15 +182,18 @@ class Cup(Tournament):
             end = start + (games_this_round - 1)
         return (start, end)
 
+    # TODO print all rnakings, not just winner
     def rank(self):
-        return max(self.win_record.items(), key=operator.itemgetter(1))[0]
+        print(max(self.win_record.items(), key=operator.itemgetter(1))[0])
 
-    # update ranks
-    # TODO update to handle cheaters
-    def update_win_record(self):
+    def update_win_record(self, cheaters):
         for player in self.remaining_players:
             self.win_record[player] += 1
+        for c in cheaters:
+            # keep cheaters always with the lowest score
+            self.win_record[c] = (-1 * math.inf)
 
+<<<<<<< HEAD
     def get_round(self):
         pass #TODO
 
@@ -197,6 +202,15 @@ class Cup(Tournament):
 
 
 # round robin
+=======
+    def close_connections(self):
+        for conn in list(self.players_connections.values()):
+            conn.close()
+
+
+
+#round robin
+>>>>>>> 16318187faa573b7a8216d43b710b10057f3803c
 class League(Tournament):
     def __init__(self, num_remote_players):
         super().__init__(num_remote_players)
@@ -240,9 +254,10 @@ class League(Tournament):
         for i in range(num_players):
             indice_player_list[i] = i
         combs = itertools.combinations(indice_player_list, 2)
-        self.schedule = [None for i in range(num_games)]
-        for i in range (num_games):
-            self.schedule[i] = combs.next()
+        self.schedule = list(combs)
+        # self.schedule = [None for i in range(num_games)]
+        # for i in range (num_games):
+        #     self.schedule[i] = combs.next()
 
     def set_players_names_arr(self):
         for i in range(self.num_players):
@@ -305,7 +320,7 @@ class League(Tournament):
                     item.defeated_opponents.remove(indice)
                     break
 
-    def play_schedule(self, players):
+    def run_tournament(self, players):
         num_games = int((len(self.players) / 2) * (len(self.players) - 1))
         for i in range(num_games):
             player_one_indice = self.schedule[i][0]
@@ -314,7 +329,7 @@ class League(Tournament):
             player_two = self.players[player_two_indice]
             game_dict = self.setup_single_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
-        self.rank()
+        return self.rank()
 
     # need only if need to make it pretty
     # #used to generate all the game sets
@@ -349,11 +364,15 @@ class RankingInfo:
 
 def main():
     cup = 'cup'
-    league = "-league"
+    league = "league"
     tournament_style = str(sys.argv[1])[1:]
     num_remote_players = int(sys.argv[2])
     if tournament_style == cup:
         c = Cup(num_remote_players)
+        c.run_tournament()
+    if tournament_style == league:
+        l = League(num_remote_players)
+        l.play_schedule() # TODO change to run tournament
 
 
 

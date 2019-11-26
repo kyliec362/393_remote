@@ -10,6 +10,7 @@ info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
 from player_pkg import proxy_remote_player, player
+config_file.close()
 
 default_player = player
 
@@ -84,12 +85,10 @@ class administrator:
         return False
 
     def setup_game(self):
-        self.player1 = player(black, "Yggdrasil")
         self.referee = referee(self.player1, self.player2)
         self.register_receive_player(self.player1, black)
         self.register_receive_player(self.player2, white)
-        # self.set_true_register_receive_flag(self.player2)
-        # self.set_true_register_receive_flag(self.player1)
+
 
     def set_client_done_flag(self):
         self.client_done_flag = not self.client_done_flag
@@ -102,25 +101,47 @@ class administrator:
         player.register()
         player.receive_stones(stone)
 
-    # TODO When a game finishes your referee should notify both players in a game that the game is over.
-    # For remote players this boils down to receiving a message ["end-game"]
-    # to which it replies with the JSON string "OK".
-    def send_end_game_message(self):
-        self.conn1.sendall(json.dumps('["end-game"]').encode())
-        self.conn2.sendall(json.dumps('["end-game"]').encode())
+    def end_game_update_winner(self, original_winner, cheated):
+        ok = "OK"
+        original_winner_player = self.get_player_from_name(original_winner)
+        original_loser_player = self.referee.get_opposite_player(original_winner_player)
+        response1 = original_winner_player.end_game()
+        original_loser_player.end_game()
+        if not cheated and response1 != ok:
+            return ([json.dumps(original_loser_player.name)], cheated)
+        return ([json.dumps(original_winner_player.name)], cheated)
+
+    def get_player_from_name(self, name):
+        if name == self.player1.name:
+            return self.player1
+        if name == self.player2.name:
+            return self.player2
+        else:
+            raise Exception("Invalid name given")
+
+
+
+
+
+
 
     def run_game(self):
         self.setup_game()
-
         while True:
-            if self.referee.current_player == self.player1:
-                game_output = self.connection_helper(self.conn1)
-            else:
-                game_output = self.connection_helper(self.conn2)
-
-            if game_output:
-                self.send_end_game_message()
-                return game_output
+            move = self.referee.current_player.make_a_move(self.referee.board_history)
+            # if player didn't disconnect while making a move
+            if move and self.check_input(move):
+                not_over = self.referee.handle_move(move)
+                # if the game didn't end, continue to next turn
+                if not_over:
+                    continue
+                # game over, figure out the winner
+                # alert players it's game over (check for disconnects)
+                else:
+                    original_winner, cheated = self.referee.get_winner()
+                    # get the actual winner
+                    return self.end_game_update_winner(original_winner, cheated)
+            return self.opposite_wins()
 
     def connection_helper(self, connection):
         try:
