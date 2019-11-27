@@ -272,7 +272,7 @@ class proxy_remote_player:
 
     def make_a_move_(self, boards):
         try:
-            self.connection.sendall('["make-a-move",' + boards + ']')
+            self.connection.sendall('["make-a-move",' + boards + ']'.encode())
             data = self.connection.recv(recv_size)
             if data:
                 return data.decode()
@@ -291,7 +291,7 @@ class proxy_remote_player:
 
     def receive_stones(self, stone):
         try:
-            self.connection.sendall('["receive-stones",' + stone + ']')
+            self.connection.sendall('["receive-stones",' + stone + ']'.encode())
         except:
             return False
         else:
@@ -301,7 +301,7 @@ class proxy_remote_player:
     def end_game(self):
         response = ""
         try:
-            self.connection.sendall('["end-game"]')
+            self.connection.sendall('["end-game"]'.encode())
             while True:
                 received = self.connection.recv(recv_size)
                 if received:
@@ -317,19 +317,6 @@ class proxy_remote_player:
 
 def main():
     set_depth()
-    client("WITNESS ME")
-    client("WITNESS ME")
-    client("WITNESS ME")
-    client("WITNESS ME")
-    # while server_response and len(server_response) > 1:
-    #     server_response = str(server_response)
-    #     try:
-    #         boards = list(stream(server_response))[0]  # parse json objects
-    #         play = proxy.player.make_a_move_random_maybe_illegal(boards)
-    #         server_response = proxy.client(play)
-    #     except:
-    #         return
-    return
 
 
 if __name__ == "__main__":
