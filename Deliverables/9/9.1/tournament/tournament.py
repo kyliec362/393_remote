@@ -391,6 +391,7 @@ class RankingInfo:
 def main():
     cup = 'cup'
     league = "league"
+    print(394)
     if len(sys.argv) != 3:
         return
     tournament_style = str(sys.argv[1])[1:]
