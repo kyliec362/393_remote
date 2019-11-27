@@ -287,7 +287,7 @@ class proxy_remote_player:
         try:
             print(287)
             print("connection in player-file make a move 289 before data.recv ", self.connection)
-            data = self.connection.recv(recv_size)
+            data = self.connection.recvmsg(recv_size)[1]
             print("connection in player-file make a move 291 after data.recv ", self.connection)
             print("player_file.py data: ", data)
             if data:
