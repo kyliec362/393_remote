@@ -283,7 +283,7 @@ class proxy_remote_player:
 
     def register(self):
         try:
-            self.connection.sendall('["register"]')
+            self.connection.sendall('["register"]'.encode())
             return True
         except:
             print("Register failed sending")
