@@ -111,24 +111,21 @@ class Tournament(abc.ABC):
     def close_connections(self):
         pass
 
-
-
-
-
-# single elimination
 class Cup(Tournament):
 
     def __init__(self, num_remote_players):
         super().__init__(num_remote_players)
         self.remaining_players = self.players
         self.game_outcomes = []
-        self.win_record = {}  # TODO replace schedule state var with this
+        self.init_game_outcomes()
+        self.win_record = {}
+        self.init_win_record()
 
     # TODO reset receives stones call for each game
 
     def run_game(self, player1, player2):
         admin = administrator(player1, player2)
-        winner_name, cheated = admin.run_round()
+        winner_name, cheated = admin.run_game()
         if player1.name == winner_name:
             if cheated:
                 return (player1, [player2])
@@ -141,7 +138,10 @@ class Cup(Tournament):
     def init_game_outcomes(self):
         self.game_outcomes = [None for i in range(self.num_players - 1)]
 
-    # TODO dont need players param
+    def init_win_record(self):
+        for p in self.players:
+            self.win_record[p] = 0
+
     def run_tournament(self):
         num_rounds = int(log(self.num_players, 2))
         # run though every round in tournament
@@ -151,19 +151,27 @@ class Cup(Tournament):
         self.close_connections()
         self.rank()
 
+
     def run_round(self, remaining_players, round_num):
         cheaters = []
         start, end = self.get_round_indices(round_num)
-        for i in range(start, end, 2):
-            winner, cheater = self.run_game(remaining_players[i], remaining_players[i + 1])
+        if start == end and start == 0: # only 2 players
+            winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
+            self.game_outcomes[0] = winner
+            cheaters += cheater
+        j = 0
+        for i in range(start, end + 1):
+            winner, cheater = self.run_game(remaining_players[j], remaining_players[j + 1])
+            j += 2
             self.game_outcomes[i] = winner
             cheaters += cheater
         self.eliminate_losers(round_num)
         self.update_win_record(cheaters)
 
+
     def eliminate_losers(self, round_num):
         start, end = self.get_round_indices(round_num)
-        self.remaining_players = self.game_outcomes[start:(end + 1)]
+        self.remaining_players = self.game_outcomes[start:end + 1]
 
     # inclusive indices
     def get_round_indices(self, round_num):
@@ -176,14 +184,20 @@ class Cup(Tournament):
             end = start + (games_this_round - 1)
         return (start, end)
 
-    # TODO print all rnakings, not just winner
+    # TODO print all rankings, not just winner
     def rank(self):
-        print(187, self.win_record)
-        print(max(self.win_record.items(), key=operator.itemgetter(1))[0])
+        sorted_ranks = sorted(self.win_record.items(), key=lambda kv: kv[1])
+        for key, value in sorted_ranks:
+            print("Player : {} , Wins : {}".format(key.name, max(0,value)))
 
     def update_win_record(self, cheaters):
+        #print(202, self.remaining_players)
         for player in self.remaining_players:
-            self.win_record[player] += 1
+            if player in self.win_record:
+                self.win_record[player] += 1
+            #else:
+                #print(205, player)
+                #print(206, self.win_record)
         for c in cheaters:
             # keep cheaters always with the lowest score
             self.win_record[c] = (-1 * math.inf)
@@ -191,7 +205,6 @@ class Cup(Tournament):
     def close_connections(self):
         for conn in list(self.players_connections.values()):
             conn.close()
-
 
 
 #round robin
@@ -382,11 +395,10 @@ def main():
     num_remote_players = int(sys.argv[2])
     if tournament_style == cup:
         c = Cup(num_remote_players)
-        print(368)
         c.run_tournament()
     if tournament_style == league:
         l = League(num_remote_players)
-        l.run_tournament() # TODO change to run tournament
+        l.run_tournament()
 
 
 

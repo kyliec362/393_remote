@@ -108,6 +108,7 @@ class player:
         return True
 
     def end_game(self):
+        self.receive_flag = False
         return "OK"
 
     def is_stone(self, stone):
