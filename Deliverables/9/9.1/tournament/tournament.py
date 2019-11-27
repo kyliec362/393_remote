@@ -391,6 +391,8 @@ class RankingInfo:
 def main():
     cup = 'cup'
     league = "league"
+    if len(sys.argv) != 3:
+        return
     tournament_style = str(sys.argv[1])[1:]
     num_remote_players = int(sys.argv[2])
     if tournament_style == cup:
