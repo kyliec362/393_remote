@@ -124,6 +124,8 @@ class Cup(Tournament):
     # TODO reset receives stones call for each game
 
     def run_game(self, player1, player2):
+        print(127, type(player1))
+        print(128, type(player2))
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
         if player1.name == winner_name:

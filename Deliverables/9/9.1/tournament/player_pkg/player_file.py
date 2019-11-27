@@ -48,7 +48,7 @@ def client(message):
         print("sent to tournament " + message)
         while True:
             received = sock.recv(recv_size)
-            print(received)
+            print(51, received)
             if received:
                 response += received.decode()
             else:
