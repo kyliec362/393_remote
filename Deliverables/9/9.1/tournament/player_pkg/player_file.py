@@ -270,7 +270,7 @@ class proxy_remote_player:
         self.name = name
         self.stone = stone
 
-    def make_a_move_(self, boards):
+    def make_a_move(self, boards):
         try:
             self.connection.sendall('["make-a-move",' + boards + ']'.encode())
             data = self.connection.recv(recv_size)
