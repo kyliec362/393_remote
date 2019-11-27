@@ -122,6 +122,7 @@ class administrator:
             except:
                 pass
             move = self.referee.current_player.make_a_move(self.referee.board_history)
+            print("admin @ 125", move)
             # if player didn't disconnect while making a move
             if move and self.check_input(move):
                 not_over = self.referee.handle_move(move)
