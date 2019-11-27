@@ -46,6 +46,7 @@ class referee:
 
     # returns true if game should continue, false if not
     def handle_move(self, input):
+        print("handle move input in referee 49 ", input)
         self.game_output.append(self.board_history)
         if input == "pass":
             if self.pass_count == 1:
@@ -57,6 +58,7 @@ class referee:
             return True
         stone = self.current_player.stone
         move = [input, self.board_history]
+        print("handle move in referre move 61", move)
         if rule_checker().check_validity(stone, move):
             new_board0 = board(self.board_history[0]).place(stone, input)
             new_board0 = board(new_board0).capture(get_opponent_stone(stone))
