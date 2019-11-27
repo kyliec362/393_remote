@@ -331,8 +331,9 @@ class League(Tournament):
         for i in ranking_obj.defeated_opponents:
             self.ranking_info_arr[i].wins += 1
             self.ranking_info_arr[i].losses -= 1
-        self.players[indice] = default_player
-        self.players_names_arr[indice] = default_player(white, random_string()) #default_player
+        rand_player_name = random_string()
+        self.players[indice] = default_player(white, rand_player_name)
+        self.players_names_arr[indice] = default_player(white, rand_player_name) #default_player
         # self.cheated_list.extend(ranking_obj)
         self.remove_cheater_defeated(indice)
         self.ranking_info_arr[indice] = RankingInfo()
