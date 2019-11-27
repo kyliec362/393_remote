@@ -279,16 +279,18 @@ class proxy_remote_player:
             move_msg = '["make_a_move",' + json.dumps(boards) + ']'
             print(279, move_msg)
             self.connection.send(move_msg.encode())
-        except:
-            print("Make a move failed sending")
+
+        except Exception as e:
+            address, port = get_socket_address()
+            print("Make a move send -> something's wrong with %s:%d. Exception is %s" % (address, port, e))
             return False
         try:
             data = self.connection.recv(recv_size)
             if data:
                 return data.decode()
             return False
-        except:
-            print("Make a move failed receiving")
+        except Exception as e:
+            print("Make a move failed receiving. Exception is %s" % e)
         return False
 
     def register(self):
@@ -298,8 +300,8 @@ class proxy_remote_player:
             data = self.connection.recv(recv_size)
             if data:
                 return True
-        except:
-            print("Register failed sending")
+        except Exception as e:
+            print("Register failed sending. Exception is %s" % e)
             return False
 
     def receive_stones(self, stone):
@@ -307,8 +309,8 @@ class proxy_remote_player:
             print(307)
             recv_msg = '["receive-stones",' + stone + ']'
             self.connection.sendall(recv_msg.encode())
-        except:
-            print("Receive failed sending")
+        except Exception as e:
+            print("Receive failed sending. Exception is %s" % e)
             return False
         else:
             self.stone = stone
@@ -324,7 +326,8 @@ class proxy_remote_player:
                     response += received.decode()
                 else:
                     break
-        except:
+        except Exception as e:
+            print("End game failed sending. Exception is %s" % e)
             return False
         else:
             if response == "OK":
