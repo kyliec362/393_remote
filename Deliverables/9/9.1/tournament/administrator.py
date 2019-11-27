@@ -122,7 +122,10 @@ class administrator:
             except:
                 pass
             move = self.referee.current_player.make_a_move(self.referee.board_history)
-            print("admin @ 125", move)
+            move1 = self.referee.current_player.make_a_move(self.referee.board_history)
+            move2 = self.referee.current_player.make_a_move(self.referee.board_history)
+
+            print("admin @ 125", move, move1, move2)
             # if player didn't disconnect while making a move
             if move and self.check_input(move):
                 not_over = self.referee.handle_move(move)
