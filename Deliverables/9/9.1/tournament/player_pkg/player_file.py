@@ -281,8 +281,7 @@ class proxy_remote_player:
             print(281, self.connection)
             self.connection.sendall(move_msg.encode())
         except Exception as e:
-            address, port = get_socket_address()
-            print("Make a move send -> something's wrong with %s:%d. Exception is %s" % (address, port, e))
+            print("Make a move send -> Exception is %s" % e)
             return False
         try:
             print(287)

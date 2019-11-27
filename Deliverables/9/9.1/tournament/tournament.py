@@ -63,7 +63,7 @@ class Tournament(abc.ABC):
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind((self.ip, self.port))
         # sock.settimeout(40)
-        sock.listen(1)
+        sock.listen(5)
         return sock
 
     def get_num_players(self):
