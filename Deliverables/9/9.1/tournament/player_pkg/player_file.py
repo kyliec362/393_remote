@@ -276,7 +276,7 @@ class proxy_remote_player:
     def make_a_move(self, boards):
         print(277)
         try:
-            move_msg = '["make_a_move",' + str(boards) + ']'
+            move_msg = '["make_a_move",' + json.dumps(boards) + ']'
             print(279, move_msg)
             self.connection.sendall(move_msg.encode())
         except:
