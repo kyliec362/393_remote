@@ -353,6 +353,8 @@ class League(Tournament):
             player_two_indice = self.schedule[i][1]
             player_one = self.players[player_one_indice]
             player_two = self.players[player_two_indice]
+            print(356, type(player_one))
+            print(357, type(player_two))
             game_dict = self.setup_single_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
         return self.rank()
