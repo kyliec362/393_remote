@@ -196,6 +196,8 @@ class player:
         return self.go_crazy()
 
     def make_a_move(self, boards):
+        m = self.make_a_move_random_maybe_illegal(boards)
+        return m
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
             if self.check_boards_object(boards):

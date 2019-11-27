@@ -75,7 +75,7 @@ class Tournament(abc.ABC):
         base = 2
         num_players = len(self.players)
         if num_players <= 0:
-            next_power_two = 2
+            next_power_two = 8
         else:
             next_power_two = int(pow(base, ceil(log(num_players, base))))
             next_power_two = min(base, next_power_two)
@@ -332,7 +332,7 @@ class League(Tournament):
             self.ranking_info_arr[i].wins += 1
             self.ranking_info_arr[i].losses -= 1
         self.players[indice] = default_player
-        self.players_names_arr[indice] = default_player
+        self.players_names_arr[indice] = default_player(white, random_string()) #default_player
         # self.cheated_list.extend(ranking_obj)
         self.remove_cheater_defeated(indice)
         self.ranking_info_arr[indice] = RankingInfo()
@@ -344,6 +344,7 @@ class League(Tournament):
                     item.defeated_opponents.remove(indice)
                     break
 
+
     def run_tournament(self):
        # print("in run tournament")
         num_games = int((len(self.players) / 2) * (len(self.players) - 1))
@@ -353,8 +354,8 @@ class League(Tournament):
             player_two_indice = self.schedule[i][1]
             player_one = self.players[player_one_indice]
             player_two = self.players[player_two_indice]
-            print(356, type(player_one))
-            print(357, type(player_two))
+            print(356, player_one, type(player_one))
+            print(357, player_two, type(player_two))
             game_dict = self.setup_single_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
         return self.rank()
