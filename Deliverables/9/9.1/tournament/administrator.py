@@ -92,7 +92,6 @@ class administrator:
         self.client_done_flag = not self.client_done_flag
 
     def register_receive_player(self, p, stone):
-        print(type(p))
         p.register()
         p.receive_stones(stone)
 
