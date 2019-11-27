@@ -300,15 +300,15 @@ class proxy_remote_player:
         try:
             self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
-            data = self.connection.recv(recv_size)
-            print(302, data)
-            if data:
-                return True
+            #data = self.connection.recv(recv_size)
+            #print(302, data)
+            #if data:
+            #    return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             return False
-        print(308, "register no exception but no responses")
-        return False
+        #print(308, "register no exception but no responses")
+        return True #False
 
     def receive_stones(self, stone):
         try:
@@ -344,10 +344,7 @@ class proxy_remote_player:
 
 def main():
     set_depth()
-    print(client("WITNESS ME"))
-    client("2-2")
-    client("pass")
-    client("OK")
+
 
 
 if __name__ == "__main__":
