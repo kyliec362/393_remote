@@ -289,6 +289,7 @@ class proxy_remote_player:
             data = self.connection.recv(recv_size)
             print("player_file.py data: ", data)
             if data:
+                print("player_file,py data: ", data.decode())
                 return data.decode()
             return False
         except Exception as e:
