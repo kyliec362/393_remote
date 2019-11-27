@@ -274,6 +274,7 @@ class proxy_remote_player:
         self.stone = stone
 
     def make_a_move(self, boards):
+        print(277)
         try:
             move_msg = '["make-a-move",' + boards + ']'
             print(279, move_msg)
