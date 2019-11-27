@@ -75,14 +75,15 @@ class Tournament(abc.ABC):
         base = 2
         num_players = len(self.players)
         if num_players <= 0:
-            next_power_two = 8
+            next_power_two = 2
         else:
             next_power_two = int(pow(base, ceil(log(num_players, base))))
             next_power_two = min(base, next_power_two)
         num_defaults = next_power_two - num_players
         for i in range(num_defaults):
+            print(84)
             #TODO player should get unique name and not need color set before game starts
-            self.players = self.players + [default_player(white, random_string())]
+            self.players += [default_player(white, random_string())]
         self.num_players = len(self.players)
 
 
@@ -124,8 +125,6 @@ class Cup(Tournament):
     # TODO reset receives stones call for each game
 
     def run_game(self, player1, player2):
-        print(127, type(player1))
-        print(128, type(player2))
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
         if player1.name == winner_name:
@@ -190,16 +189,12 @@ class Cup(Tournament):
     def rank(self):
         sorted_ranks = sorted(self.win_record.items(), key=lambda kv: kv[1])
         for key, value in sorted_ranks:
-            print("Player : {} , Wins : {}".format(key.name, max(0,value)))
+            print("Player : {} , Wins : {}".format(key.name, max(0, value)))
 
     def update_win_record(self, cheaters):
-        #print(202, self.remaining_players)
         for player in self.remaining_players:
             if player in self.win_record:
                 self.win_record[player] += 1
-            #else:
-                #print(205, player)
-                #print(206, self.win_record)
         for c in cheaters:
             # keep cheaters always with the lowest score
             self.win_record[c] = (-1 * math.inf)
@@ -356,8 +351,6 @@ class League(Tournament):
             player_two_indice = self.schedule[i][1]
             player_one = self.players[player_one_indice]
             player_two = self.players[player_two_indice]
-            print(356, player_one, type(player_one))
-            print(357, player_two, type(player_two))
             game_dict = self.setup_single_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
         return self.rank()
