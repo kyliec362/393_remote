@@ -46,6 +46,7 @@ def random_string():
 class Tournament(abc.ABC):
 
     def __init__(self, num_remote_players):
+        print(49)
         self.port = info["port"]
         self.ip = info["IP"]
         self.sock = self.setup_server()
@@ -89,14 +90,17 @@ class Tournament(abc.ABC):
 
     def set_players(self):
         num_joined = 0
+        print(93)
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()
+                print("tournament @ 97", connection)
                 new_player = proxy_remote_player(connection, 'B', random_string())  # TODO player shouldnt take in stone
                 self.players.append(new_player)
                 self.players_connections[new_player] = connection
                 num_joined += 1
             except:
+                print("tournament @ 103 exception")
                 continue
         self.make_players_power_two()
 

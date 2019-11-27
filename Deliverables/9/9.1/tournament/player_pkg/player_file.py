@@ -30,7 +30,7 @@ def set_depth():
 
 def get_socket_address():
     # return ("localhost", 8080)
-    config_file = open("go.config", "r")
+    config_file = open("../go.config", "r")
     socket_info = config_file.readlines()
     socket_info = list(stream(socket_info))[0]
     port = socket_info["port"]
@@ -278,24 +278,25 @@ class proxy_remote_player:
         try:
             move_msg = '["make_a_move",' + json.dumps(boards) + ']'
             print(279, move_msg)
-            self.connection.send(move_msg.encode())
-
+            print(281, self.connection)
+            self.connection.sendall(move_msg.encode())
         except Exception as e:
             address, port = get_socket_address()
             print("Make a move send -> something's wrong with %s:%d. Exception is %s" % (address, port, e))
             return False
         try:
+            print(287)
             data = self.connection.recv(recv_size)
             if data:
                 return data.decode()
             return False
         except Exception as e:
             print("Make a move failed receiving. Exception is %s" % e)
-        return False
+            return False
 
     def register(self):
         try:
-            self.connection.send('["register"]'.encode())
+            self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
             data = self.connection.recv(recv_size)
             if data:
@@ -308,7 +309,7 @@ class proxy_remote_player:
         try:
             print(307)
             recv_msg = '["receive-stones",' + stone + ']'
-            self.connection.send(recv_msg.encode())
+            self.connection.sendall(recv_msg.encode())
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
             return False
@@ -336,6 +337,10 @@ class proxy_remote_player:
 
 def main():
     set_depth()
+    print(client("WITNESS ME"))
+    client("2-2")
+    client("pass")
+    client("OK")
 
 
 if __name__ == "__main__":
