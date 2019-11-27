@@ -92,8 +92,8 @@ class administrator:
         self.client_done_flag = not self.client_done_flag
 
     def register_receive_player(self, p, stone):
-        p.register()
-        p.receive_stones(stone)
+        print("admin @ 95", p.register())
+        print("admin @ 96", p.receive_stones(stone))
 
     def end_game_update_winner(self, original_winner, cheated):
         ok = "OK"

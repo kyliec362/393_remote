@@ -304,9 +304,11 @@ class proxy_remote_player:
 
     def receive_stones(self, stone):
         try:
+            print(307)
             recv_msg = '["receive-stones",' + stone + ']'
             self.connection.sendall(recv_msg.encode())
         except:
+            print("Receive failed sending")
             return False
         else:
             self.stone = stone
