@@ -94,6 +94,7 @@ class Tournament(abc.ABC):
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()
+                connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 print("tournament @ 97", connection)
                 new_player = proxy_remote_player(connection, 'B', random_string())  # TODO player shouldnt take in stone
                 self.players.append(new_player)
