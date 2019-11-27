@@ -196,6 +196,7 @@ class player:
         return self.go_crazy()
 
     def make_a_move(self, boards):
+        print("Player make_a_move @ 199")
         # m = self.make_a_move_random_maybe_illegal(boards)
         # return m
         # don't make a move until a player has been registered with a given stone
@@ -286,7 +287,7 @@ class proxy_remote_player:
             return False
         except:
             print("Make a move failed receiving")
-            return False
+        return False
 
     def register(self):
         try:
@@ -294,8 +295,7 @@ class proxy_remote_player:
             # TODO make sure we don't get crazy msg returned
             data = self.connection.recv(recv_size)
             if data:
-                print(294,data.decode())
-            return True
+                return True
         except:
             print("Register failed sending")
             return False
