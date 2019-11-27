@@ -273,18 +273,25 @@ class proxy_remote_player:
     def make_a_move(self, boards):
         try:
             self.connection.sendall('["make-a-move",' + boards + ']'.encode())
+        except:
+            print("Make a move failed sending")
+            return False
+        try:
             data = self.connection.recv(recv_size)
             if data:
                 return data.decode()
             return False
         except:
-            print("Make a move failed")
+            print("Make a move failed receiving")
             return False
 
     def register(self):
         try:
             self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
+            data = self.connection.recv(recv_size)
+            if data:
+                print(294,data.decode())
             return True
         except:
             print("Register failed sending")
