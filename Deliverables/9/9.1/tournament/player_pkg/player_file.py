@@ -274,7 +274,8 @@ class proxy_remote_player:
 
     def make_a_move(self, boards):
         try:
-            self.connection.sendall('["make-a-move",' + boards + ']'.encode())
+            move_msg = '["make-a-move",' + boards + ']'
+            self.connection.sendall(move_msg.encode())
         except:
             print("Make a move failed sending")
             return False
@@ -301,7 +302,8 @@ class proxy_remote_player:
 
     def receive_stones(self, stone):
         try:
-            self.connection.sendall('["receive-stones",' + stone + ']'.encode())
+            recv_msg = '["receive-stones",' + stone + ']'
+            self.connection.sendall(recv_msg.encode())
         except:
             return False
         else:
