@@ -286,10 +286,12 @@ class proxy_remote_player:
             return False
         try:
             print(287)
+            print("connection in player-file make a move 289 before data.recv ", self.connection)
             data = self.connection.recv(recv_size)
+            print("connection in player-file make a move 291 after data.recv ", self.connection)
             print("player_file.py data: ", data)
             if data:
-                print("player_file,py data: ", data.decode())
+                print("player_file,py data in if statement: ", data.decode())
                 return data.decode()
             return False
         except Exception as e:
@@ -300,8 +302,10 @@ class proxy_remote_player:
         try:
             self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
+            print("connection in player-file register 305 before data.recv ", self.connection)
             data = self.connection.recv(recv_size)
-            print(302, data)
+            print("connection in player-file register 307 after data.recv ", self.connection)
+            print(308, data)
             if data:
                 return True
         except Exception as e:
@@ -316,7 +320,9 @@ class proxy_remote_player:
             recv_msg = '["receive-stones",' + stone + ']'
             print("player_File before sending recv_msg", recv_msg)
             print("recv_msg.encode", recv_msg.encode())
+            print("connection in player-file recieve stones 323 before selfconnect.recv ", self.connection)
             self.connection.sendall(recv_msg.encode())
+            print("connection in player-file recieve stones 325 after selfconnect.recv ", self.connection)
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
             return False
