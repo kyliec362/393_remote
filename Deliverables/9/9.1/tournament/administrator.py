@@ -117,7 +117,10 @@ class administrator:
     def run_game(self):
         self.setup_game()
         while True:
-            print("@ admin", 120, self.referee.current_player.connection)
+            try:
+                print("@ admin", 120, self.referee.current_player.connection)
+            except:
+                pass
             move = self.referee.current_player.make_a_move(self.referee.board_history)
             # if player didn't disconnect while making a move
             if move and self.check_input(move):
