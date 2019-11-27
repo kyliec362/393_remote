@@ -30,7 +30,7 @@ def set_depth():
 
 def get_socket_address():
     # return ("localhost", 8080)
-    config_file = open("../go.config", "r")
+    config_file = open("go.config", "r")
     socket_info = config_file.readlines()
     socket_info = list(stream(socket_info))[0]
     port = socket_info["port"]
@@ -295,7 +295,7 @@ class proxy_remote_player:
 
     def register(self):
         try:
-            self.connection.sendall('["register"]'.encode())
+            self.connection.send('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
             data = self.connection.recv(recv_size)
             if data:
@@ -308,7 +308,7 @@ class proxy_remote_player:
         try:
             print(307)
             recv_msg = '["receive-stones",' + stone + ']'
-            self.connection.sendall(recv_msg.encode())
+            self.connection.send(recv_msg.encode())
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
             return False
