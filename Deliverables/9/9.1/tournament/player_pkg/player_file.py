@@ -99,13 +99,13 @@ class player:
         return "no name"
 
     def receive_stones(self, stone):
-        if not self.is_stone(stone):
-            return self.go_crazy()
-        if self.receive_flag or not self.register_flag:
-            return self.go_crazy()
+        #if not self.is_stone(stone):
+        #    return self.go_crazy()
+        #if self.receive_flag or not self.register_flag:
+        #    return self.go_crazy()
         self.receive_flag = True
         self.stone = stone
-        return True
+        #return True
 
     def end_game(self):
         self.receive_flag = False
