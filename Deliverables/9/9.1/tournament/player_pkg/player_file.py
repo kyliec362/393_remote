@@ -297,7 +297,7 @@ class proxy_remote_player:
 
     def register(self):
         try:
-            self.connection.sendall('["register"]'.encode())
+            self.connection.sendall('["test"]'.encode())
             # TODO make sure we don't get crazy msg returned
             #data = self.connection.recv(recv_size)
             #print(302, data)
