@@ -391,15 +391,14 @@ class RankingInfo:
 def main():
     cup = 'cup'
     league = "league"
-    print(394)
     if len(sys.argv) != 3:
         return
-    tournament_style = str(sys.argv[1])[1:]
+    tournament_style = str(sys.argv[1])
     num_remote_players = int(sys.argv[2])
-    if tournament_style == cup:
+    if cup in tournament_style:
         c = Cup(num_remote_players)
         c.run_tournament()
-    if tournament_style == league:
+    if league in tournament_style:
         l = League(num_remote_players)
         l.run_tournament()
 
