@@ -91,13 +91,13 @@ class administrator:
     def set_client_done_flag(self):
         self.client_done_flag = not self.client_done_flag
 
-    def set_true_register_receive_flag(self, player):
-        player.register_flag = True
-        player.receive_flag = True
+    def set_true_register_receive_flag(self, p):
+        p.register_flag = True
+        p.receive_flag = True
 
-    def register_receive_player(self, player, stone):
-        player.register()
-        player.receive_stones(stone)
+    def register_receive_player(self, p, stone):
+        p.register()
+        p.receive_stones(stone)
 
     def end_game_update_winner(self, original_winner, cheated):
         ok = "OK"
