@@ -93,8 +93,8 @@ class administrator:
         self.client_done_flag = not self.client_done_flag
 
     def register_receive_player(self, p, stone):
-        print("admin @ 95", p.register())
-        print("admin @ 96", p.receive_stones(stone))
+        p.register()
+        p.receive_stones(stone)
 
     def end_game_update_winner(self, original_winner, cheated):
         ok = "OK"
@@ -118,12 +118,9 @@ class administrator:
     def run_game(self):
         self.setup_game()
         while True:
-            try:
-                print("@ admin", 120, self.referee.current_player.connection)
-            except:
-                pass
             move = self.referee.current_player.make_a_move(self.referee.board_history)
-            move = move.replace('"', '')
+            if isinstance(move, str):
+                move = move.replace('"', '')
             print("admin @ 125", move)
             # if player didn't disconnect while making a move
             if move and self.check_input(move):
