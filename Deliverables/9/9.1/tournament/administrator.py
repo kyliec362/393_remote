@@ -66,7 +66,7 @@ class administrator:
     def check_input(self, input):
         if input == "pass":
             return True
-        if input == crazy or input == history:
+        if crazy in input or history in input:
             return False
         try:
             parse_point(input)
