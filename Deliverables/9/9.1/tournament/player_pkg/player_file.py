@@ -6,6 +6,7 @@ sys.path.append('../')
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length
+import time
 
 maxIntersection = get_board_length()
 empty = " "
@@ -278,6 +279,7 @@ class proxy_remote_player:
     def make_a_move(self, boards):
         print(277)
         try:
+            time.sleep(1)
             move_msg = '["make_a_move",' + json.dumps(boards) + ']'
             print(279, move_msg)
             print(281, self.connection)
