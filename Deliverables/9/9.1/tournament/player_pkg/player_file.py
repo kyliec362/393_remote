@@ -286,7 +286,7 @@ class proxy_remote_player:
         print(277)
         try:
             #time.sleep(1)
-            move_msg = '["make_a_move",' + json.dumps(boards) + ']'
+            move_msg = '["make-a-move",' + json.dumps(boards) + ']'
             print(279, move_msg)
             print(281, self.connection)
             print("284 connection in player_file make_a_move before connection.send", self.connection)
