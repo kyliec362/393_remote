@@ -76,8 +76,6 @@ class administrator:
         finally:
             return True
 
-    # TODO add a while loop method that referees all moves until games over
-
     def referee_move(self, input):
         if self.referee.handle_move(input):
             return True
@@ -121,7 +119,7 @@ class administrator:
             move = self.referee.current_player.make_a_move(self.referee.board_history)
             if isinstance(move, str):
                 move = move.replace('"', '')
-            print("admin @ 125", move)
+            # print("admin @ 125", move)
             # if player didn't disconnect while making a move
             if move and self.check_input(move):
                 not_over = self.referee.handle_move(move)

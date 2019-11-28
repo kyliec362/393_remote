@@ -46,7 +46,6 @@ def random_string():
 class Tournament(abc.ABC):
 
     def __init__(self, num_remote_players):
-        print(49)
         self.port = info["port"]
         self.ip = info["IP"]
         self.sock = self.setup_server()
@@ -62,7 +61,6 @@ class Tournament(abc.ABC):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind((self.ip, self.port))
-        # sock.settimeout(40)
         sock.listen(5)
         return sock
 
@@ -82,7 +80,6 @@ class Tournament(abc.ABC):
             next_power_two = min(base, next_power_two)
         num_defaults = next_power_two - num_players
         for i in range(num_defaults):
-            print(84)
             #TODO player should get unique name and not need color set before game starts
             self.players += [default_player(white, random_string())]
         self.num_players = len(self.players)
@@ -90,18 +87,15 @@ class Tournament(abc.ABC):
 
     def set_players(self):
         num_joined = 0
-        print(93)
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()
                 connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                print("tournament @ 97", connection)
                 new_player = proxy_remote_player(connection, 'B', random_string())  # TODO player shouldnt take in stone
                 self.players.append(new_player)
                 self.players_connections[new_player] = connection
                 num_joined += 1
             except:
-                print("tournament @ 103 exception")
                 continue
         self.make_players_power_two()
 
@@ -132,6 +126,7 @@ class Cup(Tournament):
     def run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
+        print(129, winner_name)
         if player1.name == winner_name:
             if cheated:
                 return (player1, [player2])
@@ -147,6 +142,7 @@ class Cup(Tournament):
     def init_win_record(self):
         for p in self.players:
             self.win_record[p] = 0
+        print("win record size = " , len(self.win_record))
 
     def run_tournament(self):
         num_rounds = int(log(self.num_players, 2))
