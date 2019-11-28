@@ -117,21 +117,21 @@ class administrator:
         self.setup_game()
         while True:
             move = self.referee.current_player.make_a_move(self.referee.board_history)
-            if isinstance(move, str):
-                move = move.replace('"', '')
-            # print("admin @ 125", move)
             # if player didn't disconnect while making a move
-            if move and self.check_input(move):
-                not_over = self.referee.handle_move(move)
-                # if the game didn't end, continue to next turn
-                if not_over:
-                    continue
-                # game over, figure out the winner
-                # alert players it's game over (check for disconnects)
-                else:
-                    original_winner, cheated = self.referee.get_winner()
-                    # get the actual winner
-                    return self.end_game_update_winner(original_winner[0], cheated)
+            if move:
+                if isinstance(move, str):
+                    move = move.replace('"', '')
+                if self.check_input(move):
+                    not_over = self.referee.handle_move(move)
+                    # if the game didn't end, continue to next turn
+                    if not_over:
+                        continue
+                    # game over, figure out the winner
+                    # alert players it's game over (check for disconnects)
+                    else:
+                        original_winner, cheated = self.referee.get_winner()
+                        # get the actual winner
+                        return self.end_game_update_winner(original_winner[0], cheated)
             return self.opposite_wins()
 
 
