@@ -13,7 +13,7 @@ empty = " "
 black = "B"
 white = "W"
 n = 1
-recv_size = 1024  # amount we can receive at a time (pseudo arbitrary)
+recv_size = 8192  # amount we can receive at a time (pseudo arbitrary)
 
 crazy = "GO has gone crazy!"
 history = "This history makes no sense!"
