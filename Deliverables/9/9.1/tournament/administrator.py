@@ -21,6 +21,7 @@ white = "W"
 n = 1
 crazy = "GO has gone crazy!"
 history = "This history makes no sense!"
+bananas = "I am going bananas!"
 empty_board = make_empty_board()
 recv_size = 64
 
@@ -66,7 +67,7 @@ class administrator:
     def check_input(self, input):
         if input == "pass":
             return True
-        if crazy in input or history in input:
+        if crazy in input or history in input or bananas in input:
             return False
         try:
             parse_point(input)
