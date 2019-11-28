@@ -139,16 +139,20 @@ class player:
     def check_board_object(self, board):
         # check types
         if not isinstance(board, list):
+            print("check board @ 142")
             return False
         if not isinstance(board[0], list):
+            print("check board @ 145")
             return False
         # check dimensions
         if len(board) != maxIntersection or len(board[0]) != maxIntersection:
+            print("check board @ 149")
             return False
         # make sure all boards contain only maybe stones
         for i in range(maxIntersection):
             for j in range(maxIntersection):
                 if not self.is_maybe_stone(board[i][j]):
+                    print("check board @ 155")
                     return False
         return True
 
@@ -221,7 +225,9 @@ class player:
                         return non_capture_move
                     return "pass"
                 return history
+            print("crazy @ 224")
             return self.go_crazy()
+        print("crazy @ 226")
         return self.go_crazy()
 
     def make_capture_n_moves(self, n, curr_board, stone, point, boards):
