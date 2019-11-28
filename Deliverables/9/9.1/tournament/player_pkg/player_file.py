@@ -2,6 +2,7 @@ import sys
 import socket
 import json
 import random
+import time
 sys.path.append('../')
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
@@ -279,16 +280,14 @@ class proxy_remote_player:
             move_msg = '["make_a_move",' + json.dumps(boards) + ']'
             print(279, move_msg)
             print(281, self.connection)
-            self.connection.sendall(move_msg.encode())
-            import time
             time.sleep(5)
             self.connection.sendall(move_msg.encode())
-            time.sleep(5)
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
             return False
         try:
             print(287)
+            time.sleep(5)
             data = self.connection.recv(recv_size)
             print("player_file.py data: ", data)
             if data:

@@ -96,6 +96,7 @@ class administrator:
         import time
         time.sleep(5)
         print("admin @ 96", p.receive_stones(stone))
+        time.sleep(5)
 
     def end_game_update_winner(self, original_winner, cheated):
         ok = "OK"
