@@ -287,7 +287,9 @@ class proxy_remote_player:
             return False
         try:
             print(287)
+            print("connection in player_file make_a_move before data.recv", self.connection)
             data = self.connection.recv(recv_size)
+            print("connection in player_file make_a_move after data.recv", self.connection)
             print("player_file.py data: ", data)
             if data:
                 print("player_file,py data: ", data.decode())
