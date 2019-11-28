@@ -329,19 +329,16 @@ class proxy_remote_player:
         response = ""
         try:
             self.connection.sendall('["end-game"]'.encode())
-            while True:
-                received = self.connection.recv(recv_size)
-                if received:
-                    response += received.decode()
-                else:
-                    break
+            response = self.connection.recv(recv_size)
+            if response:
+                return True
         except Exception as e:
             print("End game failed sending. Exception is %s" % e)
             return False
         else:
             if response == "OK":
                 return response
-            return False
+        return False
 
 def main():
     set_depth()
