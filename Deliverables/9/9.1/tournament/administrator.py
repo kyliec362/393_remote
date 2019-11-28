@@ -102,6 +102,7 @@ class administrator:
         original_loser_player = self.referee.get_opposite_player_from_name(original_winner)
         response1 = original_winner_player.end_game()
         original_loser_player.end_game()
+        print(105)
         if not cheated and response1 != ok:
             return ([json.dumps(original_loser_player.name)], cheated)
         return ([json.dumps(original_winner_player.name)], cheated)
@@ -125,6 +126,7 @@ class administrator:
             # if player didn't disconnect while making a move
             if move and self.check_input(move):
                 not_over = self.referee.handle_move(move)
+                print(128, not_over)
                 # if the game didn't end, continue to next turn
                 if not_over:
                     continue
@@ -133,6 +135,7 @@ class administrator:
                 else:
                     original_winner, cheated = self.referee.get_winner()
                     # get the actual winner
+                    print(137, original_winner)
                     return self.end_game_update_winner(original_winner[0], cheated)
             return self.opposite_wins()
 

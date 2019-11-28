@@ -192,15 +192,15 @@ class player:
         return self.go_crazy()
 
     def make_a_move_end_game_quickly(self, boards):
-        r = random.randint(0, 10)
-        if r == 0:
-            return generate_random_point()
-        if r == 1:
-            return self.go_crazy()
-        if r == 2:
-            return history
-        if r >= 3:
-            return "pass"
+        # r = random.randint(0, 10)
+        # if r == 0:
+        #     return generate_random_point()
+        # if r == 1:
+        #     return self.go_crazy()
+        # if r == 2:
+        #     return history
+        # if r >= 3:
+        return "pass"
 
 
     def make_a_move(self, boards):
