@@ -132,6 +132,7 @@ class administrator:
                         original_winner, cheated = self.referee.get_winner()
                         # get the actual winner
                         return self.end_game_update_winner(original_winner[0], cheated)
+                return self.opposite_wins()
             return self.opposite_wins()
 
 
