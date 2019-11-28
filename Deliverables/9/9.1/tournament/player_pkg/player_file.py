@@ -279,12 +279,12 @@ class proxy_remote_player:
     def make_a_move(self, boards):
         print(277)
         try:
-            time.sleep(1)
+            #time.sleep(1)
             move_msg = '["make_a_move",' + json.dumps(boards) + ']'
             print(279, move_msg)
             print(281, self.connection)
             print("284 connection in player_file make_a_move before connection.send", self.connection)
-            self.connection.sendall(move_msg.encode())
+            self.connection.send(move_msg.encode())
             print("286 connection in player_file make_a_move after connection.send", self.connection)
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
