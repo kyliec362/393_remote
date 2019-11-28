@@ -299,10 +299,10 @@ class proxy_remote_player:
         try:
             self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
-            #data = self.connection.recv(recv_size)
-            #print(302, data)
-            #if data:
-            #    return True
+            data = self.connection.recv(recv_size)
+            print("303 and recv data that should be player object in register in proxy ", data)
+            if data:
+               return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             return False
