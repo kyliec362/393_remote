@@ -280,6 +280,10 @@ class proxy_remote_player:
             print(279, move_msg)
             print(281, self.connection)
             self.connection.sendall(move_msg.encode())
+            import time
+            time.sleep(5)
+            self.connection.sendall(move_msg.encode())
+            time.sleep(5)
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
             return False

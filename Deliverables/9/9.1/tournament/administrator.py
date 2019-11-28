@@ -93,6 +93,8 @@ class administrator:
 
     def register_receive_player(self, p, stone):
         print("admin @ 95", p.register())
+        import time
+        time.sleep(5)
         print("admin @ 96", p.receive_stones(stone))
 
     def end_game_update_winner(self, original_winner, cheated):
@@ -122,10 +124,7 @@ class administrator:
             except:
                 pass
             move = self.referee.current_player.make_a_move(self.referee.board_history)
-            move1 = self.referee.current_player.make_a_move(self.referee.board_history)
-            move2 = self.referee.current_player.make_a_move(self.referee.board_history)
-
-            print("admin @ 125", move, move1, move2)
+            print("admin @ 125", move)
             # if player didn't disconnect while making a move
             if move and self.check_input(move):
                 not_over = self.referee.handle_move(move)
