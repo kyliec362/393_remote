@@ -272,6 +272,8 @@ class proxy_remote_player:
         self.connection = connection
         self.name = name
         self.stone = stone
+        self.register_flag = False
+        self.receive_flag = False
 
     def make_a_move(self, boards):
         print(277)
@@ -302,7 +304,8 @@ class proxy_remote_player:
             data = self.connection.recv(recv_size)
             print("303 and recv data that should be player object in register in proxy ", data)
             if data:
-               return True
+                self.register_flag = True
+                return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             return False
@@ -320,6 +323,7 @@ class proxy_remote_player:
             print("Receive failed sending. Exception is %s" % e)
             return False
         else:
+            self.receive_flag = True
             self.stone = stone
             return True
 
