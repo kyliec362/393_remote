@@ -191,8 +191,20 @@ class player:
             return history
         return self.go_crazy()
 
+    def make_a_move_end_game_quickly(self, boards):
+        r = random.randint(0, 10)
+        if r == 0:
+            return generate_random_point()
+        if r == 1:
+            return self.go_crazy()
+        if r == 2:
+            return history
+        if r >= 3:
+            return "pass"
+
+
     def make_a_move(self, boards):
-        m = self.make_a_move_random_maybe_illegal(boards)
+        m = self.make_a_move_end_game_quickly(boards)
         return m
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
