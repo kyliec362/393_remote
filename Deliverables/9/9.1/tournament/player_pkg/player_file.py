@@ -321,7 +321,7 @@ class proxy_remote_player:
     def receive_stones(self, stone):
         try:
             print(307)
-            recv_msg = '["receive-stones",' + stone + ']'
+            recv_msg = '["receive-stones",' + '"' + stone + '"' + ']'
             print("player_File before sending recv_msg", recv_msg)
             print("recv_msg.encode", recv_msg.encode())
             self.connection.sendall(recv_msg.encode())
