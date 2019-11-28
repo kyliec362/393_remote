@@ -14,7 +14,6 @@ black = "B"
 white = "W"
 n = 1
 recv_size = 8192  # amount we can receive at a time (pseudo arbitrary)
-
 crazy = "GO has gone crazy!"
 history = "This history makes no sense!"
 
@@ -30,7 +29,6 @@ def set_depth():
 
 
 def get_socket_address():
-    # return ("localhost", 8080)
     config_file = open("go.config", "r")
     socket_info = config_file.readlines()
     socket_info = list(stream(socket_info))[0]
@@ -46,10 +44,8 @@ def client(message):
     response = ""
     try:
         sock.sendall(message.encode())
-        print("sent to tournament " + message)
         while True:
             received = sock.recv(recv_size)
-            print(51, received)
             if received:
                 response += received.decode()
             else:
@@ -106,7 +102,6 @@ class player:
         #    return self.go_crazy()
         self.receive_flag = True
         self.stone = stone
-        #return True
 
     def end_game(self):
         self.receive_flag = False
@@ -139,20 +134,16 @@ class player:
     def check_board_object(self, board):
         # check types
         if not isinstance(board, list):
-            print("check board @ 142")
             return False
         if not isinstance(board[0], list):
-            print("check board @ 145")
             return False
         # check dimensions
         if len(board) != maxIntersection or len(board[0]) != maxIntersection:
-            print("check board @ 149")
             return False
         # make sure all boards contain only maybe stones
         for i in range(maxIntersection):
             for j in range(maxIntersection):
                 if not self.is_maybe_stone(board[i][j]):
-                    print("check board @ 155")
                     return False
         return True
 
@@ -201,9 +192,8 @@ class player:
         return self.go_crazy()
 
     def make_a_move(self, boards):
-        print("Player make_a_move @ 199")
-        # m = self.make_a_move_random_maybe_illegal(boards)
-        # return m
+        m = self.make_a_move_random_maybe_illegal(boards)
+        return m
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
             if self.check_boards_object(boards):
@@ -283,26 +273,15 @@ class proxy_remote_player:
         self.receive_flag = False
 
     def make_a_move(self, boards):
-        print(277)
         try:
-            #time.sleep(1)
             move_msg = '["make-a-move",' + json.dumps(boards) + ']'
-            print(279, move_msg)
-            print(281, self.connection)
-            print("284 connection in player_file make_a_move before connection.send", self.connection)
             self.connection.sendall(move_msg.encode())
-            print("286 connection in player_file make_a_move after connection.send", self.connection)
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
             return False
         try:
-            print(287)
-            print("connection in player_file make_a_move before data.recv", self.connection)
             data = self.connection.recv(recv_size)
-            print("connection in player_file make_a_move after data.recv", self.connection)
-            print("player_file.py data: ", data)
             if data:
-                print("player_file,py data: ", data.decode())
                 return data.decode()
             return False
         except Exception as e:
@@ -314,22 +293,17 @@ class proxy_remote_player:
             self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
             data = self.connection.recv(recv_size)
-            print("303 and recv data that should be player object in register in proxy ", data)
             if data:
                 self.register_flag = True
                 return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             return False
-        #print(308, "register no exception but no responses")
         return True #False
 
     def receive_stones(self, stone):
         try:
-            print(307)
             recv_msg = '["receive-stones",' + '"' + stone + '"' + ']'
-            print("player_File before sending recv_msg", recv_msg)
-            print("recv_msg.encode", recv_msg.encode())
             self.connection.sendall(recv_msg.encode())
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
