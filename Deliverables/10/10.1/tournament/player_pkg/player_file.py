@@ -9,6 +9,10 @@ from rule_checker import rule_checker, get_opponent_stone, get_legal_moves
 from board import make_point, board, get_board_length, make_empty_board
 from const import *
 
+# TODO import from referee
+def update_board_history(new_board0, boards):
+    return [new_board0] + boards[:min(2, len(boards))]
+
 # read 'capture in n moves' depth from config file
 def set_depth():
     pass
@@ -374,9 +378,6 @@ class AlphaBetaPlayer(Player):
     def heuristic(self, curr_board):
         return board(curr_board).calculate_score()[self.stone]
 
-    def update_board_history(self, new_board0, boards):
-        return [new_board0] + boards[:min(2, len(boards))]
-
     def ab_minimax(self, depth, max_depth, is_maximizer, alpha, beta, boards):
         curr_board = boards[0]
         if is_maximizer:
@@ -392,7 +393,7 @@ class AlphaBetaPlayer(Player):
             for move in legal_moves:
                 if move != "pass":
                     updated_board = board(curr_board).place(self.stone, move)
-                updated_history = self.update_board_history(updated_board, boards)
+                updated_history = update_board_history(updated_board, boards)
                 result = self.ab_minimax(depth + 1, max_depth, not is_maximizer, alpha, beta, updated_history)
                 result[1] = move
                 max_eval = max(max_eval, result, key=lambda x: x[0])
@@ -406,7 +407,7 @@ class AlphaBetaPlayer(Player):
             for move in legal_moves:
                 if move != "pass":
                     updated_board = board(curr_board).place(self.stone, move)
-                updated_history = self.update_board_history(updated_board, boards)
+                updated_history = update_board_history(updated_board, boards)
                 result = self.ab_minimax(depth + 1, max_depth, not is_maximizer, alpha, beta, updated_history)
                 result[1] = move
                 min_eval = min(min_eval, result, key=lambda x: x[0])
@@ -417,40 +418,6 @@ class AlphaBetaPlayer(Player):
 
 def main():
     set_depth()
-
-    board2c = [["B", "B", "W", "B"],
-               ["W", "B", "W", " "],
-               ["W", " ", " ", " "],
-               ["B", "B", " ", " "]]
-    board2b = [["B", "B", "W", " "],
-               ["W", "B", "W", " "],
-               ["W", " ", " ", " "],
-               ["B", "B", " ", " "]]
-    board2a = [["B", "B", "W", " "],
-               ["W", "B", "W", " "],
-               ["W", " ", " ", " "],
-               ["B", "B", " ", " "]]
-
-    board_history2 = [board2c, board2b, board2a]
-
-    board1a = [["W", " ", " ", " "],
-               ["W", "B", " ", " "],
-               ["B", "B", " ", " "],
-               [" ", " ", " ", " "]]
-    board1b = [[" ", " ", " ", " "],
-               ["W", "B", " ", " "],
-               ["B", "B", " ", " "],
-               [" ", " ", " ", " "]]
-    board1c = [["W", "B", " ", " "],
-               [" ", "B", " ", " "],
-               [" ", " ", " ", " "],
-               [" ", " ", " ", " "]]
-
-    board_history1 = [board1a, board1b, board1c]
-    #
-    # AlphaBetaPlayer(black, "kylie", 2).register()
-    # AlphaBetaPlayer(black, "kylie", 2).receive_stones(black)
-    # print(AlphaBetaPlayer(black, "kylie", 2).make_a_move(board_history1))
 
 
 

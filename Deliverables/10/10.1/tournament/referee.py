@@ -7,12 +7,14 @@ from player_pkg.player_file import player
 import random
 from const import *
 
-
-
 empty_board = make_empty_board()
 
 def flip_coin():
     return random.randint(0, 1) == 0
+
+
+def update_board_history(new_board0, boards):
+    return [new_board0] + boards[:min(2, len(boards))]
 
 class referee:
     def __init__(self, player1, player2):
@@ -67,7 +69,7 @@ class referee:
             return False
 
     def update_board_history(self, new_board0):
-        self.board_history = [new_board0] + self.board_history[:min(2, len(self.board_history))]
+        self.board_history = update_board_history(new_board0, self.board_history)
 
     # returns winner if someone current player cheated
     def cheated(self):
