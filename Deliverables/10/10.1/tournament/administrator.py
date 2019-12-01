@@ -68,8 +68,6 @@ class administrator:
         finally:
             return True
 
-    # TODO add a while loop method that referees all moves until games over
-
     def referee_move(self, input):
         if self.referee.handle_move(input):
             return True

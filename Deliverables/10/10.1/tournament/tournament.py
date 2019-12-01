@@ -111,8 +111,6 @@ class Cup(Tournament):
         self.win_record = {}
         self.init_win_record()
 
-    # TODO reset receives stones call for each game
-
     def run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
@@ -145,7 +143,7 @@ class Cup(Tournament):
     def run_round(self, remaining_players, round_num):
         cheaters = []
         start, end = self.get_round_indices(round_num)
-        if start == end and start == 0: # only 2 players
+        if start == end and start == 0:  # only 2 players
             winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
             self.game_outcomes[0] = winner
             cheaters += cheater
@@ -341,17 +339,6 @@ class League(Tournament):
             game_dict = self.setup_single_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
         return self.rank()
-
-    # need only if need to make it pretty
-    # #used to generate all the game sets
-    # def generate_game_player_matches(self, num_players):
-    #     indice_player_list = [None for i in range(num_games)]
-    #     for i in range(num_players):
-    #         indice_player_list[i] = i
-    #     schedule_indices_unsorted = combinations(indice_player_list)
-    #     # could do something here to make the rounds pretty but don't think i absolutely need to
-    #     # schedule_indices_sorted = [None for i in range(schedule_indices_unsorted)]
-    #     # for i in range(len(schedule_indices_unsorted)):
 
     def get_round(self):
         return self.round_number
