@@ -1,5 +1,6 @@
 import sys
 import socket
+import abc
 import json
 import random
 sys.path.append('../')
@@ -52,13 +53,35 @@ def client(message):
 def generate_random_point():
     return make_point(random.randint(0, maxIntersection - 1), random.randint(0, maxIntersection - 1))
 
-class player:
-
+class Player(abc.ABC):
     function_names = ['register', 'receive_stones', 'make_a_move']
 
     def __init__(self, stone, name):
         self.stone = stone
         self.name = name
+        self.register_flag = False
+        self.receive_flag = False
+        self.crazy_flag = False
+
+    @abc.abstractmethod
+    def make_a_move(self, boards):
+        pass
+
+    @abc.abstractmethod
+    def register(self):
+        pass
+
+    @abc.abstractmethod
+    def receive_stones(self, stone):
+        pass
+
+
+class player(Player):
+
+    function_names = ['register', 'receive_stones', 'make_a_move']
+
+    def __init__(self, stone, name):
+        super().__init__(stone, name)
         self.register_flag = False
         self.receive_flag = False
         self.crazy_flag = False
@@ -265,14 +288,10 @@ class player:
         return False
 
 
-class proxy_remote_player:
+class proxy_remote_player(Player):
     def __init__(self, connection, stone, name):
-        # self.player = player(stone, name)
+        super().__init__(stone, name)
         self.connection = connection
-        self.name = name
-        self.stone = stone
-        self.register_flag = False
-        self.receive_flag = False
 
     def make_a_move(self, boards):
         try:
@@ -330,14 +349,24 @@ class proxy_remote_player:
                 return response
         return False
 
-class AlphaBetaPlayer():
+class AlphaBetaPlayer(Player):
     def __init__(self, stone, name, depth):
         self.depth = depth
+        super().__init__(stone, name)
+
+    def register(self):
+        if self.receive_flag or self.register_flag:
+            return self.go_crazy()
+        self.register_flag = True
+        return "no name"
+
+    def receive_stones(self, stone):
+        self.receive_flag = True
         self.stone = stone
-        self.name = name
-        self.register_flag = False
+
+    def end_game(self):
         self.receive_flag = False
-        self.crazy_flag = False
+        return "OK"
 
     def make_a_move(self, boards):
         return (self.ab_minimax(0, self.depth, True, NEG_INF, POS_INF, boards))[1]
@@ -388,7 +417,6 @@ class AlphaBetaPlayer():
 
 def main():
     set_depth()
-    #print(get_legal_moves([make_empty_board()], black))
 
     board2c = [["B", "B", "W", "B"],
                ["W", "B", "W", " "],
@@ -419,8 +447,10 @@ def main():
                [" ", " ", " ", " "]]
 
     board_history1 = [board1a, board1b, board1c]
-
-    print(AlphaBetaPlayer(black, "kylie", 2).make_a_move(board_history1))
+    #
+    # AlphaBetaPlayer(black, "kylie", 2).register()
+    # AlphaBetaPlayer(black, "kylie", 2).receive_stones(black)
+    # print(AlphaBetaPlayer(black, "kylie", 2).make_a_move(board_history1))
 
 
 
