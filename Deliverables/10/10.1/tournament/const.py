@@ -9,3 +9,4 @@ crazy = "GO has gone crazy!"
 history = "This history makes no sense!"
 bananas = "I am going bananas!"
 maxIntersection = 4
+no_name = "no name"

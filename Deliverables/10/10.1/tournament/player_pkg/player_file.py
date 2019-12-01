@@ -107,7 +107,7 @@ class player(Player):
         if self.receive_flag or self.register_flag:
             return self.go_crazy()
         self.register_flag = True
-        return "no name"
+        return no_name
 
     def receive_stones(self, stone):
         #if not self.is_stone(stone):
