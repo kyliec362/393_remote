@@ -8,7 +8,7 @@ import random
 from const import *
 
 
-maxIntersection = get_board_length()
+
 empty_board = make_empty_board()
 
 def flip_coin():

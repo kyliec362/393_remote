@@ -5,8 +5,6 @@ import copy
 import unittest
 from const import *
 
-# number of rows/columns on Go board
-maxIntersection = 4
 
 def make_empty_board():
     col = []

@@ -11,8 +11,6 @@ from board import get_board_length, make_empty_board
 from administrator import administrator
 from const import *
 
-# constants
-maxIntersection = get_board_length()
 empty_board = make_empty_board()
 
 

@@ -5,7 +5,6 @@ from board import board, make_point, get_board_length
 import copy
 from const import *
 
-maxIntersection = get_board_length()
 
 def get_legal_moves(boards, stone):
     legal_moves = ["pass"]

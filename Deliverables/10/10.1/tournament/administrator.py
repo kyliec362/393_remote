@@ -15,7 +15,6 @@ config_file.close()
 
 default_player = player
 
-maxIntersection = get_board_length()
 empty_board = make_empty_board()
 
 
