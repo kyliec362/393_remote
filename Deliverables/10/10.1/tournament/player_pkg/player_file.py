@@ -8,7 +8,7 @@ from matplotlib.widgets import TextBox
 sys.path.append('../')
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone, get_legal_moves
-from board import make_point, board, get_board_length, make_empty_board
+from board import make_point, board, get_board_length, make_empty_board, parse_point
 from const import *
 from test_boards import *
 
@@ -519,7 +519,7 @@ class GuiPlayer(Player):
 
 def main():
     set_depth()
-    GuiPlayer(black).make_a_move(board_history1)
+    print(GuiPlayer(black).make_a_move(board_history1))
 
 
 
