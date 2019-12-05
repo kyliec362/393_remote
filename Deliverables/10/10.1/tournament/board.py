@@ -31,11 +31,15 @@ def get_board_length():
 """
 def parse_point(point):
     point = point.split("-")
+    if len(point) != 2:
+        print("Invalid point ", point)
+        return False
     temp = int(point[0])
     point[0] = int(point[1])
     point[1] = temp
-    if len(point) > 2 or point[0] > maxIntersection or point[1] > maxIntersection or point[0] < 1 or point[1] < 1:
-        raise Exception("Invalid point")
+    if point[0] > maxIntersection or point[1] > maxIntersection or point[0] < 1 or point[1] < 1:
+        print("Invalid point ", point)
+        return False
     point[0] -= 1
     point[1] -= 1
     return point

@@ -59,14 +59,7 @@ class administrator:
     def check_input(self, input):
         if input == "pass":
             return True
-        if crazy in input or history in input or bananas in input:
-            return False
-        try:
-            parse_point(input)
-        except:
-            return False
-        finally:
-            return True
+        return bool(parse_point(input))
 
     def referee_move(self, input):
         if self.referee.handle_move(input):
