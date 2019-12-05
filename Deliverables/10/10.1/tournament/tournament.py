@@ -145,7 +145,7 @@ class Cup(Tournament):
 
     def __run_round(self, remaining_players, round_num):
         cheaters = []
-        start, end = self.get_round_indices(round_num)
+        start, end = self.__get_round_indices(round_num)
         if start == end and start == 0:  # only 2 players
             winner, cheater = self.__run_game(remaining_players[0], remaining_players[1])
             self.game_outcomes[0] = winner
@@ -157,15 +157,15 @@ class Cup(Tournament):
             self.game_outcomes[i] = winner
             cheaters += cheater
         self.eliminate_losers(round_num)
-        self.update_win_record(cheaters)
+        self.__update_win_record(cheaters)
 
 
     def eliminate_losers(self, round_num):
-        start, end = self.get_round_indices(round_num)
+        start, end = self.__get_round_indices(round_num)
         self.remaining_players = self.game_outcomes[start:end + 1]
 
     # inclusive indices
-    def get_round_indices(self, round_num):
+    def __get_round_indices(self, round_num):
         games_this_round = int(self.num_players / 2)
         start = 0
         end = games_this_round - 1
@@ -180,7 +180,7 @@ class Cup(Tournament):
         for key, value in sorted_ranks:
             print("Player : {} , Wins : {}".format(key.name, max(0, value)))
 
-    def update_win_record(self, cheaters):
+    def __update_win_record(self, cheaters):
         for player in self.remaining_players:
             if player in self.win_record:
                 self.win_record[player] += 1
