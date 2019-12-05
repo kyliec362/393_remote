@@ -6,9 +6,10 @@ private variables/methods
 
 unit tests 
 
-test with remote player locally
+test with remote player locally (make remote player)
 
 Thrusday code walk feedback:
 -clean up data structures
 -when added a new player after cheating, can abstract that to same code for adding players in beginning of game
 -for final presention, explain data structures first/early on
+-dont need to track loses in league
