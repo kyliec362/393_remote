@@ -109,9 +109,9 @@ class Cup(Tournament):
         super().__init__(num_remote_players)
         self.remaining_players = self.players
         self.game_outcomes = []
-        self.init_game_outcomes()
+        self.__init_game_outcomes()
         self.win_record = {}
-        self.init_win_record()
+        self.__init_win_record()
 
     def __run_game(self, player1, player2):
         admin = administrator(player1, player2)
@@ -125,10 +125,10 @@ class Cup(Tournament):
                 return (player2, [player1])
             return (player2, [])
 
-    def init_game_outcomes(self):
+    def __init_game_outcomes(self):
         self.game_outcomes = [None for i in range(self.num_players - 1)]
 
-    def init_win_record(self):
+    def __init_win_record(self):
         for p in self.players:
             self.win_record[p] = 0
 
