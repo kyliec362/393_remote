@@ -50,7 +50,6 @@ class Tournament(abc.ABC):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind((self.ip, self.port))
-        # sock.settimeout(40)
         sock.listen(5)
         return sock
 
@@ -63,12 +62,17 @@ class Tournament(abc.ABC):
     def make_players_power_two(self):
         base = 2
         num_players = len(self.players)
-        if num_players <= 0: # TODO change back to 2
-            next_power_two = 4
+        if num_players == 0: # TODO change back to 2
+            next_power_two = 2
         else:
             next_power_two = int(pow(base, ceil(log(num_players, base))))
-            next_power_two = min(base, next_power_two)
+            print(70, next_power_two)
+            next_power_two = max(base, next_power_two)
+            print(72, next_power_two)
         num_defaults = next_power_two - num_players
+        # if somehow something made number default players negative
+        if num_defaults < 0:
+            num_defaults = 0
         for i in range(num_defaults):
             #TODO player should get unique name and not need color set before game starts
             self.players += [default_player(white, random_string())]
@@ -138,6 +142,7 @@ class Cup(Tournament):
         # get winner
         self.close_connections()
         self.rank()
+        self.sock.close()
 
 
     def run_round(self, remaining_players, round_num):
@@ -247,20 +252,15 @@ class League(Tournament):
 
     def generate_schedule(self):
         num_players = self.num_players
-        num_games = int((num_players / 2) * (num_players - 1))
         indice_player_list = [None for i in range(num_players)]
         for i in range(num_players):
             indice_player_list[i] = i
         combs = itertools.combinations(indice_player_list, 2)
         self.schedule = list(combs)
-        # self.schedule = [None for i in range(num_games)]
-        # for i in range (num_games):
-        #     self.schedule[i] = combs.next()
 
     def set_players_names_arr(self):
         for i in range(self.num_players):
             self.players_names_arr[i] = self.players[i].name
-            # self.ranking_info_arr[i].name = self.players[i].name
 
     def get_players_names_arr(self):
         return self.players_names_arr
@@ -271,14 +271,10 @@ class League(Tournament):
         else:
             return player1.name
 
-    # TODO can prob just run the game here and return winner to scheduler sca
     # return dictionary winner: , loser:, cheater handle tie
     def setup_single_game(self, player1, player2):
-       # print("in setup single game")
         admin = administrator(player1, player2)
-        #print("before admin run game")
         winner_name, cheated = admin.run_game()
-        #print("after admin run game")
         dict_cheater_name = ""
         if cheated:
             dict_cheater_name = self.get_opposite_player_name(player1, player2, winner_name)
@@ -286,8 +282,6 @@ class League(Tournament):
         return return_dict
 
     def handle_game_result(self, game_dict, p1_indice, p2_indice, p1, p2):
-        # print("winner")
-        # print(game_dict["winner"])
         if game_dict["cheated"] == p1.name:
             self.ranking_info_arr[p2_indice].wins += 1
             self.handle_cheater(p1_indice)
@@ -328,10 +322,8 @@ class League(Tournament):
 
 
     def run_tournament(self):
-       # print("in run tournament")
         num_games = int((len(self.players) / 2) * (len(self.players) - 1))
         for i in range(num_games):
-            #print("in run tournament for loop")
             player_one_indice = self.schedule[i][0]
             player_two_indice = self.schedule[i][1]
             player_one = self.players[player_one_indice]
