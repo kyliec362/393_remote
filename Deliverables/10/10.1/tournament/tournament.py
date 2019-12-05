@@ -136,14 +136,14 @@ class Cup(Tournament):
         num_rounds = int(log(self.num_players, 2))
         # run though every round in tournament
         for i in range(num_rounds):
-            self.run_round(self.remaining_players, i)
+            self.__run_round(self.remaining_players, i)
         # get winner
         self.close_connections()
         self.rank()
         self.sock.close()
 
 
-    def run_round(self, remaining_players, round_num):
+    def __run_round(self, remaining_players, round_num):
         cheaters = []
         start, end = self.get_round_indices(round_num)
         if start == end and start == 0:  # only 2 players
