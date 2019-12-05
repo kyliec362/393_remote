@@ -59,24 +59,6 @@ class Tournament(abc.ABC):
     def get_players(self):
         return self.players
 
-    def make_players_power_two(self):
-        base = 2
-        num_players = len(self.players)
-        if num_players == 0: # TODO change back to 2
-            next_power_two = 2
-        else:
-            next_power_two = int(pow(base, ceil(log(num_players, base))))
-            next_power_two = max(base, next_power_two)
-        num_defaults = next_power_two - num_players
-        # if somehow something made number default players negative
-        if num_defaults < 0:
-            num_defaults = 0
-        for i in range(num_defaults):
-            #TODO player should get unique name and not need color set before game starts
-            self.players += [default_player(white, random_string())]
-        self.num_players = len(self.players)
-
-
     def set_players(self):
         num_joined = 0
         while num_joined < self.num_remote_players:
@@ -91,12 +73,34 @@ class Tournament(abc.ABC):
                 continue
         self.make_players_power_two()
 
+    def make_players_power_two(self):
+        base = 2
+        num_players = len(self.players)
+        if num_players == 0:
+            next_power_two = 2
+        else:
+            next_power_two = int(pow(base, ceil(log(num_players, base))))
+            next_power_two = max(base, next_power_two)
+        num_defaults = next_power_two - num_players
+        # if somehow something made number default players negative
+        if num_defaults < 0:
+            num_defaults = 0
+        for i in range(num_defaults):
+            #TODO player should get unique name and not need color set before game starts
+            self.players += [default_player(white, random_string())]
+        self.num_players = len(self.players)
+
+
     @abc.abstractmethod
     def rank(self):
         pass
 
     @abc.abstractmethod
     def run_tournament(self):
+        pass
+
+    @abc.abstractmethod
+    def run_game(self, player1, player2):
         pass
 
     @abc.abstractmethod
@@ -113,7 +117,7 @@ class Cup(Tournament):
         self.win_record = {}
         self.__init_win_record()
 
-    def __run_game(self, player1, player2):
+    def run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
         if player1.name == winner_name:
@@ -147,12 +151,12 @@ class Cup(Tournament):
         cheaters = []
         start, end = self.__get_round_indices(round_num)
         if start == end and start == 0:  # only 2 players
-            winner, cheater = self.__run_game(remaining_players[0], remaining_players[1])
+            winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
             self.game_outcomes[0] = winner
             cheaters += cheater
         j = 0
         for i in range(start, end + 1):
-            winner, cheater = self.__run_game(remaining_players[j], remaining_players[j + 1])
+            winner, cheater = self.run_game(remaining_players[j], remaining_players[j + 1])
             j += 2
             self.game_outcomes[i] = winner
             cheaters += cheater
@@ -255,7 +259,7 @@ class League(Tournament):
             return player1.name
 
     # return dictionary winner: , loser:, cheater handle tie
-    def setup_single_game(self, player1, player2):
+    def run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
         dict_cheater_name = ""
@@ -316,7 +320,7 @@ class League(Tournament):
             player_two_indice = self.schedule[i][1]
             player_one = self.players[player_one_indice]
             player_two = self.players[player_two_indice]
-            game_dict = self.setup_single_game(player_one, player_two)
+            game_dict = self.run_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
         return self.rank()
 
