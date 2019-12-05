@@ -8,5 +8,5 @@ recv_size_player = 8192  # amount we can receive at a time (pseudo arbitrary)
 crazy = "GO has gone crazy!"
 history = "This history makes no sense!"
 bananas = "I am going bananas!"
-maxIntersection = 4
+maxIntersection = 9
 no_name = "no name"

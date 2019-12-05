@@ -213,19 +213,19 @@ class player(Player):
         return self.go_crazy()
 
     def make_a_move_end_game_quickly(self, boards):
-        # r = random.randint(0, 10)
-        # if r == 0:
-        #     return generate_random_point()
-        # if r == 1:
-        #     return self.go_crazy()
-        # if r == 2:
-        #     return history
-        # if r >= 3:
-        return "pass"
+        r = random.randint(0, 10)
+        if r == 0:
+            return generate_random_point()
+        if r == 1:
+            return self.go_crazy()
+        if r == 2:
+            return history
+        if r >= 3:
+            return "pass"
 
 
     def make_a_move(self, boards):
-        m = self.make_a_move_random(boards)
+        m = self.make_a_move_end_game_quickly(boards)
         return m
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
@@ -424,7 +424,7 @@ class AlphaBetaPlayer(Player):
             return min_eval
 
 # class GuiPlayer(Player):
-#     def __init__(self, stone):
+#     def __init__(self, stone, name):
 #         name = ""
 #         self.name_from_user()
 #         super().__init__(stone, name)
@@ -433,6 +433,10 @@ class AlphaBetaPlayer(Player):
 #         self.crazy_flag = False
 #         self.next_move = None
 #         self.next_move_flag = False
+#
+#     def go_crazy(self):
+#         self.crazy_flag = True
+#         return crazy
 #
 #
 #     def register(self):
@@ -515,9 +519,9 @@ class AlphaBetaPlayer(Player):
 #             return self.next_move
 #         return "pass"
 #
-#
-#
-#
+
+
+
 
 
 
