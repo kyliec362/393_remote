@@ -156,11 +156,11 @@ class Cup(Tournament):
             j += 2
             self.game_outcomes[i] = winner
             cheaters += cheater
-        self.eliminate_losers(round_num)
+        self.__eliminate_losers(round_num)
         self.__update_win_record(cheaters)
 
 
-    def eliminate_losers(self, round_num):
+    def __eliminate_losers(self, round_num):
         start, end = self.__get_round_indices(round_num)
         self.remaining_players = self.game_outcomes[start:end + 1]
 
