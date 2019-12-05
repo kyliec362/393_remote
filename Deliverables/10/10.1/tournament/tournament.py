@@ -113,7 +113,7 @@ class Cup(Tournament):
         self.win_record = {}
         self.init_win_record()
 
-    def run_game(self, player1, player2):
+    def __run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
         if player1.name == winner_name:
@@ -147,12 +147,12 @@ class Cup(Tournament):
         cheaters = []
         start, end = self.get_round_indices(round_num)
         if start == end and start == 0:  # only 2 players
-            winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
+            winner, cheater = self.__run_game(remaining_players[0], remaining_players[1])
             self.game_outcomes[0] = winner
             cheaters += cheater
         j = 0
         for i in range(start, end + 1):
-            winner, cheater = self.run_game(remaining_players[j], remaining_players[j + 1])
+            winner, cheater = self.__run_game(remaining_players[j], remaining_players[j + 1])
             j += 2
             self.game_outcomes[i] = winner
             cheaters += cheater
