@@ -13,3 +13,4 @@ Thrusday code walk feedback:
 -when added a new player after cheating, can abstract that to same code for adding players in beginning of game
 -for final presention, explain data structures first/early on
 -dont need to track loses in league
+-be careful about using objects as dict keys (compiler may change addresses)
