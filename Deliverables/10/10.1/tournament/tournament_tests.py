@@ -35,6 +35,16 @@ class TournamentTests(unittest.TestCase):
         c.make_players_power_two()
         self.assertEqual(8, len(c.players))
 
+    def test_cup_private(self):
+        c = Cup(0)
+        # can't run game since that's a private function of Cup class
+        try:
+            getattr(c, "__run_game")
+        except AttributeError:
+            self.assertEqual(True,True)
+            return
+        self.assertEqual(True, False)
+
 
 if __name__ == "__main__":
     unittest.main(warnings='ignore')
