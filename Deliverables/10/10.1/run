@@ -1,2 +1,3 @@
 #!/bin/bash
+pip install matplotlib
 python3 tournament/tournament.py $1 $2
