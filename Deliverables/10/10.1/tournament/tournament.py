@@ -66,9 +66,7 @@ class Tournament(abc.ABC):
             next_power_two = 2
         else:
             next_power_two = int(pow(base, ceil(log(num_players, base))))
-            print(70, next_power_two)
             next_power_two = max(base, next_power_two)
-            print(72, next_power_two)
         num_defaults = next_power_two - num_players
         # if somehow something made number default players negative
         if num_defaults < 0:
@@ -210,7 +208,6 @@ class League(Tournament):
 
     # TODO format output
     def rank(self):
-        #print("In rank")
         ranks_list = self.get_num_ranks()
         ranks_list.sort()
         ranks_list.reverse()
@@ -226,9 +223,6 @@ class League(Tournament):
         output_string = "Final Rankings \n"
         for i in range(len(final_rankings)):
             output_string += str(i + 1) + " Place: " + str(final_rankings[i])
-            # tied_list = final_rankings[i]
-            # for j in range(len(tied_list)):
-            #     output_string += " , " + final_rankings[i][j]
         print(output_string)
         return final_rankings
 
@@ -242,8 +236,6 @@ class League(Tournament):
         all_wins = [None for i in range(self.num_players)]
         # count = 0
         for i in range(len(self.ranking_info_arr)):
-            # print("self.ranking_info_arr[i[")
-            # print(self.ranking_info_arr[i].losses)
             all_wins[i] = self.ranking_info_arr[i].wins
             # count = count + 1
         wins_no_duplicates = []
