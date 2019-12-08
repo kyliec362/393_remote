@@ -10,7 +10,6 @@ from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone, get_legal_moves
 from board import make_point, board, get_board_length, make_empty_board, parse_point
 from const import *
-from test_boards import *
 from referee import update_board_history
 
 # read 'capture in n moves' depth from config file
