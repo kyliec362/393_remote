@@ -1,10 +1,12 @@
 import abc
+sys.path.append('../')
+from const import *
 
 
 class Player(abc.ABC):
     function_names = ['register', 'receive_stones', 'make_a_move']
 
-    def __init__(self, stone, name):
+    def __init__(self,  stone=black, name="no name"):
         self.stone = stone
         self.name = name
         self.register_flag = False

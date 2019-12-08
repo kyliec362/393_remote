@@ -39,8 +39,8 @@ def client(message):
 
 
 class proxy_remote_player(Player):
-    def __init__(self, connection, stone, name):
-        super().__init__(stone, name)
+    def __init__(self, connection):
+        super().__init__()
         self.connection = connection
 
     def make_a_move(self, boards):
