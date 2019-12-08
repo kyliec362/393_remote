@@ -92,7 +92,6 @@ class Tournament(abc.ABC):
             self.players += [default_player(white, random_string())]
         self.num_players = len(self.players)
 
-
     @abc.abstractmethod
     def rank(self):
         pass
