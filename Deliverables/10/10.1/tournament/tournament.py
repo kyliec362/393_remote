@@ -143,6 +143,7 @@ class Cup(Tournament):
         start, end = self.__get_round_indices(round_num)
         if start == end and start == 0:  # only 2 players
             winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
+            print(146, winner)
             self.game_outcomes[0] = winner
             cheaters += cheater
         j = 0
