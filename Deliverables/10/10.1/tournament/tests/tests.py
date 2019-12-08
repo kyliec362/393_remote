@@ -1,3 +1,4 @@
+sys.path.append('../')
 import unittest
 from player_pkg.player_file import player, proxy_remote_player, AlphaBetaPlayer
 from const import *

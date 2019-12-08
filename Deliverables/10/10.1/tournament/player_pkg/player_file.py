@@ -3,7 +3,7 @@ import socket
 import abc
 import json
 import random
-# import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 # from matplotlib.widgets import TextBox
 sys.path.append('../')
 from streamy import stream

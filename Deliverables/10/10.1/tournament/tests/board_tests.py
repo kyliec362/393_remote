@@ -1,3 +1,4 @@
+sys.path.append('../')
 from board import board
 import unittest
 
