@@ -1,12 +1,15 @@
 from Player import Player
 import sys
+from matplotlib import pyplot as plt
+from matplotlib.widgets import TextBox
 sys.path.append('../')
 from const import *
-from board import make_point, board, get_board_length, make_empty_board
+from board import make_point, board, get_board_length, make_empty_board, parse_point
+from tests.test_boards import *
 
 
 class GuiPlayer(Player):
-    def __init__(self, stone, name):
+    def __init__(self, stone):
         name = ""
         self.name_from_user()
         super().__init__(stone, name)
