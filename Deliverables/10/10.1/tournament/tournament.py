@@ -67,7 +67,7 @@ class Tournament(abc.ABC):
             try:
                 connection, client_address = self.sock.accept()
                 connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                new_player = proxy_remote_player(connection, 'B', random_string())  # TODO player shouldnt take in stone
+                new_player = proxy_remote_player(connection) 
                 self.players.append(new_player)
                 self.players_connections[new_player] = connection
                 num_joined += 1
@@ -88,7 +88,6 @@ class Tournament(abc.ABC):
         if num_defaults < 0:
             num_defaults = 0
         for i in range(num_defaults):
-            #TODO player should get unique name and not need color set before game starts
             self.players += [default_player(random_string())]
         self.num_players = len(self.players)
 
@@ -284,7 +283,7 @@ class League(Tournament):
             self.ranking_info_arr[i].wins += 1
             self.ranking_info_arr[i].losses -= 1
         rand_player_name = random_string()
-        self.players[indice] = default_player(white, rand_player_name)
+        self.players[indice] = default_player(rand_player_name)
         self.players_names_arr[indice] = rand_player_name
         self.remove_cheater_defeated(indice)
         self.ranking_info_arr[indice] = RankingInfo()
