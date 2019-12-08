@@ -64,6 +64,7 @@ class proxy_remote_player(Player):
             self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
             data = self.connection.recv(recv_size_player)
+            print(data, 67)
             if data:
                 self.name = data.decode()
                 self.register_flag = True

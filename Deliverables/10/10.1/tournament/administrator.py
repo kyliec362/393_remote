@@ -68,7 +68,6 @@ class administrator:
 
     def setup_game(self):
         self.referee = referee(self.player1, self.player2)
-        print(71, self.player1.name, self.player2.name)
         self.register_receive_player(self.player1, black)
         self.register_receive_player(self.player2, white)
 

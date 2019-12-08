@@ -67,7 +67,7 @@ class Tournament(abc.ABC):
             try:
                 connection, client_address = self.sock.accept()
                 connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                new_player = proxy_remote_player(connection) 
+                new_player = proxy_remote_player(connection)
                 self.players.append(new_player)
                 self.players_connections[new_player] = connection
                 num_joined += 1
