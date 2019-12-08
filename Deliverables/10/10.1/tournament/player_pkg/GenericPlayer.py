@@ -51,7 +51,7 @@ class player(Player):
             return self.go_crazy()
 
     def register(self):
-        if self.receive_flag or self.register_flag:
+        if self.receive_flag:
             print(55, self.name)
             return self.go_crazy()
         self.register_flag = True
