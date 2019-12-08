@@ -52,16 +52,15 @@ class player(Player):
 
     def register(self):
         if self.receive_flag:
-            print(55, self.name)
-            return self.go_crazy()
+            self.go_crazy()
         self.register_flag = True
-        return no_name
+        # return no_name
 
     def receive_stones(self, stone):
-        #if not self.is_stone(stone):
-        #    return self.go_crazy()
-        #if self.receive_flag or not self.register_flag:
-        #    return self.go_crazy()
+        if not self.is_stone(stone):
+            self.go_crazy()
+        if self.receive_flag or not self.register_flag:
+            self.go_crazy()
         self.receive_flag = True
         self.stone = stone
 

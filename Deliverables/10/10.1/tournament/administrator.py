@@ -78,7 +78,6 @@ class administrator:
 
     def register_receive_player(self, p, stone):
         p.register()
-        #print(80, p.name)
         p.receive_stones(stone)
 
     def end_game_update_winner(self, original_winner, cheated):
