@@ -10,7 +10,7 @@ config_file = open("go.config", "r")
 info = list(stream(config_file.readlines()))[0]
 default_player_file_path = info["default-player"]
 player_pkg = __import__(default_player_file_path)
-from player_pkg import proxy_remote_player, player
+from player_pkg import *
 config_file.close()
 
 default_player = player
@@ -54,7 +54,7 @@ class administrator:
     # tuple of winner and whether the win was a result of cheating
     # (True means there was cheating, False means no cheating)
     def opposite_wins(self):
-        return ([json.dumps(self.referee.get_opposite_player().name)], True)
+        return [json.dumps(self.referee.get_opposite_player().name)], True
 
     def check_input(self, input):
         if input == "pass":
@@ -86,8 +86,8 @@ class administrator:
         response1 = original_winner_player.end_game()
         original_loser_player.end_game()
         if not cheated and response1 != ok:
-            return ([json.dumps(original_loser_player.name)], cheated)
-        return ([json.dumps(original_winner_player.name)], cheated)
+            return [json.dumps(original_loser_player.name)], cheated
+        return [json.dumps(original_winner_player.name)], cheated
 
     def get_player_from_name(self, name):
         if name == self.player1.name:

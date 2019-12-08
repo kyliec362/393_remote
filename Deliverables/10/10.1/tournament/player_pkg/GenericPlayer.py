@@ -7,8 +7,10 @@ from const import *
 from rule_checker import rule_checker, get_opponent_stone, get_legal_moves
 from board import make_point, board, get_board_length, make_empty_board, parse_point
 
+
 def generate_random_point():
     return make_point(random.randint(0, maxIntersection - 1), random.randint(0, maxIntersection - 1))
+
 
 # read 'capture in n moves' depth from config file
 def set_depth():
@@ -19,6 +21,7 @@ def set_depth():
     print(depth_info)
     global n
     n = depth_info["depth"]
+
 
 class player(Player):
 
@@ -164,6 +167,8 @@ class player(Player):
     def make_a_move(self, boards):
         m = self.make_a_move_end_game_quickly(boards)
         return m
+
+    def make_a_move_capture(self, boards):
         # don't make a move until a player has been registered with a given stone
         if self.receive_flag and self.register_flag:
             if self.check_boards_object(boards):

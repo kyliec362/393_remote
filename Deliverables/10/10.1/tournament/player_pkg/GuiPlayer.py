@@ -105,11 +105,6 @@ class GuiPlayer(Player):
         return "pass"
 
 
-
-
-
-
-
 def main():
     print(GuiPlayer(black).make_a_move(board_history1))
 
