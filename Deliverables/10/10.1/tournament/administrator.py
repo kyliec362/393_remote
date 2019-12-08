@@ -70,6 +70,7 @@ class administrator:
         self.referee = referee(self.player1, self.player2)
         self.register_receive_player(self.player1, black)
         self.register_receive_player(self.player2, white)
+        print(73, self.player1.name, self.player1.stone, self.player2.name, self.player2.stone)
 
 
     def set_client_done_flag(self):
