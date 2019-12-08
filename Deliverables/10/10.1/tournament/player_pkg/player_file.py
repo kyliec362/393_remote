@@ -3,7 +3,7 @@ import socket
 import abc
 import json
 import random
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 # from matplotlib.widgets import TextBox
 sys.path.append('../')
 from streamy import stream
@@ -11,10 +11,7 @@ from rule_checker import rule_checker, get_opponent_stone, get_legal_moves
 from board import make_point, board, get_board_length, make_empty_board, parse_point
 from const import *
 from test_boards import *
-
-# TODO import from referee
-def update_board_history(new_board0, boards):
-    return [new_board0] + boards[:min(2, len(boards))]
+from referee import update_board_history
 
 # read 'capture in n moves' depth from config file
 def set_depth():
