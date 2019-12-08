@@ -89,7 +89,7 @@ class Tournament(abc.ABC):
             num_defaults = 0
         for i in range(num_defaults):
             #TODO player should get unique name and not need color set before game starts
-            self.players += [default_player(white, random_string())]
+            self.players += [default_player(random_string())]
         self.num_players = len(self.players)
 
     @abc.abstractmethod
