@@ -243,7 +243,7 @@ class League(Tournament):
         winner_name, cheated = admin.run_game()
         dict_cheater_name = ""
         if cheated:
-            dict_cheater_name = self.get_opposite_player_name(player1, player2, winner_name)[0]
+            dict_cheater_name = self.get_opposite_player_name(player1, player2, winner_name)
         return_dict = {"winner": winner_name, "cheated": dict_cheater_name}
         return return_dict
 
