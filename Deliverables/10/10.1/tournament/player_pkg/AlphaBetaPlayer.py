@@ -8,9 +8,9 @@ def update_board_history(new_board0, boards):
     return [new_board0] + boards[:min(2, len(boards))]
 
 class AlphaBetaPlayer(Player):
-    def __init__(self, stone, name, depth):
+    def __init__(self, name, depth):
         self.depth = depth
-        super().__init__(stone, name)
+        super().__init__(name=name)
 
     def register(self):
         if self.receive_flag or self.register_flag:

@@ -28,8 +28,7 @@ class player(Player):
     function_names = ['register', 'receive_stones', 'make_a_move']
 
     def __init__(self, name):
-        super().__init__()
-        self.name = name
+        super().__init__(name=name)
         self.register_flag = False
         self.receive_flag = False
         self.crazy_flag = False

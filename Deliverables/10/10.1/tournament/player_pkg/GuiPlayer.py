@@ -9,10 +9,9 @@ from tests.test_boards import *
 
 
 class GuiPlayer(Player):
-    def __init__(self, stone):
-        name = ""
+    def __init__(self):
         self.name_from_user()
-        super().__init__(stone, name)
+        super().__init__(name=self.name)
         self.register_flag = False
         self.receive_flag = False
         self.crazy_flag = False
@@ -28,7 +27,7 @@ class GuiPlayer(Player):
         if self.receive_flag or self.register_flag:
             return self.go_crazy()
         self.register_flag = True
-        return no_name
+        return self.name
 
     def receive_stones(self, stone):
         self.receive_flag = True
@@ -106,7 +105,7 @@ class GuiPlayer(Player):
 
 
 def main():
-    print(GuiPlayer(black).make_a_move(board_history1))
+    print(GuiPlayer().make_a_move(board_history1))
 
 
 
