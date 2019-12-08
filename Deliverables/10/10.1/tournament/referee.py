@@ -3,25 +3,27 @@ import json
 from streamy import stream
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length, make_empty_board
-from player_pkg.player_file import player
+from player_pkg.Player import Player
 import random
 from const import *
 
 empty_board = make_empty_board()
 
-def flip_coin():
-    return random.randint(0, 1) == 0
-
 
 def update_board_history(new_board0, boards):
     return [new_board0] + boards[:min(2, len(boards))]
+
+
+def flip_coin():
+    return random.randint(0, 1) == 0
+
 
 class referee:
     def __init__(self, player1, player2):
         self.player_count = 0
         self.player1 = player1
         self.player2 = player2
-        if isinstance(player1, player) and isinstance(player2, player):
+        if isinstance(player1, player) and isinstance(player2, Player):
             self.player_count = 2
         self.pass_count = 0
         self.board_history = [empty_board]
@@ -92,28 +94,7 @@ class referee:
 
 
 def main():
-    """
-    Test Driver reads json objects from stdin
-    Uses the streamy library to parse
-    Queries player
-    :return: list of json objects
-    """
-    file_contents = ""  # read in all json objects to a string
-    special_json = sys.stdin.readline()
-    while special_json:
-        file_contents += special_json
-        special_json = sys.stdin.readline()
-    lst = list(stream(file_contents))  # parse json objects
-    # assuming input is correctly formatting,
-    # the second item in the second input obj should contain the stone
-    player1 = player(black, lst[0])
-    player2 = player(white, lst[1])
-    ref = referee(player1, player2)
-    for query in lst[2:]:
-        result = ref.handle_move(query)
-        if not result:
-            break
-    print(json.dumps(ref.game_output))
+    pass
 
 
 if __name__ == "__main__":
