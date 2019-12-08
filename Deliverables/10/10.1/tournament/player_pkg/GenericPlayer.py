@@ -14,7 +14,6 @@ def generate_random_point():
 
 # read 'capture in n moves' depth from config file
 def set_depth():
-    #pass
     config_file = open("go-player.config", "r")
     depth = config_file.readlines()
     depth_info = list(stream(depth))[0]
@@ -27,8 +26,11 @@ class player(Player):
 
     function_names = ['register', 'receive_stones', 'make_a_move']
 
-    def __init__(self, name):
-        super().__init__(name=name)
+    def __init__(self, name=None):
+        if name is None:
+            super().__init__()
+        else:
+            super().__init__(name=name)
         self.register_flag = False
         self.receive_flag = False
         self.crazy_flag = False

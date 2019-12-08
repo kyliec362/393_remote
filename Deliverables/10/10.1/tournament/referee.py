@@ -3,16 +3,9 @@ from board import make_point, board, get_board_length, make_empty_board
 from player_pkg.Player import Player
 import random
 from const import *
+from utils import update_board_history, flip_coin
 
 empty_board = make_empty_board()
-
-
-def update_board_history(new_board0, boards):
-    return [new_board0] + boards[:min(2, len(boards))]
-
-
-def flip_coin():
-    return random.randint(0, 1) == 0
 
 
 class referee:

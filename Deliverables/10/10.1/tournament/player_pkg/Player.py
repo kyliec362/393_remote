@@ -1,13 +1,16 @@
 import abc
 import sys
+import random
+import string
 sys.path.append('../')
 from const import *
+from utils import random_string
 
 
 class Player(abc.ABC):
     function_names = ['register', 'receive_stones', 'make_a_move']
 
-    def __init__(self,  stone=black, name="no name"):
+    def __init__(self,  stone=black, name=random_string()):
         self.stone = stone
         self.name = name
         self.register_flag = False

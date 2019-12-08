@@ -6,8 +6,6 @@ import itertools
 import random
 import string
 import math
-# from matplotlib import pyplot as plt
-# # from matplotlib.widgets import TextBox
 from streamy import stream
 from board import get_board_length, make_empty_board
 from administrator import administrator
@@ -24,13 +22,6 @@ player_pkg = __import__(default_player_file_path)
 from player_pkg import proxy_remote_player, player
 default_player = player
 config_file.close()
-
-
-def random_string():
-    """Generate a random string of fixed length """
-    length = 5
-    letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(length))
 
 
 # cup and robin classes implement tournament interface
@@ -88,7 +79,7 @@ class Tournament(abc.ABC):
         if num_defaults < 0:
             num_defaults = 0
         for i in range(num_defaults):
-            self.players += [default_player(random_string())]
+            self.players += [default_player()]
         self.num_players = len(self.players)
 
     @abc.abstractmethod
@@ -283,7 +274,7 @@ class League(Tournament):
             self.ranking_info_arr[i].wins += 1
             self.ranking_info_arr[i].losses -= 1
         rand_player_name = random_string()
-        self.players[indice] = default_player(rand_player_name)
+        self.players[indice] = default_player(name=rand_player_name)
         self.players_names_arr[indice] = rand_player_name
         self.remove_cheater_defeated(indice)
         self.ranking_info_arr[indice] = RankingInfo()

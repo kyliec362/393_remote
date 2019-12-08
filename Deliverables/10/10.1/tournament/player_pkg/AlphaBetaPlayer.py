@@ -2,15 +2,13 @@ import sys
 from .Player import Player
 sys.path.append('../')
 from const import *
+from utils import update_board_history
 
-#TODO import from referee
-def update_board_history(new_board0, boards):
-    return [new_board0] + boards[:min(2, len(boards))]
 
 class AlphaBetaPlayer(Player):
-    def __init__(self, name, depth):
+    def __init__(self, depth="1"):
         self.depth = depth
-        super().__init__(name=name)
+        super().__init__()
 
     def register(self):
         if self.receive_flag or self.register_flag:
