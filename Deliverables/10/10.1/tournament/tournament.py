@@ -6,8 +6,8 @@ import itertools
 import random
 import string
 import math
-import matplotlib.pyplot as plt
-from matplotlib.widgets import TextBox
+from matplotlib import pyplot as plt
+# from matplotlib.widgets import TextBox
 from streamy import stream
 from board import get_board_length, make_empty_board
 from administrator import administrator
