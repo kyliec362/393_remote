@@ -73,7 +73,8 @@ class proxy_remote_player(Player):
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             return False
-        return True #False
+        print("Register failed without an exception")
+        return False
 
     def receive_stones(self, stone):
         try:
