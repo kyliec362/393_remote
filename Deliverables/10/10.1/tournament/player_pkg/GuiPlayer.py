@@ -1,6 +1,8 @@
 from Player import Player
-from board import make_point, board, get_board_length, make_empty_board
+import sys
+sys.path.append('../')
 from const import *
+from board import make_point, board, get_board_length, make_empty_board
 
 
 class GuiPlayer(Player):

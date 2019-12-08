@@ -23,7 +23,7 @@ class referee:
         self.player_count = 0
         self.player1 = player1
         self.player2 = player2
-        if isinstance(player1, player) and isinstance(player2, Player):
+        if isinstance(player1, Player) and isinstance(player2, Player):
             self.player_count = 2
         self.pass_count = 0
         self.board_history = [empty_board]

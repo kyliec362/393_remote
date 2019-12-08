@@ -1,7 +1,11 @@
 import sys
 from .Player import Player
 sys.path.append('../')
-from referee import update_board_history
+from const import *
+
+#TODO import from referee
+def update_board_history(new_board0, boards):
+    return [new_board0] + boards[:min(2, len(boards))]
 
 class AlphaBetaPlayer(Player):
     def __init__(self, stone, name, depth):

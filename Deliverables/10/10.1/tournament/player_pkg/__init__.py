@@ -1,4 +1,5 @@
-from .player_file import proxy_remote_player, player
+from .ProxyRemotePlayer import proxy_remote_player
+from .GenericPlayer import player
 from .AlphaBetaPlayer import AlphaBetaPlayer
 from .Player import Player
 
