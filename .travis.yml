@@ -1,6 +1,9 @@
 env:
  - ASSIGN_MAJOR=10 ASSIGN_MINOR=1 TEAM_NAME=team30
 
+install:
+  - sudo apt-get install python-matplotlib
+
 script:
  - pushd Deliverables/$ASSIGN_MAJOR/$ASSIGN_MAJOR.$ASSIGN_MINOR
  - make
