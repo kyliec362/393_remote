@@ -82,7 +82,6 @@ class Tournament(abc.ABC):
         if num_defaults < 0:
             num_defaults = 0
         for i in range(num_defaults):
-            print("tourn @ 85")
             self.players += [default_player()]
         self.num_players = len(self.players)
 
@@ -133,9 +132,11 @@ class Cup(Tournament):
 
     def run_tournament(self):
         num_rounds = int(log(self.num_players, 2))
+        print("tourn @ 135", num_rounds, range(num_rounds))
         # run though every round in tournament
         for i in range(num_rounds):
             self.__run_round(self.remaining_players, i)
+            print("tourn @ 139", i)
         # get winner
         self.close_connections()
         self.rank()

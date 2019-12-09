@@ -1,4 +1,4 @@
-from Player import Player
+from .Player import Player
 import sys
 from matplotlib import pyplot as plt
 from matplotlib.widgets import TextBox

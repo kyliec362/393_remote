@@ -28,7 +28,7 @@ class player(Player):
     function_names = ['register', 'receive_stones', 'make_a_move', 'end_game']
 
     def __init__(self, name=random_string()):
-        print("generic @ 30", name)
+        # print("generic @ 30", name)
         if name is None:
             super().__init__()
         else:
@@ -46,19 +46,19 @@ class player(Player):
             method = query_lst[0].replace("-", "_")
             args = query_lst[1:]
             if method not in self.function_names:
-                print("query 47")
+                # print("query 47")
                 return self.go_crazy()
             method = getattr(self, method)
             if method:
                 return method(*args)
-            print("query 51")
+            # print("query 51")
             return self.go_crazy()
         except:
-            print("query 54")
+            # print("query 54")
             return self.go_crazy()
 
     def register(self):
-        print("generic @ 56")
+        # print("generic @ 56")
         if self.receive_flag:
             self.go_crazy()
         self.register_flag = True
@@ -175,7 +175,7 @@ class player(Player):
 
 
     def make_a_move(self, boards):
-        m = self.make_a_move_end_game_quickly(boards)
+        m = self.make_a_move_random_maybe_illegal(boards)
         return m
 
     def make_a_move_capture(self, boards):

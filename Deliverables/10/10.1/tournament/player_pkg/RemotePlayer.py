@@ -3,8 +3,8 @@ import sys
 sys.path.append('../')
 from streamy import stream
 from const import *
-from player_pkg import player
-default_player = player
+from player_pkg import player, GuiPlayer
+default_player = GuiPlayer
 
 def query(p, query_lst):
     # don't keep playing if we've gone crazy (deviated from following rules)
@@ -39,49 +39,61 @@ def get_connection_socket():
     sock.connect(server_address)
     return sock
 
-
-def client(sock, message):
-    print("remote 40", sock)
+def client_recv(sock):
     response = ""
-    print("client @ 42", message)
     try:
-        sock.sendall(message.encode())
         while True:
             received = sock.recv(recv_size_player)
-            print("client @ 46", received)
+            print("client @ 47", received)
             if received:
                 response += received.decode()
-            else:
+            break
+    except:
+        pass
+    return response
+
+
+def client(sock, message):
+    # print("remote 57", sock)
+    response = ""
+    # print("client @ 59", message)
+    try:
+        if message is not None:
+            sock.sendall(message.encode())
+            while True:
+                received = sock.recv(recv_size_player)
+                # print("client @ 65", received)
+                if received:
+                    response += received.decode()
                 break
     except:
-        #sock.close()
-        return response
-    #finally:
-        #sock.close()
+        pass
     return response
 
 
 def main():
     sock = get_connection_socket()
-    print("remote @ 59")
+    end_game_flag = False
+    # print("remote @ 59")
     proxy = default_player()
     server_response = client(sock, "WITNESS ME")
-    print("remote @ 62", server_response)
-    while True:
+    # print("remote @ 62", server_response)
+    while not end_game_flag:
         if len(server_response) < 1:
-            print("remote @ 67")
-            break
+            server_response = client_recv(sock)
         try:
             qry = list(stream(server_response))[0]  # parse json objects
             print("remote @ 68", qry)
         except:
-            print("remote @ 73")
+            # print("remote @ 73")
             proxy.go_crazy()
         else:
+            if "end" in qry[0]:
+                end_game_flag = True
             result = query(proxy, qry)
-            print("remote @ 78", result)
+            # print("remote @ 78", result)
             server_response = client(sock, result)
-    print("remote at 79")
+    # print("remote at 79")
     sock.close()
     return
 

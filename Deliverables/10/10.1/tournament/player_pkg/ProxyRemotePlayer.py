@@ -18,17 +18,17 @@ class proxy_remote_player(Player):
     def make_a_move(self, boards):
         print("proxy 17", self.connection)
         try:
-            move_msg = json.dumps('["make-a-move",' + json.dumps(boards) + ']')
+            move_msg = '["make-a-move",' + json.dumps(boards) + ']'
             print("proxy 20", self.connection)
-            time.sleep(3)
             self.connection.sendall(move_msg.encode())
             print("proxy 22", self.connection)
-
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
             return False
         try:
+            print("proxy 29")
             data = self.connection.recv(recv_size_player)
+            print("proxy 31", data)
             if data:
                 return data.decode()
             return False
@@ -37,13 +37,13 @@ class proxy_remote_player(Player):
             return False
 
     def register(self):
-        print("proxy @ 33")
+        # print("proxy @ 33")
         try:
             self.connection.sendall('["register"]'.encode())
             # TODO make sure we don't get crazy msg returned
-            print("proxy @ 37", self.connection)
+            # print("proxy @ 37", self.connection)
             data = self.connection.recv(recv_size_player)
-            print("proxy @ 39", data, self.connection)
+            # print("proxy @ 39", data, self.connection)
             if data:
                 self.name = data.decode()
                 self.register_flag = True

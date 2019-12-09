@@ -11,7 +11,7 @@ class Player(abc.ABC):
     function_names = ['register', 'receive_stones', 'make_a_move']
 
     def __init__(self,  stone=black, name=random_string()):
-        print("Player 14", name)
+        # print("Player 14", name)
         self.stone = stone
         self.name = name
         self.register_flag = False

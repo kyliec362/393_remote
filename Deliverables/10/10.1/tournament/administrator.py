@@ -82,6 +82,7 @@ class administrator:
         p.receive_stones(stone)
 
     def end_game_update_winner(self, original_winner, cheated):
+        print("admin @ 85 end game")
         ok = "OK"
         original_winner_player = self.get_player_from_name(original_winner)
         original_loser_player = self.referee.get_opposite_player_from_name(original_winner)
