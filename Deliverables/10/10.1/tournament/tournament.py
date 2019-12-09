@@ -53,10 +53,13 @@ class Tournament(abc.ABC):
         return self.players
 
     def set_players(self):
+        print("tourn @ 56", self.num_remote_players)
         num_joined = 0
         while num_joined < self.num_remote_players:
+            print("tourn @ 59", num_joined)
             try:
                 connection, client_address = self.sock.accept()
+                print(60, connection.recv(recv_size_player)) # if something was sent, read to remove from queue of connection msgs
                 connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 new_player = proxy_remote_player(connection)
                 self.players.append(new_player)
@@ -79,6 +82,7 @@ class Tournament(abc.ABC):
         if num_defaults < 0:
             num_defaults = 0
         for i in range(num_defaults):
+            print("tourn @ 85")
             self.players += [default_player()]
         self.num_players = len(self.players)
 

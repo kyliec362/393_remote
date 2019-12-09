@@ -67,10 +67,11 @@ class administrator:
         return False
 
     def setup_game(self):
+        print("admin @ 70")
         self.referee = referee(self.player1, self.player2)
         self.register_receive_player(self.player1, black)
         self.register_receive_player(self.player2, white)
-        print(73, self.player1.name, self.player1.stone, self.player2.name, self.player2.stone)
+        print("admin @ 73", self.player1.name, self.player1.stone, self.player2.name, self.player2.stone)
 
 
     def set_client_done_flag(self):
@@ -102,7 +103,9 @@ class administrator:
     def run_game(self):
         self.setup_game()
         while True:
+            # TODO check if player disconnects mid game
             move = self.referee.current_player.make_a_move(self.referee.board_history)
+            print("admin @ 108", move)
             if isinstance(move, str):
                 move = move.replace('"', '')
             # if player didn't disconnect while making a move
