@@ -55,16 +55,20 @@ class administrator:
     def opposite_wins(self):
         return [self.referee.get_opposite_player().name], True
 
+    # checking to see the if the input is pass and if it is then returning true otherwise checking to make sure
+    # parse_point is true if so return
     def check_input(self, input):
         if input == "pass":
             return True
         return bool(parse_point(input))
 
+    # calls referee handle move function and if true returns true otherwise says bad move with false
     def referee_move(self, input):
         if self.referee.handle_move(input):
             return True
         return False
 
+    # sets up the game by initializing the referee and calling register and receive for the players
     def setup_game(self):
         self.referee = referee(self.player1, self.player2)
         self.register_receive_player(self.player1, black)
@@ -74,6 +78,8 @@ class administrator:
         p.register()
         p.receive_stones(stone)
 
+    # if the end game response does not go through switch the winner to the other player because they cheat otherwise
+    # return the original winner
     def end_game_update_winner(self, original_winner, cheated):
         ok = "OK"
         original_winner_player = self.get_player_from_name(original_winner)
@@ -84,6 +90,7 @@ class administrator:
             return [json.dumps(original_loser_player.name)], cheated
         return [json.dumps(original_winner_player.name)], cheated
 
+    # given a name return the player associated with that name
     def get_player_from_name(self, name):
         if name == self.player1.name:
             return self.player1
@@ -93,6 +100,7 @@ class administrator:
             print(name, self.player1.name, self.player2.name)
             raise Exception("Invalid name given")
 
+    # setting up the game and then running it
     def run_game(self):
         self.setup_game()
         while True:
