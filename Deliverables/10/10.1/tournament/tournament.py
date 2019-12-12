@@ -104,10 +104,13 @@ class Cup(Tournament):
         super().__init__(num_remote_players)
         self.remaining_players = self.players
         self.game_outcomes = []
+        # after running a game, put the winner in the index corresponding to that game number
         self.__init_game_outcomes()
         self.win_record = {}
         self.__init_win_record()
 
+    # runs game between two players via game admin
+    # return tuple with winner and json list of cheaters
     def run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
@@ -120,13 +123,18 @@ class Cup(Tournament):
                 return (player2, [player1])
             return (player2, [])
 
+    # each index in game outcomes corresponds to a game
     def __init_game_outcomes(self):
         self.game_outcomes = [None for i in range(self.num_players - 1)]
 
+    # init a map of players to number of games won (win record used for rankings later)
     def __init_win_record(self):
         for p in self.players:
             self.win_record[p] = 0
 
+    # for each round in the tournament (determined by number of players)
+    # when running each round, track wins/losses/cheaters
+    # after all games, close remote player connections and server socket + print out final rankings
     def run_tournament(self):
         num_rounds = int(log(self.num_players, 2))
         # run though every round in tournament
@@ -137,14 +145,17 @@ class Cup(Tournament):
         self.rank()
         self.sock.close()
 
-
+    # run games for remaining players, elimate losers of those games, update number of wins for winners
     def __run_round(self, remaining_players, round_num):
         cheaters = []
+        # game numbers
         start, end = self.__get_round_indices(round_num)
+        # edge case, when only two players, start and end are the same so the later loop doesn't run
         if start == end and start == 0:  # only 2 players
             winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
             self.game_outcomes[0] = winner
             cheaters += cheater
+        # more than 2 players remaining, so loop to run all the games and track winners/cheaters
         else:
             j = 0
             for i in range(start, end + 1):
@@ -152,15 +163,18 @@ class Cup(Tournament):
                 j += players_per_game
                 self.game_outcomes[i] = winner
                 cheaters += cheater
+        # everyone who didn't win gets eliminated (by viewing the game outcomes)
         self.__eliminate_losers(round_num)
+        # winners get +1 win, cheaters set to the bottom of ranks with -inf win record
         self.__update_win_record(cheaters)
 
-
+    # all winners of past round part of remaining players
     def __eliminate_losers(self, round_num):
         start, end = self.__get_round_indices(round_num)
         self.remaining_players = self.game_outcomes[start:end + 1]
 
     # inclusive indices
+    # calculate using base-2 arithmetic
     def __get_round_indices(self, round_num):
         games_this_round = int(self.num_players / players_per_game)
         start = 0
@@ -169,13 +183,15 @@ class Cup(Tournament):
             games_this_round = int(games_this_round / players_per_game)
             start = end + 1
             end = start + (games_this_round - 1)
-        return (start, end)
+        return start, end
 
+    # sort dictionary of winners to display ranks
     def rank(self):
         sorted_ranks = sorted(self.win_record.items(), key=lambda kv: kv[1])
         for key, value in sorted_ranks:
             print("Player : {} , Wins : {}".format(key.name, max(0, value)))
 
+    # winners get +1 to number of wins, cheaters moved to bottom of ranks
     def __update_win_record(self, cheaters):
         for player in self.remaining_players:
             if player in self.win_record:
@@ -184,6 +200,7 @@ class Cup(Tournament):
             # keep cheaters always with the lowest score
             self.win_record[c] = (-1 * math.inf)
 
+    # close connections for remote players
     def close_connections(self):
         for conn in list(self.players_connections.values()):
             conn.close()
@@ -196,7 +213,6 @@ class League(Tournament):
         self.num_players = len(self.players)
         self.ranking_info_arr = [RankingInfo() for i in range(len(self.players))]
         self.players_names_arr = [None for i in range(self.num_players)]
-        # self.set_players_names_arr()
         self.cheated_list = []
         self.generate_schedule()
 
@@ -227,6 +243,7 @@ class League(Tournament):
             game_dict = self.run_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
         self.close_connections()
+        self.sock.close()
         return self.rank()
 
     # return dictionary winner: , cheater
@@ -254,9 +271,7 @@ class League(Tournament):
         winner_string = game_dict["winner"][0]
         winner_string = winner_string[1:-1]
         winner = winner_string
-        # get used in case the name is nothing
         cheater_string = game_dict["cheated"]
-        # cheater_string = cheater_string[1:-1]
         cheater = cheater_string
         if cheater == p1.name:
             self.ranking_info_arr[p2_indice].wins += 1
@@ -277,7 +292,6 @@ class League(Tournament):
     def handle_cheater(self, indice):
         ranking_obj = self.ranking_info_arr[indice]
         ranking_obj.wins = 0
-        ranking_obj.cheated = True
         cheater_player_name = self.players_names_arr[indice]
         self.cheated_list.append(cheater_player_name)
         for i in ranking_obj.defeated_opponents:
@@ -352,7 +366,6 @@ class League(Tournament):
 class RankingInfo:
     def __init__(self):
         self.wins = 0
-        self.cheated = False
         self.defeated_opponents = []
         self.name = ""
 

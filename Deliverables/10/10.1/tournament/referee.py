@@ -36,7 +36,9 @@ class referee:
             return self.player1
 
 
-    # returns true if game should continue, false if not
+    # params: input (string): point to play or pass
+    # returns: boolean : true if game should continue, false if not
+    # Sets flag to notify ref if cheating occurs
     def handle_move(self, input):
         self.game_output.append(self.board_history)
         if input == "pass":
@@ -69,6 +71,9 @@ class referee:
         self.swap_player()
         return [self.current_player.name], True
 
+    # returns: tuple (json, bool) : json array of winner name, whether win was a result of cheating
+    # if a player cheated, opposite player wins
+    # if no cheating occurred, calculate score to determine winner
     def get_winner(self):
         if self.cheat_flag:
             return self.cheated()

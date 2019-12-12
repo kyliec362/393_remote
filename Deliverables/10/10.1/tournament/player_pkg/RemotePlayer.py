@@ -7,7 +7,6 @@ from player_pkg import player, GuiPlayer
 default_player = GuiPlayer
 
 def query(p, query_lst):
-    print("remote @ 10", query_lst)
     # don't keep playing if we've gone crazy (deviated from following rules)
     if p.crazy_flag:
         return
@@ -15,7 +14,6 @@ def query(p, query_lst):
     try:
         method = query_lst[0].replace("-", "_")
         args = query_lst[1:]
-        print("17 @ remote player", method, args)
         if method not in p.function_names:
             return p.go_crazy()
         method = getattr(p, method)
@@ -46,7 +44,6 @@ def client_recv(sock):
     try:
         while True:
             received = sock.recv(recv_size_player)
-            print("client @ 47", received)
             if received:
                 response += received.decode()
             break
@@ -56,15 +53,12 @@ def client_recv(sock):
 
 
 def client(sock, message):
-    # print("remote 57", sock)
     response = ""
-    print("client @ 59", message, sock)
     try:
         if message is not None:
             sock.sendall(message.encode())
             while True:
                 received = sock.recv(recv_size_player)
-                # print("client @ 65", received)
                 if received:
                     response += received.decode()
                 break
