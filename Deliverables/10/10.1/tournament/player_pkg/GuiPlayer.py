@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 from matplotlib.widgets import TextBox
 sys.path.append('../')
 from const import *
+from utils import *
 from board import make_point, board, get_board_length, make_empty_board, parse_point
 from tests.test_boards import *
 
@@ -18,23 +19,30 @@ class GuiPlayer(Player):
         self.next_move = None
         self.next_move_flag = False
 
-    def go_crazy(self):
-        self.crazy_flag = True
-        return crazy
-
-
     def register(self):
         if self.receive_flag or self.register_flag:
-            return self.go_crazy()
-        self.register_flag = True
+            self.go_crazy()
+        else:
+            self.register_flag = True
         return self.name
 
     def receive_stones(self, stone):
-        self.receive_flag = True
-        self.stone = stone
+        print("gui 33", stone)
+        if is_stone(stone):
+            self.receive_flag = True
+            self.stone = stone
+        else:
+            return self.go_crazy()
 
     def end_game(self):
+        # display game over to player
+        plt.text(0.08, 0.5, "GAME OVER", size=50, bbox=dict(facecolor='red', alpha=0.5))
+        plt.xticks([])
+        plt.yticks([])
+        plt.show()
+        # reset flags for next game
         self.receive_flag = False
+        # acknowledge that game over msg was received
         return "OK"
 
     def name_from_user(self):

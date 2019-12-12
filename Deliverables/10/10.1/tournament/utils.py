@@ -1,5 +1,6 @@
 import random
 import string
+from const import *
 
 
 def random_string():
@@ -15,3 +16,6 @@ def update_board_history(new_board0, boards):
 
 def flip_coin():
     return random.randint(0, 1) == 0
+
+def is_stone(stone):
+    return stone == black or stone == white

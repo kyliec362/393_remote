@@ -53,13 +53,12 @@ class Tournament(abc.ABC):
         return self.players
 
     def set_players(self):
-        print("tourn @ 56", self.num_remote_players)
         num_joined = 0
         while num_joined < self.num_remote_players:
-            print("tourn @ 59", num_joined)
             try:
                 connection, client_address = self.sock.accept()
-                print(60, connection.recv(recv_size_player)) # if something was sent, read to remove from queue of connection msgs
+                print(60, connection)
+                connection.recv(recv_size_player) # if something was sent, read to remove from queue of connection msgs
                 connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 new_player = proxy_remote_player(connection)
                 self.players.append(new_player)
@@ -86,8 +85,7 @@ class Tournament(abc.ABC):
         self.num_players = len(self.players)
 
     @abc.abstractmethod
-    def rank(self):
-        pass
+    def rank(self):        pass
 
     @abc.abstractmethod
     def run_tournament(self):
@@ -112,6 +110,7 @@ class Cup(Tournament):
         self.__init_win_record()
 
     def run_game(self, player1, player2):
+        print("tourn run game 113")
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
         if player1.name == winner_name:
@@ -132,11 +131,9 @@ class Cup(Tournament):
 
     def run_tournament(self):
         num_rounds = int(log(self.num_players, 2))
-        print("tourn @ 135", num_rounds, range(num_rounds))
         # run though every round in tournament
         for i in range(num_rounds):
             self.__run_round(self.remaining_players, i)
-            print("tourn @ 139", i)
         # get winner
         self.close_connections()
         self.rank()
@@ -147,16 +144,18 @@ class Cup(Tournament):
         cheaters = []
         start, end = self.__get_round_indices(round_num)
         if start == end and start == 0:  # only 2 players
+            # print("tourn 147 run round")
             winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
-            print(146, winner)
             self.game_outcomes[0] = winner
             cheaters += cheater
-        j = 0
-        for i in range(start, end + 1):
-            winner, cheater = self.run_game(remaining_players[j], remaining_players[j + 1])
-            j += 2
-            self.game_outcomes[i] = winner
-            cheaters += cheater
+        else:
+            j = 0
+            for i in range(start, end + 1):
+                # print("tourn 153 run round")
+                winner, cheater = self.run_game(remaining_players[j], remaining_players[j + 1])
+                j += 2
+                self.game_outcomes[i] = winner
+                cheaters += cheater
         self.__eliminate_losers(round_num)
         self.__update_win_record(cheaters)
 

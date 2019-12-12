@@ -6,7 +6,7 @@ from streamy import stream
 from const import *
 from rule_checker import rule_checker, get_opponent_stone, get_legal_moves
 from board import make_point, board, get_board_length, make_empty_board, parse_point
-from utils import random_string
+from utils import *
 
 
 def generate_random_point():
@@ -24,11 +24,7 @@ def set_depth():
 
 
 class player(Player):
-
-    function_names = ['register', 'receive_stones', 'make_a_move', 'end_game']
-
     def __init__(self, name=random_string()):
-        # print("generic @ 30", name)
         if name is None:
             super().__init__()
         else:
@@ -46,32 +42,28 @@ class player(Player):
             method = query_lst[0].replace("-", "_")
             args = query_lst[1:]
             if method not in self.function_names:
-                # print("query 47")
                 return self.go_crazy()
             method = getattr(self, method)
             if method:
                 return method(*args)
-            # print("query 51")
             return self.go_crazy()
         except:
-            # print("query 54")
             return self.go_crazy()
 
     def register(self):
-        # print("generic @ 56")
-        if self.receive_flag:
+        if self.receive_flag or self.register_flag:
             self.go_crazy()
-        self.register_flag = True
+        else:
+            self.register_flag = True
         return self.name
 
     def receive_stones(self, stone):
-        if not self.is_stone(stone):
+        if not is_stone(stone):
             self.go_crazy()
         if self.receive_flag or not self.register_flag:
             self.go_crazy()
         self.receive_flag = True
         self.stone = stone
-        print("generic @ 69")
 
 
     def end_game(self):
@@ -84,7 +76,7 @@ class player(Player):
         return False
 
     def is_maybe_stone(self, maybe_stone):
-        if self.is_stone(maybe_stone) or maybe_stone == empty:
+        if is_stone(maybe_stone) or maybe_stone == empty:
             return True
         return False
 

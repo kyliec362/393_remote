@@ -1,7 +1,3 @@
-player doesnt need to take in stone
-
-remote player names come from what register returns
-
 private variables/methods
 
 unit tests 

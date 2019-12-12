@@ -54,7 +54,7 @@ class administrator:
     # tuple of winner and whether the win was a result of cheating
     # (True means there was cheating, False means no cheating)
     def opposite_wins(self):
-        return [json.dumps(self.referee.get_opposite_player().name)], True
+        return [self.referee.get_opposite_player().name], True
 
     def check_input(self, input):
         if input == "pass":
@@ -67,22 +67,16 @@ class administrator:
         return False
 
     def setup_game(self):
-        print("admin @ 70")
         self.referee = referee(self.player1, self.player2)
         self.register_receive_player(self.player1, black)
         self.register_receive_player(self.player2, white)
-        print("admin @ 73", self.player1.name, self.player1.stone, self.player2.name, self.player2.stone)
-
-
-    def set_client_done_flag(self):
-        self.client_done_flag = not self.client_done_flag
 
     def register_receive_player(self, p, stone):
+        print("admin 75 register recv")
         p.register()
         p.receive_stones(stone)
 
     def end_game_update_winner(self, original_winner, cheated):
-        print("admin @ 85 end game")
         ok = "OK"
         original_winner_player = self.get_player_from_name(original_winner)
         original_loser_player = self.referee.get_opposite_player_from_name(original_winner)
@@ -104,9 +98,7 @@ class administrator:
     def run_game(self):
         self.setup_game()
         while True:
-            # TODO check if player disconnects mid game
             move = self.referee.current_player.make_a_move(self.referee.board_history)
-            print("admin @ 108", move)
             if isinstance(move, str):
                 move = move.replace('"', '')
             # if player didn't disconnect while making a move
@@ -117,11 +109,11 @@ class administrator:
                     continue
                 # game over, figure out the winner
                 # alert players it's game over (check for disconnects)
-                else:
-                    original_winner, cheated = self.referee.get_winner()
-                    # get the actual winner
-                    return self.end_game_update_winner(original_winner[0], cheated)
-            return self.opposite_wins()
+                original_winner, cheated = self.referee.get_winner()
+                # get the actual winner
+                return self.end_game_update_winner(original_winner[0], cheated)
+            original_winner, cheated = self.opposite_wins()
+            return self.end_game_update_winner(original_winner[0], cheated)
 
 
 if __name__ == '__main__':
