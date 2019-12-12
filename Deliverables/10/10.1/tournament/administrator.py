@@ -49,7 +49,6 @@ class administrator:
         self.player2 = player2
         self.player1 = player1
         self.referee = None
-        self.client_done_flag = False
 
     # tuple of winner and whether the win was a result of cheating
     # (True means there was cheating, False means no cheating)
@@ -72,7 +71,6 @@ class administrator:
         self.register_receive_player(self.player2, white)
 
     def register_receive_player(self, p, stone):
-        print("admin 75 register recv")
         p.register()
         p.receive_stones(stone)
 

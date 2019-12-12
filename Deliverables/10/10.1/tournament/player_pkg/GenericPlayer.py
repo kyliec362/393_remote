@@ -192,7 +192,6 @@ class player(Player):
                         return non_capture_move
                     return "pass"
                 return history
-            print("crazy @ 224")
             return self.go_crazy()
         return self.go_crazy()
 

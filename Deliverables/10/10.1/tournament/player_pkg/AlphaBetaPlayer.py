@@ -12,11 +12,16 @@ class AlphaBetaPlayer(Player):
 
     def register(self):
         if self.receive_flag or self.register_flag:
-            return self.go_crazy()
-        self.register_flag = True
-        return "no name"
+            self.go_crazy()
+        else:
+            self.register_flag = True
+        return self.name
 
     def receive_stones(self, stone):
+        if not is_stone(stone):
+            self.go_crazy()
+        if self.receive_flag or not self.register_flag:
+            self.go_crazy()
         self.receive_flag = True
         self.stone = stone
 

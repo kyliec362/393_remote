@@ -69,10 +69,10 @@ class Tournament(abc.ABC):
         self.make_players_power_two()
 
     def make_players_power_two(self):
-        base = 2
+        base = players_per_game
         num_players = len(self.players)
         if num_players == 0:
-            next_power_two = 2
+            next_power_two = players_per_game
         else:
             next_power_two = int(pow(base, ceil(log(num_players, base))))
             next_power_two = max(base, next_power_two)
@@ -110,7 +110,6 @@ class Cup(Tournament):
         self.__init_win_record()
 
     def run_game(self, player1, player2):
-        print("tourn run game 113")
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
         if player1.name == winner_name:
@@ -144,16 +143,14 @@ class Cup(Tournament):
         cheaters = []
         start, end = self.__get_round_indices(round_num)
         if start == end and start == 0:  # only 2 players
-            # print("tourn 147 run round")
             winner, cheater = self.run_game(remaining_players[0], remaining_players[1])
             self.game_outcomes[0] = winner
             cheaters += cheater
         else:
             j = 0
             for i in range(start, end + 1):
-                # print("tourn 153 run round")
                 winner, cheater = self.run_game(remaining_players[j], remaining_players[j + 1])
-                j += 2
+                j += players_per_game
                 self.game_outcomes[i] = winner
                 cheaters += cheater
         self.__eliminate_losers(round_num)
@@ -166,11 +163,11 @@ class Cup(Tournament):
 
     # inclusive indices
     def __get_round_indices(self, round_num):
-        games_this_round = int(self.num_players / 2)
+        games_this_round = int(self.num_players / players_per_game)
         start = 0
         end = games_this_round - 1
         for i in range(round_num):
-            games_this_round = int(games_this_round / 2)
+            games_this_round = int(games_this_round / players_per_game)
             start = end + 1
             end = start + (games_this_round - 1)
         return (start, end)
@@ -216,12 +213,12 @@ class League(Tournament):
         indice_player_list = [None for i in range(num_players)]
         for i in range(num_players):
             indice_player_list[i] = i
-        combs = itertools.combinations(indice_player_list, 2)
+        combs = itertools.combinations(indice_player_list, players_per_game)
         self.schedule = list(combs)
 
 
     def run_tournament(self):
-        num_games = int((len(self.players) / 2) * (len(self.players) - 1))
+        num_games = int((len(self.players) / players_per_game) * (len(self.players) - 1))
         for i in range(num_games):
             player_one_indice = self.schedule[i][0]
             player_two_indice = self.schedule[i][1]

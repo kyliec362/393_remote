@@ -27,7 +27,7 @@ class GuiPlayer(Player):
         return self.name
 
     def receive_stones(self, stone):
-        print("gui 33", stone)
+        # print("gui 33", stone)
         if is_stone(stone):
             self.receive_flag = True
             self.stone = stone

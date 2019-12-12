@@ -3,8 +3,8 @@ import sys
 sys.path.append('../')
 from streamy import stream
 from const import *
-from player_pkg import player, GuiPlayer
-default_player = GuiPlayer
+from player_pkg import player #, GuiPlayer
+default_player = player
 
 def query(p, query_lst):
     print("remote @ 10", query_lst)

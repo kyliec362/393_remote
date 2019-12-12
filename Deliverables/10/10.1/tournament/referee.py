@@ -1,7 +1,6 @@
 from rule_checker import rule_checker, get_opponent_stone
 from board import make_point, board, get_board_length, make_empty_board
 from player_pkg.Player import Player
-import random
 from const import *
 from utils import update_board_history, flip_coin
 
@@ -14,7 +13,7 @@ class referee:
         self.player1 = player1
         self.player2 = player2
         if isinstance(player1, Player) and isinstance(player2, Player):
-            self.player_count = 2
+            self.player_count = players_per_game
         self.pass_count = 0
         self.board_history = [empty_board]
         self.current_player = player1
@@ -70,17 +69,17 @@ class referee:
 
     def get_winner(self):
         scores = board(self.board_history[0]).calculate_score()
-        black_score = scores["B"] 
-        white_score = scores["W"]
+        black_score = scores[black]
+        white_score = scores[white]
         # draw
         if black_score == white_score:
             if flip_coin():
-                return ([self.player1.name], False)
-            return ([self.player2.name], False)
+                return [self.player1.name], False
+            return [self.player2.name], False
         # player1 is always black
         if black_score > white_score:
-            return ([self.player1.name], False) # win wasn't due to cheating
-        return ([self.player2.name], False)  # win wasn't due to cheating
+            return [self.player1.name], False  # win wasn't due to cheating
+        return [self.player2.name], False  # win wasn't due to cheating
 
 
 def main():

@@ -1,10 +1,7 @@
 from .Player import Player
 import sys
 import json
-import socket
-import time
 sys.path.append('../')
-from streamy import stream
 from const import *
 from utils import *
 
