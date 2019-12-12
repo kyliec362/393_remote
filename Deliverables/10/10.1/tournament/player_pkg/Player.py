@@ -10,7 +10,6 @@ from utils import random_string
 class Player(abc.ABC):
 
     def __init__(self,  stone=black, name=random_string()):
-        # print("Player 14", name)
         self.stone = stone
         self.name = name
         self.register_flag = False

@@ -7,8 +7,8 @@ from utils import *
 
 
 class proxy_remote_player(Player):
-    def __init__(self, connection, name=random_string()):
-        super().__init__(name)
+    def __init__(self, connection):
+        super().__init__()
         self.connection = connection
         # give 30 seconds for remote players or assume disconnect
         self.connection.settimeout(30)
@@ -22,7 +22,6 @@ class proxy_remote_player(Player):
             return False
         try:
             data = self.connection.recv(recv_size_player)
-            # print("proxy 31", data)
             if data:
                 return data.decode()
             return False

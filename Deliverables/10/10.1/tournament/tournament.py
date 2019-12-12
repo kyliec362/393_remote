@@ -57,7 +57,6 @@ class Tournament(abc.ABC):
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()
-                print(60, connection)
                 connection.recv(recv_size_player) # if something was sent, read to remove from queue of connection msgs
                 connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 new_player = proxy_remote_player(connection)
@@ -197,7 +196,7 @@ class League(Tournament):
         self.num_players = len(self.players)
         self.ranking_info_arr = [RankingInfo() for i in range(len(self.players))]
         self.players_names_arr = [None for i in range(self.num_players)]
-        self.set_players_names_arr()
+        # self.set_players_names_arr()
         self.cheated_list = []
         self.generate_schedule()
 
@@ -235,6 +234,7 @@ class League(Tournament):
     def run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
+        self.set_players_names_arr()
         dict_cheater_name = ""
         if cheated:
             dict_cheater_name = self.get_opposite_player_name(player1, player2, winner_name)
@@ -243,6 +243,7 @@ class League(Tournament):
 
     # this takes in two players and a name and returns the opposite name
     def get_opposite_player_name(self, player1, player2, name):
+        name = name[0].replace('"', '')
         if name == player1.name:
             return player2.name
         else:
@@ -254,8 +255,8 @@ class League(Tournament):
         winner_string = winner_string[1:-1]
         winner = winner_string
         # get used in case the name is nothing
-        cheater_string = game_dict.get("cheater", "  ")
-        cheater_string = cheater_string[1:-1]
+        cheater_string = game_dict["cheated"]
+        # cheater_string = cheater_string[1:-1]
         cheater = cheater_string
         if cheater == p1.name:
             self.ranking_info_arr[p2_indice].wins += 1
@@ -278,7 +279,7 @@ class League(Tournament):
         ranking_obj.wins = 0
         ranking_obj.cheated = True
         cheater_player_name = self.players_names_arr[indice]
-        self.cheated_list.extend(cheater_player_name)
+        self.cheated_list.append(cheater_player_name)
         for i in ranking_obj.defeated_opponents:
             self.ranking_info_arr[i].wins += 1
         rand_player_name = random_string()
@@ -311,8 +312,11 @@ class League(Tournament):
             final_rankings[rank_info.wins].append(rank_info.name)
         # add the key for cheated list if need be
         if len(self.cheated_list) > 0:
-            final_rankings[-1] = self.cheated_list
-            ranks_list.append(-1)
+            ranks_list_len = len(ranks_list)
+            final_rankings[ranks_list_len] = []
+            for i in range(len(self.cheated_list)):
+                final_rankings[ranks_list_len].append(self.cheated_list[i])
+            ranks_list.append(ranks_list_len)
         # format the output string nicely
         output_string = "\nFinal Rankings \n"
         for i in range(len(final_rankings)):

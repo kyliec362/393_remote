@@ -18,6 +18,7 @@ class referee:
         self.board_history = [empty_board]
         self.current_player = player1
         self.game_output = [black, white]
+        self.cheat_flag = False
 
     def swap_player(self):
         self.current_player = self.get_opposite_player()
@@ -56,7 +57,8 @@ class referee:
             self.swap_player()
             return True
         else:
-            self.game_output.append(self.cheated())
+            # self.game_output.append(self.cheated())
+            self.cheat_flag = True
             return False
 
     def update_board_history(self, new_board0):
@@ -65,9 +67,11 @@ class referee:
     # returns winner if someone current player cheated
     def cheated(self):
         self.swap_player()
-        return [self.current_player.name]
+        return [self.current_player.name], True
 
     def get_winner(self):
+        if self.cheat_flag:
+            return self.cheated()
         scores = board(self.board_history[0]).calculate_score()
         black_score = scores[black]
         white_score = scores[white]

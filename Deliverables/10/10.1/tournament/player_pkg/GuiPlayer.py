@@ -11,6 +11,7 @@ from tests.test_boards import *
 
 class GuiPlayer(Player):
     def __init__(self):
+        self.name = "no name"
         self.name_from_user()
         super().__init__(name=self.name)
         self.register_flag = False
