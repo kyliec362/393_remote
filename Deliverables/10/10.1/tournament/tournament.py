@@ -10,7 +10,7 @@ from streamy import stream
 from board import get_board_length, make_empty_board
 from administrator import administrator
 from const import *
-
+from utils import random_string
 empty_board = make_empty_board()
 
 
@@ -197,8 +197,6 @@ class Cup(Tournament):
 class League(Tournament):
     def __init__(self, num_remote_players):
         super().__init__(num_remote_players)
-        self.port = info["port"]
-        self.ip = info["IP"]
         self.num_players = len(self.players)
         self.ranking_info_arr = [RankingInfo() for i in range(len(self.players))]
         self.players_names_arr = [None for i in range(self.num_players)]
@@ -206,11 +204,13 @@ class League(Tournament):
         self.cheated_list = []
         self.generate_schedule()
 
+    # method that sets up the player_names_arr with the players at i name then sets those names in the ranking info arr
     def set_players_names_arr(self):
         for i in range(self.num_players):
             self.players_names_arr[i] = self.players[i].name
             self.ranking_info_arr[i].name = self.players_names_arr[i]
 
+    # uses itertools to generate a schedule by matching the player indices
     def generate_schedule(self):
         num_players = self.num_players
         indice_player_list = [None for i in range(num_players)]
@@ -219,7 +219,8 @@ class League(Tournament):
         combs = itertools.combinations(indice_player_list, 2)
         self.schedule = list(combs)
 
-
+    # runs through the games, gets the player indices from the combination and then runs the game with self.run game
+    # then handles the game result with the info created, at the end close the connections and rank
     def run_tournament(self):
         num_games = int((len(self.players) / 2) * (len(self.players) - 1))
         for i in range(num_games):
@@ -229,9 +230,11 @@ class League(Tournament):
             player_two = self.players[player_two_indice]
             game_dict = self.run_game(player_one, player_two)
             self.handle_game_result(game_dict, player_one_indice, player_two_indice, player_one, player_two)
+        self.close_connections()
         return self.rank()
 
-    # return dictionary winner: , loser:, cheater handle tie
+    # return dictionary winner: , cheater
+    # used to run each game and returns a dictionary in that form
     def run_game(self, player1, player2):
         admin = administrator(player1, player2)
         winner_name, cheated = admin.run_game()
@@ -241,16 +244,19 @@ class League(Tournament):
         return_dict = {"winner": winner_name, "cheated": dict_cheater_name}
         return return_dict
 
+    # this takes in two players and a name and returns the opposite name
     def get_opposite_player_name(self, player1, player2, name):
         if name == player1.name:
             return player2.name
         else:
             return player1.name
 
+    # given the game output the indices of players and two players it handles the wins and cheating scenarios for game
     def handle_game_result(self, game_dict, p1_indice, p2_indice, p1, p2):
         winner_string = game_dict["winner"][0]
         winner_string = winner_string[1:-1]
         winner = winner_string
+        # get used in case the name is nothing
         cheater_string = game_dict.get("cheater", "  ")
         cheater_string = cheater_string[1:-1]
         cheater = cheater_string
@@ -263,28 +269,29 @@ class League(Tournament):
         elif winner == p1.name:
             self.ranking_info_arr[p1_indice].wins += 1
             self.ranking_info_arr[p1_indice].defeated_opponents.append(p2_indice)
-            self.ranking_info_arr[p2_indice].losses += 1
         elif winner == p2.name:
             self.ranking_info_arr[p2_indice].wins += 1
             self.ranking_info_arr[p2_indice].defeated_opponents.append(p1_indice)
-            self.ranking_info_arr[p1_indice].losses += 1
 
+    # taking in the indice of a player that cheated change their wins to zero cheated value to true add them to the
+    # cheated array then remove the ranking object from the array and replace it. Insert a new default player and make
+    # sure the names array is updated
     def handle_cheater(self, indice):
         ranking_obj = self.ranking_info_arr[indice]
         ranking_obj.wins = 0
         ranking_obj.cheated = True
         cheater_player_name = self.players_names_arr[indice]
-        self.cheated_list.extend((cheater_player_name))
+        self.cheated_list.extend(cheater_player_name)
         for i in ranking_obj.defeated_opponents:
             self.ranking_info_arr[i].wins += 1
-            self.ranking_info_arr[i].losses -= 1
         rand_player_name = random_string()
-        self.players[indice] = default_player(name=rand_player_name)
-        self.players_names_arr[indice] = rand_player_name
         self.remove_cheater_defeated(indice)
+        self.players[indice] = default_player(name=rand_player_name)
         self.ranking_info_arr[indice] = RankingInfo()
-        self.ranking_info_arr[indice].name = rand_player_name
+        self.set_players_names_arr()
 
+    # this method is used to remove cheaters from other opponents defeated lists so that in the case an opponent cheats
+    # down the line it does not break
     def remove_cheater_defeated(self, indice):
         for item in self.ranking_info_arr:
             for obj in item.defeated_opponents:
@@ -292,24 +299,38 @@ class League(Tournament):
                     item.defeated_opponents.remove(indice)
                     break
 
+    # ranks players and returns them
     def rank(self):
-        ranks_list = self.get_num_ranks()
-        ranks_list.sort()
-        ranks_list.reverse()
+        # unique win total list sorted by highest win total first
+        ranks_list = self.__create_ranks_list()
+        # map used to build final ranking data structure. If two players have the same number of wins they go on the
+        # same list of the map
         final_rankings = {}
+        # populate final rankings with keys correlating to win totals
         for i in ranks_list:
             final_rankings[i] = []
+        # if the win total matches the key add them to the final rankings at that key
         for rank_info in self.ranking_info_arr:
             final_rankings[rank_info.wins].append(rank_info.name)
+        # add the key for cheated list if need be
         if len(self.cheated_list) > 0:
             final_rankings[-1] = self.cheated_list
             ranks_list.append(-1)
+        # format the output string nicely
         output_string = "\nFinal Rankings \n"
         for i in range(len(final_rankings)):
             output_string += str(i + 1) + " Place: " + str(final_rankings[ranks_list[i]]) + "\n"
         print(output_string)
         return final_rankings
 
+    # creates a sorted list of the number of unique win totals starting at the highest first
+    def __create_ranks_list(self):
+        ranks_list = self.get_num_ranks()
+        ranks_list.sort()
+        ranks_list.reverse()
+        return ranks_list
+
+    # returns a list of all the unique win totals
     def get_num_ranks(self):
         all_wins = [None for i in range(self.num_players)]
         for i in range(len(self.ranking_info_arr)):
@@ -321,6 +342,7 @@ class League(Tournament):
     def get_players_names_arr(self):
         return self.players_names_arr
 
+    # closes all the connections
     def close_connections(self):
         for conn in list(self.players_connections.values()):
             conn.close()
@@ -329,7 +351,6 @@ class League(Tournament):
 class RankingInfo:
     def __init__(self):
         self.wins = 0
-        self.losses = 0
         self.cheated = False
         self.defeated_opponents = []
         self.name = ""
