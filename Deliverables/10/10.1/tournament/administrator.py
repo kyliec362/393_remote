@@ -75,6 +75,7 @@ class administrator:
         self.register_receive_player(self.player2, white)
 
     def register_receive_player(self, p, stone):
+        print("admin 78 reg recv player")
         p.register()
         p.receive_stones(stone)
 
