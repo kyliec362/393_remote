@@ -28,6 +28,7 @@ class proxy_remote_player(Player):
             # return False
         except Exception as e:
             print("Make a move failed receiving. Exception is %s" % e)
+            self.connection.close()
             # return False
 
     def register(self):
@@ -44,7 +45,6 @@ class proxy_remote_player(Player):
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             self.connection.close()
-
             # return False
         #print("Register failed without an exception")
         # return False
