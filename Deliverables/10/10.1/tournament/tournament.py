@@ -393,7 +393,7 @@ def main():
         c = Cup(num_remote_players)
         c.run_tournament()
     if league in tournament_style:
-        l = League(num_remote_players)
+        l = Cup(num_remote_players) # TODO
         l.run_tournament()
 
 

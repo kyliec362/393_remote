@@ -18,31 +18,6 @@ default_player = player
 empty_board = make_empty_board()
 
 
-def read_input_from_file():
-    file_contents = ""  # read in all json objects to a string
-    file_contents_so_far = ""
-    special_json = sys.stdin.readline()
-    while special_json:
-        file_contents += special_json
-        special_json = sys.stdin.readline()
-        decoded = ""
-        # try to decode into json as we go
-        # because if something later breaks the json formatting
-        # we still want to be able to run all prior valid json
-        try:
-            decoded = list(stream(file_contents))
-        except:
-            continue
-        if len(decoded) > 0:
-            file_contents_so_far = list(stream(file_contents))
-    try:
-        return list(stream(file_contents))  # parse json objects
-    except:
-        if len(file_contents_so_far) > 0:
-            return file_contents_so_far
-        return [crazy]
-
-
 class administrator:
 
     def __init__(self, player1, player2):
