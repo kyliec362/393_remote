@@ -36,28 +36,33 @@ class AlphaBetaPlayer(Player):
         return "OK"
 
     def make_a_move(self, boards):
-        move = (self.ab_minimax(0, self.depth, True, NEG_INF, POS_INF, boards))
-        return move[1]
+        if self.crazy_flag:
+            return crazy
+        if self.register_flag and self.receive_flag:
+            import copy
+            move = self.ab_minimax(0, self.depth, True, NEG_INF, POS_INF, copy.deepcopy(boards), self.stone)
+            return move[1]
+        return crazy
 
-    def heuristic(self, curr_board):
-        return board(curr_board).calculate_score()[self.stone]
+    def heuristic(self, curr_board, stone):
+        return board(curr_board).calculate_score()[stone]
 
-    def ab_minimax(self, depth, max_depth, is_maximizer, alpha, beta, boards):
+    def ab_minimax(self, depth, max_depth, is_maximizer, alpha, beta, boards, stone):
         curr_board = boards[0]
         if is_maximizer:
-            legal_moves = get_legal_moves(boards, self.stone)
+            legal_moves = get_legal_moves(boards, stone)
         else:
-            legal_moves = get_legal_moves(boards, get_opponent_stone(self.stone))
+            legal_moves = get_legal_moves(boards, get_opponent_stone(stone))
         if (depth == max_depth) or (len(legal_moves) == 0):
-            return [self.heuristic(curr_board), "hello"]  # heuristic for game evaluation
+            return [self.heuristic(curr_board, stone), "hello"]  # heuristic for game evaluation
         updated_board = curr_board
         if is_maximizer:
             max_eval = [alpha, None]
             for move in legal_moves:
                 if move != "pass":
-                    updated_board = board(curr_board).place(self.stone, move)
+                    updated_board = board(curr_board).place(stone, move)
                 updated_history = update_board_history(updated_board, boards)
-                result = self.ab_minimax(depth + 1, max_depth, not is_maximizer, alpha, beta, updated_history)
+                result = self.ab_minimax(depth + 1, max_depth, not is_maximizer, alpha, beta, updated_history, get_opponent_stone(stone))
                 result[1] = move
                 max_eval = max(max_eval, result, key=lambda x: x[0])
                 alpha = max(alpha, result[0])
@@ -69,9 +74,9 @@ class AlphaBetaPlayer(Player):
             min_eval = [beta, None]
             for move in legal_moves:
                 if move != "pass":
-                    updated_board = board(curr_board).place(self.stone, move)
+                    updated_board = board(curr_board).place(stone, move)
                 updated_history = update_board_history(updated_board, boards)
-                result = self.ab_minimax(depth + 1, max_depth, not is_maximizer, alpha, beta, updated_history)
+                result = self.ab_minimax(depth + 1, max_depth, not is_maximizer, alpha, beta, updated_history, get_opponent_stone(stone))
                 result[1] = move
                 min_eval = min(min_eval, result, key=lambda x: x[0])
                 beta = min(beta, result[0])

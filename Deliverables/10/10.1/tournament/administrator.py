@@ -104,10 +104,10 @@ class administrator:
     # setting up the game and then running it
     def run_game(self):
         self.setup_game()
-        print("admin 107", self.referee.player1.name, self.referee.player2.name)
+        # print("admin 107", self.referee.player1.name, self.referee.player2.name)
         while True:
             move = self.referee.current_player.make_a_move(self.referee.board_history)
-            # print(self.referee.current_player.name, move)
+            print(self.referee.current_player.name, move)
             if isinstance(move, str):
                 move = move.replace('"', '')
             # if player didn't disconnect while making a move

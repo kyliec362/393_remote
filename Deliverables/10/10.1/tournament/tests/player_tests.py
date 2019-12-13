@@ -17,6 +17,7 @@ class PlayerTests(unittest.TestCase):
         self.assertEqual(True, isinstance(ab_player.register(), str))
         self.assertIsNone((ab_player.receive_stones(black)))
         self.assertEqual(ab_player.make_a_move(board_history4), "2-1")
+        self.assertEqual(ab_player.make_a_move(board_history5), "1-4")
 
 
 

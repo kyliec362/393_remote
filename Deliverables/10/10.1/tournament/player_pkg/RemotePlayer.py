@@ -4,7 +4,7 @@ sys.path.append('../')
 from streamy import stream
 import json
 from const import *
-from player_pkg import player, AlphaBetaPlayer  # ,GuiPlayer,
+from player_pkg import player, AlphaBetaPlayer # ,GuiPlayer
 default_player = player
 
 
@@ -79,7 +79,10 @@ def client(sock, message):
 def main():
     sock = get_connection_socket()
     end_game_flag = False
-    proxy = default_player()
+    if default_player == AlphaBetaPlayer:
+        proxy = default_player(depth=2)
+    else:
+        proxy = default_player()
     server_response = ""
     while not end_game_flag and server_response != -1:
         if len(server_response) < 1:
