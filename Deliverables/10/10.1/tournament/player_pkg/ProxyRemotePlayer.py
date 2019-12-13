@@ -19,16 +19,16 @@ class proxy_remote_player(Player):
             self.connection.sendall(move_msg.encode())
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
-            return False
+            # return False
         try:
             data = self.connection.recv(recv_size_player)
             if data:
                 print(26, data)
                 return json.loads(data.decode())
-            return False
+            # return False
         except Exception as e:
             print("Make a move failed receiving. Exception is %s" % e)
-            return False
+            # return False
 
     def register(self):
         try:
