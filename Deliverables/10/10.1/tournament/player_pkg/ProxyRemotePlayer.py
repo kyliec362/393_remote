@@ -13,24 +13,40 @@ class proxy_remote_player(Player):
         # give 30 seconds for remote players or assume disconnect
         self.connection.settimeout(30)
 
+    # def make_a_move(self, boards):
+    #     try:
+    #         message = json.dumps(["make-a-move", ' + json.dumps(boards) + ']).encode()
+    #         self.connection.sendall(message)
+    #     except Exception as e:
+    #         print("Make a move send -> Exception is %s" % e)
+    #         # return False
+    #         self.connection.close()  # disconnect if failure
+    #     try:
+    #         data = self.connection.recv(recv_size_player)
+    #         if data:
+    #             return data.decode()
+    #         #return False
+    #     except Exception as e:
+    #         print("Make a move failed receiving. Exception is %s" % e)
+    #         #return False
+    #         self.connection.close()  # disconnect if failure
+    #     return crazy
+
     def make_a_move(self, boards):
         try:
-            message = json.dumps(["make-a-move", ' + json.dumps(boards) + ']).encode()
-            self.connection.sendall(message)
+            move_msg = '["make-a-move",' + json.dumps(boards) + ']'
+            self.connection.sendall(move_msg.encode())
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
-            # return False
-            self.connection.close()  # disconnect if failure
+            return False
         try:
             data = self.connection.recv(recv_size_player)
             if data:
                 return data.decode()
-            #return False
+            return False
         except Exception as e:
             print("Make a move failed receiving. Exception is %s" % e)
-            #return False
-            self.connection.close()  # disconnect if failure
-        return crazy
+            return False
 
 
     def register(self):
@@ -67,11 +83,29 @@ class proxy_remote_player(Player):
             self.stone = stone
             # return True
 
+    # def end_game(self):
+    #     response = ""
+    #     try:
+    #         message = json.dumps(["end-game"]).encode()
+    #         self.connection.sendall(message)
+    #         response = self.connection.recv(recv_size_player)
+    #         print("proxy end game 66", response)
+    #         if response:
+    #             response = response.decode()
+    #             if response == "OK":
+    #                 return response
+    #     except Exception as e:
+    #         print("End game failed sending. Exception is %s" % e)
+    #     #     return False
+    #     # else:
+    #     #     if response == "OK":
+    #     #         return response
+    #     # return False
+
     def end_game(self):
         response = ""
         try:
-            message = json.dumps(["end-game"]).encode()
-            self.connection.sendall(message)
+            self.connection.sendall('["end-game"]'.encode())
             response = self.connection.recv(recv_size_player)
             print("proxy end game 66", response)
             if response:
