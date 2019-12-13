@@ -35,16 +35,17 @@ class proxy_remote_player(Player):
             data = self.connection.recv(recv_size_player)
             if data:
                 self.name = data.decode()
-                if self.name == crazy:
-                    print("crazy register proxy")
-                    return False
+                # if self.name == crazy:
+                #     print("crazy register proxy")
+                #     return False
                 self.register_flag = True
-                return True
+                # return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
-            return False
-        print("Register failed without an exception")
-        return False
+            # return False
+        #print("Register failed without an exception")
+        # return False
+        return self.name
 
     def receive_stones(self, stone):
         try:
@@ -52,17 +53,18 @@ class proxy_remote_player(Player):
             self.connection.sendall(recv_msg.encode())
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
-            return False
+            # return False
         else:
             self.receive_flag = True
             self.stone = stone
-            return True
+            # return True
 
     def end_game(self):
         response = ""
         try:
             self.connection.sendall('["end-game"]'.encode())
             response = self.connection.recv(recv_size_player)
+            print("proxy end game 66", response)
             if response:
                 return True
         except Exception as e:
