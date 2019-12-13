@@ -63,7 +63,7 @@ class proxy_remote_player(Player):
                 # return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
-            self.connection.close()  # disconnect if failure
+            # self.connection.close()  # disconnect if failure
             # return False
         #print("Register failed without an exception")
         # return False
@@ -76,7 +76,7 @@ class proxy_remote_player(Player):
             self.connection.sendall(message)
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
-            self.connection.close()  # disconnect if failure
+            # self.connection.close()  # disconnect if failure
             # return False
         else:
             self.receive_flag = True
