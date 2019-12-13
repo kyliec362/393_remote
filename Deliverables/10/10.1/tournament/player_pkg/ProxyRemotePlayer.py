@@ -37,7 +37,11 @@ class proxy_remote_player(Player):
             if data:
                 self.name = json.loads(data.decode())
                 print("proxy 40", self.name)
-                self.register_flag = True
+                if self.name == crazy:
+                    print("Crazy register")
+                    self.connection.close()
+                else:
+                    self.register_flag = True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             self.connection.close()
