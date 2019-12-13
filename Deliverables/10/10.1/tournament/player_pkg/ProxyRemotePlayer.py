@@ -54,6 +54,8 @@ class proxy_remote_player(Player):
             self.connection.sendall(recv_msg.encode())
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
+            self.connection.close()
+
             # return False
         else:
             self.receive_flag = True
