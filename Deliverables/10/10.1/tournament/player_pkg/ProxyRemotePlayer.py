@@ -11,7 +11,7 @@ class proxy_remote_player(Player):
         super().__init__()
         self.connection = connection
         # give 30 seconds for remote players or assume disconnect
-        self.connection.settimeout(30)
+        self.connection.settimeout(15)
 
     def make_a_move(self, boards):
         try:
@@ -23,7 +23,8 @@ class proxy_remote_player(Player):
         try:
             data = self.connection.recv(recv_size_player)
             if data:
-                return data.decode()
+                print(26, data)
+                return json.loads(data.decode())
             return False
         except Exception as e:
             print("Make a move failed receiving. Exception is %s" % e)
@@ -34,7 +35,7 @@ class proxy_remote_player(Player):
             self.connection.sendall('["register"]'.encode())
             data = self.connection.recv(recv_size_player)
             if data:
-                self.name = data.decode()
+                self.name = json.loads(data.decode())
                 # if self.name == crazy:
                 #     print("crazy register proxy")
                 #     return False
@@ -66,7 +67,7 @@ class proxy_remote_player(Player):
             response = self.connection.recv(recv_size_player)
             print("proxy end game 66", response)
             if response:
-                response = response.decode()
+                response = json.loads(response.decode())
                 if response == "OK":
                     return response
         except Exception as e:
