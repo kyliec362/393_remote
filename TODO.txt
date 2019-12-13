@@ -10,3 +10,14 @@ Thrusday code walk feedback:
 -for final presention, explain data structures first/early on
 -dont need to track loses in league
 -be careful about using objects as dict keys (compiler may change addresses)
+
+
+
+
+
+
+
+
+# path
+
+/mnt/c/users/kyliec/Documents/Northwestern/Fall Quarter 2019/EECS393/393_remote/Deliverables/10/10.1

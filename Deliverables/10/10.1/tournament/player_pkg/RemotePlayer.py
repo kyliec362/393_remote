@@ -4,8 +4,9 @@ sys.path.append('../')
 from streamy import stream
 import json
 from const import *
-from player_pkg import player, GuiPlayer, AlphaBetaPlayer
-default_player = GuiPlayer
+from player_pkg import player, AlphaBetaPlayer  # ,GuiPlayer,
+default_player = player
+
 
 def query(p, query_lst):
     # don't keep playing if we've gone crazy (deviated from following rules)
@@ -24,13 +25,14 @@ def query(p, query_lst):
     except:
         return p.go_crazy()
 
+
 def get_socket_address():
     config_file = open("../go.config", "r")
     socket_info = config_file.readlines()
     socket_info = list(stream(socket_info))[0]
     port = socket_info["port"]
     ip = socket_info["IP"]
-    return (ip, port)
+    return ip, port
 
 
 def get_connection_socket():
@@ -57,7 +59,9 @@ def client(sock, message):
     response = ""
     try:
         if message is not None:
-            sock.sendall(message.encode())
+            message = json.dumps(message).encode()
+            print("client 61", message)
+            sock.sendall(message)
             while True:
                 received = sock.recv(recv_size_player)
                 if received:

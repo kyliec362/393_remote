@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 tournament/tournament.py $1 $2
+python3 tournament/tournament.py $1 $2 && pkill -f 'tournament'
