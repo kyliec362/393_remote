@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../')
 import unittest
-from player_pkg.player_file import player, proxy_remote_player, AlphaBetaPlayer
+from player_pkg import player, proxy_remote_player, AlphaBetaPlayer
 from const import *
 from test_boards import *
 
@@ -13,8 +13,8 @@ class PlayerTests(unittest.TestCase):
         pass
 
     def test_alpha_beta(self):
-        ab_player = AlphaBetaPlayer(black, "kylie", 2)
-        self.assertEqual(no_name, ab_player.register())
+        ab_player = AlphaBetaPlayer(2)
+        self.assertEqual(True, isinstance(ab_player.register(), str))
         self.assertIsNone((ab_player.receive_stones(black)))
         self.assertEqual(ab_player.make_a_move(board_history4), "2-1")
 

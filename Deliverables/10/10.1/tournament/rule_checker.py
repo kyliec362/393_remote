@@ -4,7 +4,7 @@ from streamy import stream
 from board import board, make_point, get_board_length
 import copy
 from const import *
-
+from utils import *
 
 def get_legal_moves(boards, stone):
     legal_moves = ["pass"]
@@ -12,7 +12,7 @@ def get_legal_moves(boards, stone):
         for j in range(maxIntersection):  # col
             point = make_point(i, j)
             move = [point, boards]
-            if rule_checker().check_valid_move(stone, move):
+            if rule_checker().check_validity(stone, move):
                 legal_moves.append(point)
     return legal_moves
 

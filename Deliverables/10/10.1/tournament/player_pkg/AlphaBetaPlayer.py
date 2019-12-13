@@ -2,7 +2,9 @@ import sys
 from .Player import Player
 sys.path.append('../')
 from const import *
-from utils import update_board_history
+from utils import *
+from rule_checker import rule_checker, get_opponent_stone, get_legal_moves
+from board import make_point, board, get_board_length, make_empty_board, parse_point
 
 
 class AlphaBetaPlayer(Player):
@@ -34,7 +36,8 @@ class AlphaBetaPlayer(Player):
         return "OK"
 
     def make_a_move(self, boards):
-        return (self.ab_minimax(0, self.depth, True, NEG_INF, POS_INF, boards))[1]
+        move = (self.ab_minimax(0, self.depth, True, NEG_INF, POS_INF, boards))
+        return move[1]
 
     def heuristic(self, curr_board):
         return board(curr_board).calculate_score()[self.stone]
@@ -45,7 +48,6 @@ class AlphaBetaPlayer(Player):
             legal_moves = get_legal_moves(boards, self.stone)
         else:
             legal_moves = get_legal_moves(boards, get_opponent_stone(self.stone))
-
         if (depth == max_depth) or (len(legal_moves) == 0):
             return [self.heuristic(curr_board), "hello"]  # heuristic for game evaluation
         updated_board = curr_board

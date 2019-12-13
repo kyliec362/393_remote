@@ -105,6 +105,7 @@ class administrator:
         self.setup_game()
         while True:
             move = self.referee.current_player.make_a_move(self.referee.board_history)
+            print(self.referee.current_player.name, move)
             if isinstance(move, str):
                 move = move.replace('"', '')
             # if player didn't disconnect while making a move

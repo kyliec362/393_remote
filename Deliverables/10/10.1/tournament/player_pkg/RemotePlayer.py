@@ -2,8 +2,9 @@ import socket
 import sys
 sys.path.append('../')
 from streamy import stream
+import json
 from const import *
-from player_pkg import player, GuiPlayer
+from player_pkg import player, GuiPlayer, AlphaBetaPlayer
 default_player = GuiPlayer
 
 def query(p, query_lst):
@@ -72,7 +73,7 @@ def main():
     sock = get_connection_socket()
     end_game_flag = False
     proxy = default_player()
-    server_response = client(sock, "WITNESS ME")
+    server_response = ""
     while not end_game_flag and server_response != -1:
         if len(server_response) < 1:
             server_response = client_recv(sock)

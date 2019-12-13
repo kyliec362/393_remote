@@ -3,8 +3,6 @@ import abc
 from math import log, ceil
 import socket
 import itertools
-import random
-import string
 import math
 from streamy import stream
 from board import get_board_length, make_empty_board
@@ -27,6 +25,9 @@ config_file.close()
 # cup and robin classes implement tournament interface
 class Tournament(abc.ABC):
 
+    # Major data structures:
+    # players -> list of player objects
+    # player connections -> dictionary mapping player objects to socket connection objects
     def __init__(self, num_remote_players):
         self.port = info["port"]
         self.ip = info["IP"]
@@ -37,7 +38,7 @@ class Tournament(abc.ABC):
         self.players = []
         self.players_connections = {}
         self.set_players()
-        self.schedule = []
+
 
     def setup_server(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -57,7 +58,6 @@ class Tournament(abc.ABC):
         while num_joined < self.num_remote_players:
             try:
                 connection, client_address = self.sock.accept()
-                connection.recv(recv_size_player) # if something was sent, read to remove from queue of connection msgs
                 connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 new_player = proxy_remote_player(connection)
                 self.players.append(new_player)
@@ -68,6 +68,7 @@ class Tournament(abc.ABC):
         self.make_players_power_two()
 
     def make_players_power_two(self):
+        print(73)
         base = players_per_game
         num_players = len(self.players)
         if num_players == 0:
@@ -100,6 +101,9 @@ class Tournament(abc.ABC):
 
 class Cup(Tournament):
 
+    # Major data structures:
+    # game_outcomes -> list of the winning player objects for each game played
+    # win record -> mapping of player objects to number of games won (-inf if cheated)
     def __init__(self, num_remote_players):
         super().__init__(num_remote_players)
         self.remaining_players = self.players
@@ -116,12 +120,12 @@ class Cup(Tournament):
         winner_name, cheated = admin.run_game()
         if player1.name == winner_name:
             if cheated:
-                return (player1, [player2])
-            return (player1, [])
+                return player1, [player2]
+            return player1, []
         else:
             if cheated:
-                return (player2, [player1])
-            return (player2, [])
+                return player2, [player1]
+            return player2, []
 
     # each index in game outcomes corresponds to a game
     def __init_game_outcomes(self):
@@ -208,8 +212,15 @@ class Cup(Tournament):
 
 #round robin
 class League(Tournament):
+
+    # Major data structures:
+    # schedule -> list of game combinations (player index pairs)
+    # ranking_info_arr -> list of ranking info objects (indices aligned with self.players and self.players_names_arr)
+    # players_names_arr -> list of player's names (indices aligned with self.players and self.ranking_info_arr)
+    # cheated list -> list of names of players who cheated
     def __init__(self, num_remote_players):
         super().__init__(num_remote_players)
+        self.schedule = []
         self.num_players = len(self.players)
         self.ranking_info_arr = [RankingInfo() for i in range(len(self.players))]
         self.players_names_arr = [None for i in range(self.num_players)]
