@@ -114,6 +114,7 @@ class proxy_remote_player(Player):
                     return response
         except Exception as e:
             print("End game failed sending. Exception is %s" % e)
+            self.connection.close()
         #     return False
         # else:
         #     if response == "OK":
