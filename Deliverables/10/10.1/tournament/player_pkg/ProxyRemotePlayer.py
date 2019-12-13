@@ -66,11 +66,13 @@ class proxy_remote_player(Player):
             response = self.connection.recv(recv_size_player)
             print("proxy end game 66", response)
             if response:
-                return True
+                response = response.decode()
+                if response == "OK":
+                    return response
         except Exception as e:
             print("End game failed sending. Exception is %s" % e)
-            return False
-        else:
-            if response == "OK":
-                return response
-        return False
+        #     return False
+        # else:
+        #     if response == "OK":
+        #         return response
+        # return False
