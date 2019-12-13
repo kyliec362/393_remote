@@ -75,9 +75,9 @@ class administrator:
         self.register_receive_player(self.player2, white)
 
     def register_receive_player(self, p, stone):
-        print("admin 78 reg recv player")
         if not p.register_flag:
             p.register()
+        p.receive_stones(stone)
         p.receive_stones(stone)
 
     # if the end game response does not go through switch the winner to the other player because they cheat otherwise
@@ -108,7 +108,7 @@ class administrator:
         print("admin 107", self.referee.player1.name, self.referee.player2.name)
         while True:
             move = self.referee.current_player.make_a_move(self.referee.board_history)
-            print(self.referee.current_player.name, move)
+            # print(self.referee.current_player.name, move)
             if isinstance(move, str):
                 move = move.replace('"', '')
             # if player didn't disconnect while making a move

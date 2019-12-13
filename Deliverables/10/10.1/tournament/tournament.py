@@ -69,7 +69,6 @@ class Tournament(abc.ABC):
 
 
     def make_players_power_two(self):
-        print(73)
         base = players_per_game
         num_players = len(self.players)
         if num_players == 0:
@@ -78,6 +77,7 @@ class Tournament(abc.ABC):
             next_power_two = int(pow(base, ceil(log(num_players, base))))
             next_power_two = max(base, next_power_two)
         num_defaults = next_power_two - num_players
+        print("tournament make players pow 2", self.num_remote_players, next_power_two, num_defaults)
         # if somehow something made number default players negative
         if num_defaults < 0:
             num_defaults = 0

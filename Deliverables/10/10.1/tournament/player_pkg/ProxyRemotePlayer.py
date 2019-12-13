@@ -36,9 +36,7 @@ class proxy_remote_player(Player):
             data = self.connection.recv(recv_size_player)
             if data:
                 self.name = json.loads(data.decode())
-                print("proxy 40", self.name)
                 if self.name == crazy:
-                    print("Crazy register")
                     self.connection.close()
                 else:
                     self.register_flag = True
@@ -62,7 +60,7 @@ class proxy_remote_player(Player):
         try:
             self.connection.sendall('["end-game"]'.encode())
             response = self.connection.recv(recv_size_player)
-            print("proxy end game 66", response)
+            # print("proxy end game 66", response)
             if response:
                 response = json.loads(response.decode())
                 if response == "OK":
