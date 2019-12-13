@@ -78,7 +78,6 @@ class administrator:
         if not p.register_flag:
             p.register()
         p.receive_stones(stone)
-        p.receive_stones(stone)
 
     # if the end game response does not go through switch the winner to the other player because they cheat otherwise
     # return the original winner
