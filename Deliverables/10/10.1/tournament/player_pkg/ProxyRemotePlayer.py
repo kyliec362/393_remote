@@ -43,6 +43,8 @@ class proxy_remote_player(Player):
                 # return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
+            self.connection.close()
+
             # return False
         #print("Register failed without an exception")
         # return False
