@@ -43,29 +43,32 @@ def get_connection_socket():
     return sock
 
 def client_recv(sock):
-    response = ""
     try:
+        response = ""
         while True:
             received = sock.recv(recv_size_player)
             if received:
-                response += received.decode()
+                received = received.decode()
+                response += received
+                response = json.loads(response)
             break
-    except:
-        pass
-    return response
+        return response
+    except Exception as e:
+        print("client recv failed. Exception is %s" % e)
 
 
 def client(sock, message):
-    response = ""
     try:
+        response = ""
         if message is not None:
             message = json.dumps(message).encode()
-            print("client 61", message)
             sock.sendall(message)
             while True:
-                received = json.loads(sock.recv(recv_size_player))
+                received = sock.recv(recv_size_player)
                 if received:
-                    response += received.decode()
+                    received = received.decode()
+                    response += received
+                    response = json.loads(response)
                 break
     except Exception as e:
         print("Client exception in remote player. Exception is %s" % e)
@@ -81,16 +84,11 @@ def main():
     while not end_game_flag and server_response != -1:
         if len(server_response) < 1:
             server_response = client_recv(sock)
-        try:
-            qry = list(stream(server_response))[0]  # parse json objects
-        except:
-            proxy.go_crazy()
-            server_response = client(sock, crazy)
         else:
-            if "end" in qry[0]:
+            if "end" in server_response[0]:
                 end_game_flag = True
-            result = query(proxy, qry)
-            server_response = client(sock, result)
+        result = query(proxy, server_response)
+        server_response = client(sock, result)
     sock.close()
     return
 
