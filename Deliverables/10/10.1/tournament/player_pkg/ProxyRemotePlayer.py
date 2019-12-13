@@ -15,7 +15,7 @@ class proxy_remote_player(Player):
 
     def make_a_move(self, boards):
         try:
-            message = json.dumps(["make-a-move",' + json.dumps(boards) + ']).encode()
+            message = json.dumps(["make-a-move", ' + json.dumps(boards) + ']).encode()
             self.connection.sendall(message)
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
@@ -30,6 +30,7 @@ class proxy_remote_player(Player):
             print("Make a move failed receiving. Exception is %s" % e)
             #return False
             self.connection.close()  # disconnect if failure
+        return crazy
 
 
     def register(self):
@@ -50,6 +51,7 @@ class proxy_remote_player(Player):
             # return False
         #print("Register failed without an exception")
         # return False
+        print(53, self.name)
         return self.name
 
     def receive_stones(self, stone):
