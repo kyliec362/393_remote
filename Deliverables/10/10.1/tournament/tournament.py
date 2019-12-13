@@ -67,6 +67,7 @@ class Tournament(abc.ABC):
                 continue
         self.make_players_power_two()
 
+
     def make_players_power_two(self):
         print(73)
         base = players_per_game
@@ -96,9 +97,12 @@ class Tournament(abc.ABC):
     def run_game(self, player1, player2):
         pass
 
-    @abc.abstractmethod
     def close_connections(self):
-        pass
+        for conn in list(self.players_connections.values()):
+            try:
+                conn.close()
+            except:
+                continue
 
 class Cup(Tournament):
 
@@ -205,10 +209,7 @@ class Cup(Tournament):
             # keep cheaters always with the lowest score
             self.win_record[c] = (-1 * math.inf)
 
-    # close connections for remote players
-    def close_connections(self):
-        for conn in list(self.players_connections.values()):
-            conn.close()
+
 
 
 #round robin
@@ -369,10 +370,6 @@ class League(Tournament):
     def get_players_names_arr(self):
         return self.players_names_arr
 
-    # closes all the connections
-    def close_connections(self):
-        for conn in list(self.players_connections.values()):
-            conn.close()
 
 
 class RankingInfo:

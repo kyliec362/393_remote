@@ -76,7 +76,8 @@ class administrator:
 
     def register_receive_player(self, p, stone):
         print("admin 78 reg recv player")
-        p.register()
+        if not p.register_flag:
+            p.register()
         p.receive_stones(stone)
 
     # if the end game response does not go through switch the winner to the other player because they cheat otherwise

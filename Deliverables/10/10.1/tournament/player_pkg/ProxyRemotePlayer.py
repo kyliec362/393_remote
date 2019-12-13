@@ -57,7 +57,6 @@ class proxy_remote_player(Player):
         else:
             self.receive_flag = True
             self.stone = stone
-            # return True
 
     def end_game(self):
         try:

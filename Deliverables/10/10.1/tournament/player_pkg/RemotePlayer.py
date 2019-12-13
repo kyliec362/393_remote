@@ -63,7 +63,7 @@ def client(sock, message):
             print("client 61", message)
             sock.sendall(message)
             while True:
-                received = sock.recv(recv_size_player)
+                received = json.loads(sock.recv(recv_size_player))
                 if received:
                     response += received.decode()
                 break
