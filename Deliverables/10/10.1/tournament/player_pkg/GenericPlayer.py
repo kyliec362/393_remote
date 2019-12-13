@@ -55,6 +55,7 @@ class player(Player):
             self.go_crazy()
         else:
             self.register_flag = True
+        print("generic player 58", self.name)
         return self.name
 
     def receive_stones(self, stone):

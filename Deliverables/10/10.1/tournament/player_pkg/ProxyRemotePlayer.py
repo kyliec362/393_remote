@@ -11,7 +11,7 @@ class proxy_remote_player(Player):
         super().__init__()
         self.connection = connection
         # give 30 seconds for remote players or assume disconnect
-        self.connection.settimeout(15)
+        self.connection.settimeout(30)
 
     def make_a_move(self, boards):
         try:
@@ -19,17 +19,16 @@ class proxy_remote_player(Player):
             self.connection.sendall(move_msg.encode())
         except Exception as e:
             print("Make a move send -> Exception is %s" % e)
-            # return False
+            self.connection.close()
+            return
         try:
             data = self.connection.recv(recv_size_player)
             if data:
                 print(26, data)
                 return json.loads(data.decode())
-            # return False
         except Exception as e:
             print("Make a move failed receiving. Exception is %s" % e)
             self.connection.close()
-            # return False
 
     def register(self):
         try:
@@ -37,17 +36,11 @@ class proxy_remote_player(Player):
             data = self.connection.recv(recv_size_player)
             if data:
                 self.name = json.loads(data.decode())
-                # if self.name == crazy:
-                #     print("crazy register proxy")
-                #     return False
+                print("proxy 40", self.name)
                 self.register_flag = True
-                # return True
         except Exception as e:
             print("Register failed sending. Exception is %s" % e)
             self.connection.close()
-            # return False
-        #print("Register failed without an exception")
-        # return False
         return self.name
 
     def receive_stones(self, stone):
@@ -57,15 +50,12 @@ class proxy_remote_player(Player):
         except Exception as e:
             print("Receive failed sending. Exception is %s" % e)
             self.connection.close()
-
-            # return False
         else:
             self.receive_flag = True
             self.stone = stone
             # return True
 
     def end_game(self):
-        response = ""
         try:
             self.connection.sendall('["end-game"]'.encode())
             response = self.connection.recv(recv_size_player)
@@ -77,8 +67,3 @@ class proxy_remote_player(Player):
         except Exception as e:
             print("End game failed sending. Exception is %s" % e)
             self.connection.close()
-        #     return False
-        # else:
-        #     if response == "OK":
-        #         return response
-        # return False
